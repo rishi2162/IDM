@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Demand Management</string>
+    <string name="app_name"><b>INNEED</b></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_fragment">Home Fragment</string>
     <string name="new_fragment">New Fragment</string>
+    <string name="position"><u>Technical Lead</u></string>
+    <string name="managerName"><u>Jyotiranjan Das</u></string>
 </resources>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Home">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        >
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
             android:text="Welcome User,"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
@@ -42,9 +42,8 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="8dp"
-                app:strokeWidth="1dp"
                 app:strokeColor="@color/black"
-                >
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,18 +60,17 @@
                         <View
                             android:layout_width="18dp"
                             android:layout_height="42dp"
-                            android:background="#79192A"
-                            android:layout_marginLeft="15dp"/>
+                            android:layout_marginLeft="15dp"
+                            android:background="#79192A" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
                             android:text="Demand Raised"
                             android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -112,8 +110,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
                                     android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:paddingBottom="8dp"
                                     android:text="Today"
@@ -148,8 +146,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
                                     android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:paddingBottom="8dp"
                                     android:text="January"
@@ -184,8 +182,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
                                     android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:paddingBottom="8dp"
                                     android:text="Total"
@@ -211,9 +209,8 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="8dp"
-                app:strokeWidth="1dp"
                 app:strokeColor="@color/black"
-                >
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -224,24 +221,22 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <View
                             android:layout_width="18dp"
                             android:layout_height="42dp"
-                            android:background="#207919"
-                            android:layout_marginLeft="15dp"/>
+                            android:layout_marginLeft="15dp"
+                            android:background="#207919" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
                             android:text="Demand Fulfilled"
                             android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -281,8 +276,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
                                     android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:paddingBottom="8dp"
                                     android:text="Today"
@@ -317,8 +312,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
                                     android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:paddingBottom="8dp"
                                     android:text="January"
@@ -353,8 +348,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
                                     android:paddingLeft="10dp"
+                                    android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:paddingBottom="8dp"
                                     android:text="Total"
@@ -381,9 +376,8 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="8dp"
-                app:strokeWidth="1dp"
                 app:strokeColor="@color/black"
-                >
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -394,24 +388,22 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <View
                             android:layout_width="18dp"
                             android:layout_height="42dp"
-                            android:background="#1928AA"
-                            android:layout_marginLeft="15dp"/>
+                            android:layout_marginLeft="15dp"
+                            android:background="#1928AA" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
                             android:text="Recent Notifications"
                             android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -422,10 +414,17 @@
                         android:background="@android:color/darker_gray" />
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="125dp"
                         android:orientation="vertical">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/view_pager2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/indicator"
+                            android:layout_centerInParent="true" />
 
                         <me.relex.circleindicator.CircleIndicator3
                             android:id="@+id/indicator"
@@ -433,17 +432,14 @@
                             android:layout_height="38dp"
                             android:layout_alignParentBottom="true"
                             android:background="#FFFFFF"
-                            app:ci_drawable="@color/black" />
-
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/view_pager2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/indicator"
-                            android:layout_centerInParent="true" />
+                            app:ci_drawable="@color/circleIndicatorColor"
+                            app:ci_width="18dp"
+                            app:ci_height="2dp"
+                            app:ci_gravity="center"
+                            />
 
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
 

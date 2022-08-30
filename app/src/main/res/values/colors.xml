@@ -10,5 +10,6 @@
     <color name="todayColor">#B5E0F9</color>
     <color name="monthColor">#C8F3C7</color>
     <color name="totalColor">#ECD1B1</color>
+    <color name="circleIndicatorColor">#0087D5</color>
 
 </resources>

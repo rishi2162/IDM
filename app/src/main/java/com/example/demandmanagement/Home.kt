@@ -52,8 +52,8 @@ class Home : Fragment() {
     }
 
     private fun postToList() {
-        for (i in 1..4){
-            addToList("JRD raised a demand for $i Java and ${i+1} Android Developers")
+        for (i in 1..5){
+            addToList(" A technical lead is required for VIATRIS account having ....")
         }
     }
 

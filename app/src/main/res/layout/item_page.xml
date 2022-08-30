@@ -2,17 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="8dp">
+    android:layout_height="match_parent"
+    android:padding="2dp">
 
-    <TextView
-        android:id="@+id/tvNotifications"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="JRD raised a demand for 2 Java and 2 Android Developers"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/tvPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/position"
+                android:textSize="18sp"
+                android:paddingLeft="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvManagerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/managerName"
+                android:textAlignment="textEnd"
+                android:textSize="18sp"
+                android:paddingRight="15dp"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="JRD raised a demand for 2 Java and 2 Android Developers"
+            android:textSize="16sp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black"
+            />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
