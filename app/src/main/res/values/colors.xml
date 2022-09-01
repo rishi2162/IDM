@@ -11,6 +11,8 @@
     <color name="monthColor">#C8F3C7</color>
     <color name="totalColor">#ECD1B1</color>
     <color name="incture_theme">#0087D5</color>
+    <color name="colorDelete">#FF1E00</color>
+    <color name="incture_box">#0F0087D5</color>
 
 
 </resources>
