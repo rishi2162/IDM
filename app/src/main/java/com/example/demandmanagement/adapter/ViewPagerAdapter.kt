@@ -1,10 +1,11 @@
-package com.example.demandmanagement
+package com.example.demandmanagement.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demandmanagement.R
 
 class ViewPagerAdapter(private var notifications: List<String>) :
     RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewModel>() {

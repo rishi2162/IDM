@@ -1,9 +1,14 @@
-package com.example.demandmanagement
+package com.example.demandmanagement.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
+import com.example.demandmanagement.fragment.HomeFragment
+import com.example.demandmanagement.fragment.NewFragment
+import com.example.demandmanagement.fragment.ProfileFragment
+import com.example.demandmanagement.fragment.TaskFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,15 +18,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragments(Home())
+        replaceFragments(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
 
-            when(it.itemId){
-                R.id.home -> replaceFragments(Home())
-                R.id.newDemand -> replaceFragments(New())
-                R.id.tasks -> replaceFragments((Tasks()))
-                R.id.profile -> replaceFragments(Profile())
+            when (it.itemId) {
+                R.id.home -> replaceFragments(HomeFragment())
+                R.id.newDemand -> replaceFragments(NewFragment())
+                R.id.tasks -> replaceFragments((TaskFragment()))
+                R.id.profile -> replaceFragments(ProfileFragment())
 
                 else -> {
 
@@ -32,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun replaceFragments(fragment: Fragment){
+    private fun replaceFragments(fragment: Fragment) {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

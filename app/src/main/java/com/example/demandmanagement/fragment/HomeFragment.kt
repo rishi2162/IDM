@@ -1,4 +1,4 @@
-package com.example.demandmanagement
+package com.example.demandmanagement.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.example.demandmanagement.R
+import com.example.demandmanagement.adapter.ViewPagerAdapter
 import me.relex.circleindicator.CircleIndicator3
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Home : Fragment() {
+class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -47,12 +49,12 @@ class Home : Fragment() {
 
     }
 
-    private fun addToList(notification:String) {
+    private fun addToList(notification: String) {
         notificationsList.add(notification)
     }
 
     private fun postToList() {
-        for (i in 1..5){
+        for (i in 1..5) {
             addToList(" A technical lead is required for VIATRIS account having ....")
         }
     }
@@ -90,7 +92,7 @@ class Home : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Home().apply {
+            HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
