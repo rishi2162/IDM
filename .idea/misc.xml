@@ -5,18 +5,12 @@
       <map>
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_blank.xml" value="0.2" />
-        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_new.xml" value="0.17028985507246377" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_profile.xml" value="0.17028985507246377" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_tasks.xml" value="0.17028985507246377" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/item_page.xml" value="0.32947976878612717" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/menu/bottom_nav_bar.xml" value="0.1" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_main.xml" value="0.15" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_blank.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_new.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_tasks.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
