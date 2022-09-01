@@ -435,6 +435,7 @@
                                 app:ci_width="18dp"
                                 app:ci_height="2dp"
                                 app:ci_gravity="center"
+                                app:ci_drawable_unselected="@color/black"
                                 />
 
                     </RelativeLayout>
