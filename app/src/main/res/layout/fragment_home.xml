@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".fragment.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:text="Welcome User,"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/incture_theme"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -431,7 +431,7 @@
                                 android:layout_height="30dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="#FFFFFF"
-                                app:ci_drawable="@color/circleIndicatorColor"
+                                app:ci_drawable="@color/incture_theme"
                                 app:ci_width="18dp"
                                 app:ci_height="2dp"
                                 app:ci_gravity="center"
