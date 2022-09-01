@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ProfileSection</string>
+    <string name="user_name">User Name</string>
+    <string name="user_email">user@email.com</string>
+    <string name="user_profile_picture">User Profile Picture</string>
+    <string name="shortUser">UN</string>
+    <string name="cherrywork_logo">cherrywork logo</string>
+    <string name="appVersion">Version 2.3.021</string>
+    <string name="company">Designed By Incture</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="logout_icon">logout icon</string>
+</resources>
