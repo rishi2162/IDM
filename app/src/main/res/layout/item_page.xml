@@ -52,6 +52,14 @@
             android:paddingLeft="15dp"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="22/07/2022"
+            android:paddingRight="15dp"
+            android:textAlignment="textEnd"
+            />
+
 
     </LinearLayout>
 
