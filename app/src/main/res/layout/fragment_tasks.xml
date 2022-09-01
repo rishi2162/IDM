@@ -28,7 +28,7 @@
             android:layout_below="@+id/tvTasks"
             android:layout_marginTop="5dp"
             android:iconifiedByDefault="false"
-            android:queryHint="Search in tasks" />
+            android:queryHint="Search in demands" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerTasks"

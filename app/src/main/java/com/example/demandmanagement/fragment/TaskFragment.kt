@@ -41,13 +41,31 @@ class TaskFragment : Fragment() {
         TaskEntity(
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular,ReactJs",
-            "Ayush Das",
+            "Raunak Sinha",
             "01/09/2022"
         ),
         TaskEntity(
             "Android Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Android",
             "Ayush Das",
+            "01/09/2022"
+        ),
+        TaskEntity(
+            "UI Technical Lead",
+            "A tech lead is required for VIATRIS account having expertise in Angular, ReactJs",
+            "Ayush Das",
+            "01/09/2022"
+        ),
+        TaskEntity(
+            "JAVA Technical Lead",
+            "A tech lead is required for VIATRIS account having expertise in JAVA, SpringBoot",
+            "Rishi Mishra",
+            "01/09/2022"
+        ),
+        TaskEntity(
+            "UI Technical Lead",
+            "A tech lead is required for VIATRIS account having expertise in Angular,ReactJs",
+            "Raunak Sinha",
             "01/09/2022"
         ),
         TaskEntity(
