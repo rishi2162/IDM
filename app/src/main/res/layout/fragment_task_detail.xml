@@ -10,19 +10,20 @@
 
     <TextView
         android:id="@+id/txtBack"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:padding="5dp"
         android:text="@string/tasks"
-        android:textAllCaps="false"
         android:textColor="@color/incture_theme"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -275,7 +276,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="10dp">
 
                     <TextView
                         android:id="@+id/tv15"
@@ -284,7 +286,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="8dp"
                         android:text="Raunak Sinha"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv16"
@@ -310,41 +313,36 @@
 
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/etComment"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:hint="Enter Text ..."
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    tools:ignore="SpeakableTextPresentCheck">
-
-                </EditText>
-
-                <Button
-                    android:id="@+id/btnCSubmit"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    app:cornerRadius="10dp"
-                    app:icon="@drawable/pic1"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconSize="30dp"
-                    tools:ignore="SpeakableTextPresentCheck">
-
-                </Button>
-
-            </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etComment"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:hint="Enter Text ..."
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/btnCSubmit"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:rotation="180"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/pic1"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="30dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+    </LinearLayout>
 </LinearLayout>
