@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.ViewPagerAdapter
 import me.relex.circleindicator.CircleIndicator3
 
@@ -37,8 +38,9 @@ class HomeFragment : Fragment() {
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
         Log.i("ViewPager", view_pager2.toString())
-        view_pager2?.adapter = ViewPagerAdapter(notificationsList)
+        view_pager2?.adapter = ViewPagerAdapter(notificationsList, this, requireContext())
         view_pager2?.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
 
         val indicator = view?.findViewById<CircleIndicator3>(R.id.indicator)
         indicator?.setViewPager(view_pager2)

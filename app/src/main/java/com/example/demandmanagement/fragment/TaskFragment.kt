@@ -3,6 +3,7 @@ package com.example.demandmanagement.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_tasks.*
  * Use the [Tasks.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TaskFragment : Fragment() {
+class TaskFragment : Fragment(){
 
     lateinit var mAdapter: TaskAdapter
 
@@ -30,49 +31,57 @@ class TaskFragment : Fragment() {
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular, ReactJs",
             "Ayush Das",
-            "01/09/2022"
+            "01/09/2022",
+            "#7FB77E"
         ),
         TaskEntity(
             "JAVA Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in JAVA, SpringBoot",
             "Amitkumar Sahu",
-            "01/09/2022"
+            "01/09/2022",
+            "#FBDF07"
         ),
         TaskEntity(
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular,ReactJs",
             "Raunak Sinha",
-            "01/09/2022"
+            "01/09/2022",
+            "#EC9BAA"
         ),
         TaskEntity(
             "Android Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Android",
             "Ayush Das",
-            "01/09/2022"
+            "01/09/2022",
+            "#EC9BAA"
         ),
         TaskEntity(
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular, ReactJs",
             "Ayush Das",
-            "01/09/2022"
+            "01/09/2022",
+            "#FBDF07"
         ),
         TaskEntity(
             "JAVA Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in JAVA, SpringBoot",
             "Rishi Mishra",
-            "01/09/2022"
+            "01/09/2022",
+            "#7FB77E"
         ),
         TaskEntity(
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular,ReactJs",
             "Raunak Sinha",
-            "01/09/2022"
+            "01/09/2022",
+            "#7FB77E"
         ),
         TaskEntity(
             "ioS Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in ioS",
             "Anup Ghosh",
-            "31/08/2022"
+            "31/08/2022",
+            "#FBDF07"
         ),
     )
 
@@ -98,7 +107,7 @@ class TaskFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        mAdapter = TaskAdapter(taskList)
+        mAdapter = TaskAdapter(requireActivity(), taskList, this)
         recyclerTasks.adapter = mAdapter
 
         val swipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
@@ -126,5 +135,6 @@ class TaskFragment : Fragment() {
         setData()
         super.onResume()
     }
+
 
 }

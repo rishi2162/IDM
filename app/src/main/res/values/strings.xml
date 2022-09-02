@@ -6,4 +6,5 @@
     <string name="new_fragment">New Fragment</string>
     <string name="position"><u>Technical Lead</u></string>
     <string name="managerName"><u>Jyotiranjan Das</u></string>
+    <string name="tasks"><![CDATA[< Tasks]]></string>
 </resources>

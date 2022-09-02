@@ -5,10 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
-import com.example.demandmanagement.fragment.HomeFragment
-import com.example.demandmanagement.fragment.NewFragment
-import com.example.demandmanagement.fragment.ProfileFragment
-import com.example.demandmanagement.fragment.TaskFragment
+import com.example.demandmanagement.fragment.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +33,32 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+
+    fun moveToTaskIcon() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.bottomNavigationView.selectedItemId = R.id.tasks
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, TaskDetailFragment()).commit()
+
+        binding.bottomNavigationView.setOnItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.home -> replaceFragments(HomeFragment())
+                R.id.newDemand -> replaceFragments(NewFragment())
+                R.id.tasks -> replaceFragments((TaskFragment()))
+                R.id.profile -> replaceFragments(ProfileFragment())
+
+                else -> {
+
+                }
+            }
+            true
+        }
     }
 
     private fun replaceFragments(fragment: Fragment) {
