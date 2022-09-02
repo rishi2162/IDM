@@ -57,8 +57,6 @@
                 android:layout_marginTop="17dp"
                 android:text="Ayush Das"
                 android:textAlignment="center"
-
-                android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -69,8 +67,7 @@
                 android:layout_below="@id/userName"
                 android:text="ayush.das@incture.com"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
         </RelativeLayout>
 
         <View
@@ -93,8 +90,7 @@
                 android:layout_height="wrap_content"
                 android:padding="28dp"
                 android:text="Receive Emails"
-                android:textColor="@color/black"
-                android:textSize="28sp" />
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/pushBtn"
@@ -126,7 +122,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/button_background"
                 android:fontFamily="sans-serif-medium"
-                android:padding="15dp"
+                android:padding="12dp"
                 android:paddingBottom="5dp"
                 android:text="Sign Out"
                 android:textAllCaps="false"
