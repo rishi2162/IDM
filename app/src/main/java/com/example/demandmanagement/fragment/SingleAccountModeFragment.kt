@@ -361,7 +361,7 @@ class SingleAccountModeFragment : Fragment() {
             btn_signIn.visibility = View.INVISIBLE
             txt_loading.visibility = View.VISIBLE
             progressBar1.visibility = View.VISIBLE
-            txt_log.visibility = View.INVISIBLE
+            txt_log.visibility = View.GONE
 //            btn_removeAccount.isEnabled = true
 //            btn_callGraphInteractively.isEnabled = true
 //            btn_callGraphSilently.isEnabled = true
@@ -370,11 +370,11 @@ class SingleAccountModeFragment : Fragment() {
             btn_signIn.isEnabled = true
             txt_loading.visibility = View.INVISIBLE
             progressBar1.visibility = View.INVISIBLE
-            txt_log.visibility = View.INVISIBLE
+            txt_log.visibility = View.GONE
 //            btn_removeAccount.isEnabled = false
 //            btn_callGraphInteractively.isEnabled = false
 //            btn_callGraphSilently.isEnabled = false
-            current_user.text = ""
+            current_user.text = "User"
         }
     }
 
