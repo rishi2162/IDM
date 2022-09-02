@@ -13,6 +13,9 @@
     <color name="incture_theme">#0087D5</color>
     <color name="colorDelete">#FF1E00</color>
     <color name="incture_box">#eef8fc</color>
+    <color name="card1_color">#ECD1B1</color>
+    <color name="card2_color">#C8F3C7</color>
+    <color name="btnReject_color">#808080</color>
 
 
 </resources>

@@ -1,17 +1,23 @@
 package com.example.demandmanagement.adapter
 
+import android.R.id
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
 import com.example.demandmanagement.model.TaskEntity
 
-class TaskAdapter(private val tasks : ArrayList<TaskEntity>) : RecyclerView.Adapter<ViewHolder>() {
+
+class TaskAdapter(private val tasks: ArrayList<TaskEntity>) :
+    RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.task_item, parent, false)
+
         return ViewHolder(view)
     }
 
@@ -34,4 +40,5 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val descView: TextView = itemView.findViewById(R.id.tvDesc)
     val authorView: TextView = itemView.findViewById(R.id.tvAuthor)
     val dateView: TextView = itemView.findViewById(R.id.tvDate)
+
 }

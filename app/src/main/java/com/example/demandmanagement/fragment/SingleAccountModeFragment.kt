@@ -338,11 +338,15 @@ class SingleAccountModeFragment : Fragment() {
      */
     private fun filterMsalData(graphResponse: JSONObject) {
         val jsonData = JSONObject()
-        jsonData.put("name", graphResponse.get("displayName"))
-        jsonData.put("email", graphResponse.get("mail"))
-        jsonData.put("userId", graphResponse.get("id"))
+//        jsonData.put("name", graphResponse.get("displayName"))
+//        jsonData.put("email", graphResponse.get("mail"))
+//        jsonData.put("userId", graphResponse.get("id"))
 
-       // postData(jsonData)
+        //postData(jsonData)
+        val intent = Intent(requireActivity() as Context, MainActivity::class.java)
+        // intent.putExtra("name",response.getString("name"))
+        requireActivity().startActivity(intent)
+        requireActivity().finish()
         Log.i("jsonData", jsonData.toString())
 
     }
@@ -357,6 +361,7 @@ class SingleAccountModeFragment : Fragment() {
             btn_signIn.visibility = View.INVISIBLE
             txt_loading.visibility = View.VISIBLE
             progressBar1.visibility = View.VISIBLE
+            txt_log.visibility = View.INVISIBLE
 //            btn_removeAccount.isEnabled = true
 //            btn_callGraphInteractively.isEnabled = true
 //            btn_callGraphSilently.isEnabled = true
@@ -365,6 +370,7 @@ class SingleAccountModeFragment : Fragment() {
             btn_signIn.isEnabled = true
             txt_loading.visibility = View.INVISIBLE
             progressBar1.visibility = View.INVISIBLE
+            txt_log.visibility = View.INVISIBLE
 //            btn_removeAccount.isEnabled = false
 //            btn_callGraphInteractively.isEnabled = false
 //            btn_callGraphSilently.isEnabled = false

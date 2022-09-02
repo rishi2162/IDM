@@ -16,23 +16,23 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        // <------Getting Signature Hash------>
-
-        try {
-            val info = packageManager.getPackageInfo(
-                "com.example.demandmanagement",
-                PackageManager.GET_SIGNATURES
-            )
-            for (signature in info.signatures) {
-                val md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                Log.i("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
-            }
-        } catch (e: PackageManager.NameNotFoundException) {
-
-        } catch (e: NoSuchAlgorithmException) {
-
-        }
+//         <------Getting Signature Hash------>
+//
+//        try {
+//            val info = packageManager.getPackageInfo(
+//                "com.example.demandmanagement",
+//                PackageManager.GET_SIGNATURES
+//            )
+//            for (signature in info.signatures) {
+//                val md = MessageDigest.getInstance("SHA")
+//                md.update(signature.toByteArray())
+//                Log.i("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+//            }
+//        } catch (e: PackageManager.NameNotFoundException) {
+//
+//        } catch (e: NoSuchAlgorithmException) {
+//
+//        }
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

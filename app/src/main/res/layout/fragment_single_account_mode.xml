@@ -12,6 +12,16 @@
         android:orientation="vertical"
         tools:context=".fragment.SingleAccountModeFragment">
 
+
+        <ImageView
+            android:id="@+id/imgIncture"
+            android:layout_width="280dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/incture_typo" />
+
         <LinearLayout
             android:id="@+id/activity_main"
             android:layout_width="match_parent"
