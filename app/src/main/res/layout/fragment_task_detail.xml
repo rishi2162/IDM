@@ -8,341 +8,404 @@
     tools:context=".fragment.TaskDetailFragment">
 
 
-    <TextView
-        android:id="@+id/txtBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:padding="5dp"
-        android:text="@string/tasks"
-        android:textColor="@color/incture_theme"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/txtBack"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:padding="5dp"
+            android:text="@string/tasks"
+            android:textColor="@color/incture_theme"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/etEnterMsg"
+            android:layout_below="@+id/txtBack">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Demand ID:"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="INC0000001"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:id="@+id/tv3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Requester:"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Jyotiranjan Dash"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card1"
-                        android:layout_width="80dp"
-                        android:layout_height="99dp"
-                        android:layout_marginEnd="24dp"
-                        app:cardBackgroundColor="@color/card1_color"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="15dp"
-                        app:cardMaxElevation="15dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvCard1"
+                            android:id="@+id/tv1"
                             android:layout_width="match_parent"
-                            android:layout_height="72dp"
-                            android:paddingTop="21dp"
-                            android:text="4"
-                            android:textAlignment="center"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="19dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Demand ID:"
                             android:textColor="@color/black"
-                            android:textSize="34sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCard2"
+                            android:id="@+id/tv2"
                             android:layout_width="match_parent"
-                            android:layout_height="27dp"
-                            android:layout_marginTop="72dp"
-                            android:text="Requested"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card2"
-                        android:layout_width="80dp"
-                        android:layout_height="99dp"
-                        android:layout_marginEnd="20dp"
-                        app:cardBackgroundColor="@color/card2_color"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="15dp"
-                        app:cardMaxElevation="15dp">
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="19dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="INC0000001"
+                            android:textStyle="normal" />
 
                         <TextView
-                            android:id="@+id/tvCard3"
+                            android:id="@+id/tv3"
                             android:layout_width="match_parent"
-                            android:layout_height="72dp"
-                            android:paddingTop="21dp"
-                            android:text="2"
-                            android:textAlignment="center"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="19dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Requester:"
                             android:textColor="@color/black"
-                            android:textSize="34sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCard4"
+                            android:id="@+id/tv4"
                             android:layout_width="match_parent"
-                            android:layout_height="27dp"
-                            android:layout_marginTop="72dp"
-                            android:text="Fulfilled"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold" />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="19dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Jyotiranjan Dash"
+                            android:textStyle="normal" />
 
-            </LinearLayout>
+                    </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                android:text="Demand Designation:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:text="UI Technical Lead"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/tv7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                android:text="Demand Description:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:text="A tech lead is required for VIATRIS account having expertise in Angular, ReactJs or SAPUI5..."
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/tv9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                android:text="Year of Experience:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:text="8+ Years"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/tv11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                android:text="Skills:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:text="SAPUI5, Angular, ReactJS"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/tv13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                android:text="Demand Date:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:text="23rd August 2022"
-                android:textStyle="normal" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card3"
-                android:layout_width="240dp"
-                android:layout_height="122dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="@color/btnReject_color"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="15dp"
-                app:cardMaxElevation="15dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:id="@+id/tv15"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Raunak Sinha"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
+                        android:gravity="end"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="7dp"
-                        android:text="Could you give me some additional details? Have you been working too much for the last few days?"
-                        android:textColor="@color/white" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card1"
+                            android:layout_width="80dp"
+                            android:layout_height="99dp"
+                            android:layout_marginEnd="24dp"
+                            app:cardBackgroundColor="@color/card1_color"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="15dp"
+                            app:cardMaxElevation="15dp">
 
-                    <TextView
-                        android:id="@+id/tv17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="7dp"
-                        android:text="22/ 08/ 22"
-                        android:textColor="@color/white" />
+                            <TextView
+                                android:id="@+id/tvCard1"
+                                android:layout_width="match_parent"
+                                android:layout_height="72dp"
+                                android:paddingTop="21dp"
+                                android:text="4"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvCard2"
+                                android:layout_width="match_parent"
+                                android:layout_height="27dp"
+                                android:layout_marginTop="72dp"
+                                android:text="Requested"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card2"
+                            android:layout_width="80dp"
+                            android:layout_height="99dp"
+                            android:layout_marginEnd="20dp"
+                            app:cardBackgroundColor="@color/card2_color"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="15dp"
+                            app:cardMaxElevation="15dp">
+
+                            <TextView
+                                android:id="@+id/tvCard3"
+                                android:layout_width="match_parent"
+                                android:layout_height="72dp"
+                                android:paddingTop="21dp"
+                                android:text="2"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvCard4"
+                                android:layout_width="match_parent"
+                                android:layout_height="27dp"
+                                android:layout_marginTop="72dp"
+                                android:text="Fulfilled"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tv5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Demand Designation:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tv6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="UI Technical Lead"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tv7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Demand Description:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="A tech lead is required for VIATRIS account having expertise in Angular, ReactJs or SAPUI5..."
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tv9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Year of Experience:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="8+ Years"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tv11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Skills:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="SAPUI5, Angular, ReactJS"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tv13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Demand Date:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="23rd August 2022"
+                    android:textStyle="normal" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card3"
+                    android:layout_width="240dp"
+                    android:layout_height="122dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/btnReject_color"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="15dp"
+                    app:cardMaxElevation="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/tv15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Raunak Sinha"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="7dp"
+                            android:text="Could you give me some additional details? Have you been working too much for the last few days?"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="7dp"
+                            android:text="22/ 08/ 22"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card4"
+                    android:layout_width="240dp"
+                    android:layout_height="122dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/btnReject_color"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="15dp"
+                    app:cardMaxElevation="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/tv18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Raunak Sinha"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="7dp"
+                            android:text="Could you give me some additional details? Have you been working too much for the last few days?"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tv20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="7dp"
+                            android:text="22/ 08/ 22"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/etEnterMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etComment"
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:hint="Enter Text ..."
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btnCSubmit"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:rotation="180"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/pic1"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="30dp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
-    </ScrollView>
+    </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etComment"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:hint="Enter Text ..."
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <Button
-            android:id="@+id/btnCSubmit"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:rotation="180"
-            app:cornerRadius="10dp"
-            app:icon="@drawable/pic1"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="30dp"
-            tools:ignore="SpeakableTextPresentCheck"/>
-
-    </LinearLayout>
 </LinearLayout>

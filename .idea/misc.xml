@@ -13,17 +13,20 @@
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/menu/bottom_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/bg.xml" value="0.105" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/button_background.xml" value="0.105" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/custom_next_button.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/drop_down_item_yoe.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_blank.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_new.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_single_account_mode.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_task_detail.xml" value="0.25" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_task_detail.xml" value="0.2" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_tasks.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/item_page.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/skill_grid_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/task_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/menu/bottom_nav_bar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/menu/menu_scrolling.xml" value="0.20416666666666666" />
