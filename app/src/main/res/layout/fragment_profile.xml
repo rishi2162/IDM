@@ -1,19 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
     tools:context=".fragment.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile Fragments"
-        android:textSize="26sp"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pictureCard"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                app:cardCornerRadius="150dp">
+
+                <ImageView
+                    android:id="@+id/picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@color/incture_theme" />
+
+                <TextView
+                    android:id="@+id/shortUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:text="AD"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="60sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="Ayush Das"
+                android:textAlignment="center"
+
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/userName"
+                android:text="ayush.das@incture.com"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0F0087D5"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="28dp"
+                android:text="Receive Emails"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/pushBtn"
+                android:layout_width="124dp"
+                android:layout_height="69dp"
+                android:checked="true"
+                android:padding="28dp"
+                android:textSize="28sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0F0087D5"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSignOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_background"
+                android:fontFamily="sans-serif-medium"
+                android:padding="15dp"
+                android:paddingBottom="5dp"
+                android:text="Sign Out"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cherryWorkIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/cherrywork_logo" />
+
+            <TextView
+                android:id="@+id/cherryWorkTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cherryWorkIcon"
+                android:padding="5dp"
+                android:text="Version 1.0.1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cherryWorkTxt"
+                android:padding="5dp"
+                android:text="©Designed by Incture "
+                android:textAlignment="center" />
+        </RelativeLayout>
+
+    </LinearLayout>
 </FrameLayout>
