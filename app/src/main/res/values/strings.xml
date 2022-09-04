@@ -7,4 +7,5 @@
     <string name="position"><u>Technical Lead</u></string>
     <string name="managerName"><u>Jyotiranjan Das</u></string>
     <string name="tasks"><![CDATA[< Tasks]]></string>
+    <string name="new_demand"><![CDATA[< New Demand]]></string>
 </resources>
