@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:padding="5dp"
-        android:text="@string/new_demand"
+        android:text="@string/raise_a_demand"
         android:textColor="@color/incture_theme"
         android:textSize="20sp"
         android:textStyle="bold"

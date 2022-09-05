@@ -8,4 +8,5 @@
     <string name="managerName"><u>Jyotiranjan Das</u></string>
     <string name="tasks"><![CDATA[< Tasks]]></string>
     <string name="new_demand"><![CDATA[< New Demand]]></string>
+    <string name="raise_a_demand"><![CDATA[< Raise a Demand]]></string>
 </resources>
