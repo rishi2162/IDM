@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_baseline_fiber_new_24"
         />
 
-    <item android:title="Tasks"
+    <item android:title="Demands"
         android:id="@+id/tasks"
         android:icon="@drawable/ic_baseline_event_24"
         />

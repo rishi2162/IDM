@@ -18,12 +18,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:padding="5dp"
-            android:text="@string/tasks"
+            android:text="@string/demand"
             android:textColor="@color/incture_theme"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -66,27 +68,6 @@
                             android:layout_marginEnd="5dp"
                             android:text="INC0000001"
                             android:textStyle="normal" />
-
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv3"-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginStart="19dp"-->
-                        <!--                            android:layout_marginTop="25dp"-->
-                        <!--                            android:layout_marginEnd="5dp"-->
-                        <!--                            android:text="Requester:"-->
-                        <!--                            android:textColor="@color/black"-->
-                        <!--                            android:textStyle="bold" />-->
-
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv4"-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginStart="19dp"-->
-                        <!--                            android:layout_marginTop="8dp"-->
-                        <!--                            android:layout_marginEnd="5dp"-->
-                        <!--                            android:text="Jyotiranjan Dash"-->
-                        <!--                            android:textStyle="normal" />-->
                         <TextView
                             android:id="@+id/tv3"
                             android:layout_width="match_parent"
@@ -350,7 +331,6 @@
                     android:layout_marginEnd="10dp"
                     android:text="A tech lead is required for VIATRIS account having expertise in Angular, ReactJs or SAPUI5..."
                     android:textStyle="normal" />
-
 
 
                 <androidx.cardview.widget.CardView
