@@ -22,7 +22,7 @@ class NewFragment : Fragment() {
         val btnNextPage = view.findViewById<Button>(R.id.btnNextPage)
         btnNextPage.setOnClickListener {
             val transition = this.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, NewFragment2())?.commit()
+            transition?.replace(R.id.frameLayout, RecipientsFragment())?.commit()
         }
         return view
     }
