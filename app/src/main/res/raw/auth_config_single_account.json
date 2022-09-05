@@ -1,7 +1,7 @@
 {
   "client_id": "d8f2151e-4dc9-40ad-9206-056b1d526be8",
   "authorization_user_agent": "DEFAULT",
-  "redirect_uri": "msauth://com.example.demandmanagement/MvfcHOHU2n32yeqeapZepcLtE3Q%3D",
+  "redirect_uri": "msauth://com.example.demandmanagement/l%2FQd%2Fv9msrcpTiYHOQTv3sYs%2Fso%3D",
   "account_mode" : "SINGLE",
   "broker_redirect_uri_registered": true,
   "authorities": [
