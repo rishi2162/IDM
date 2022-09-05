@@ -67,6 +67,26 @@
                             android:text="INC0000001"
                             android:textStyle="normal" />
 
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/tv3"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginStart="19dp"-->
+                        <!--                            android:layout_marginTop="25dp"-->
+                        <!--                            android:layout_marginEnd="5dp"-->
+                        <!--                            android:text="Requester:"-->
+                        <!--                            android:textColor="@color/black"-->
+                        <!--                            android:textStyle="bold" />-->
+
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/tv4"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginStart="19dp"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:layout_marginEnd="5dp"-->
+                        <!--                            android:text="Jyotiranjan Dash"-->
+                        <!--                            android:textStyle="normal" />-->
                         <TextView
                             android:id="@+id/tv3"
                             android:layout_width="match_parent"
@@ -74,7 +94,7 @@
                             android:layout_marginStart="19dp"
                             android:layout_marginTop="25dp"
                             android:layout_marginEnd="5dp"
-                            android:text="Requester:"
+                            android:text="Demand Raise Date:"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -85,7 +105,7 @@
                             android:layout_marginStart="19dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="5dp"
-                            android:text="Jyotiranjan Dash"
+                            android:text="05th September 2022"
                             android:textStyle="normal" />
 
                     </LinearLayout>
@@ -170,7 +190,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Demand Designation:"
+                    android:text="Demand Due Date:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -181,7 +201,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    android:text="UI Technical Lead"
+                    android:text="30th September 2022"
                     android:textStyle="normal" />
 
                 <TextView
@@ -191,7 +211,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Demand Description:"
+                    android:text="Requester:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -202,7 +222,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    android:text="A tech lead is required for VIATRIS account having expertise in Angular, ReactJs or SAPUI5..."
+                    android:text="Jyotiranjan Dash"
                     android:textStyle="normal" />
 
                 <TextView
@@ -212,7 +232,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Year of Experience:"
+                    android:text="Priority:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -223,7 +243,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    android:text="8+ Years"
+                    android:text="Medium"
                     android:textStyle="normal" />
 
                 <TextView
@@ -233,7 +253,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Skills:"
+                    android:text="Demand Designation:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -244,7 +264,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    android:text="SAPUI5, Angular, ReactJS"
+                    android:text="UI Technical Lead"
                     android:textStyle="normal" />
 
                 <TextView
@@ -254,7 +274,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Demand Date:"
+                    android:text="Year of Experience:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -265,8 +285,53 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    android:text="23rd August 2022"
+                    android:text="8+ Years"
                     android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tv15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Skills:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="SAPUI5, Angular, ReactJS"
+                    android:textStyle="normal" />
+
+
+                <TextView
+                    android:id="@+id/tv17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Demand Description:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="A tech lead is required for VIATRIS account having expertise in Angular, ReactJs or SAPUI5..."
+                    android:textStyle="normal" />
+
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card3"
@@ -281,12 +346,13 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="150dp"
                         android:orientation="vertical"
-                        android:paddingTop="10dp">
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
 
                         <TextView
-                            android:id="@+id/tv15"
+                            android:id="@+id/tv19"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -296,7 +362,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv16"
+                            android:id="@+id/tv20"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -306,7 +372,7 @@
                             android:textColor="@color/white" />
 
                         <TextView
-                            android:id="@+id/tv17"
+                            android:id="@+id/tv21"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -332,12 +398,13 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="150dp"
                         android:orientation="vertical"
-                        android:paddingTop="10dp">
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
 
                         <TextView
-                            android:id="@+id/tv18"
+                            android:id="@+id/tv22"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -347,7 +414,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv19"
+                            android:id="@+id/tv23"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -357,7 +424,7 @@
                             android:textColor="@color/white" />
 
                         <TextView
-                            android:id="@+id/tv20"
+                            android:id="@+id/tv24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
