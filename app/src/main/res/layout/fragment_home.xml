@@ -154,7 +154,7 @@
                                     android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:layout_marginBottom="2dp"
-                                    android:text="January"
+                                    android:text="This Month"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -322,7 +322,7 @@
                                     android:paddingTop="5dp"
                                     android:paddingRight="10dp"
                                     android:layout_marginBottom="2dp"
-                                    android:text="January"
+                                    android:text="This Month"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
