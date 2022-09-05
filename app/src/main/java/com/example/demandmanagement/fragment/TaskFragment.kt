@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -22,24 +23,23 @@ import kotlinx.android.synthetic.main.fragment_tasks.*
  * Use the [Tasks.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TaskFragment : Fragment(){
+class TaskFragment : Fragment() {
 
     lateinit var mAdapter: TaskAdapter
+    lateinit var searchView: SearchView
 
     private val taskList = arrayListOf<TaskEntity>(
         TaskEntity(
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular, ReactJs",
             "Ayush Das",
-            "01/09/2022",
-            "#7FB77E"
+            "01/09/2022"
         ),
         TaskEntity(
             "JAVA Technical Lead",
-            "A tech lead is required for VIATRIS account having expertise in JAVA, SpringBoot",
+            "A tech lead is required for IDM account having expertise in JAVA, SpringBoot",
             "Amitkumar Sahu",
-            "01/09/2022",
-            "#FBDF07"
+            "01/09/2022"
         ),
         TaskEntity(
             "UI Technical Lead",
@@ -50,31 +50,28 @@ class TaskFragment : Fragment(){
         ),
         TaskEntity(
             "Android Technical Lead",
-            "A tech lead is required for VIATRIS account having expertise in Android",
+            "A tech lead is required for INFoM account having expertise in Android",
             "Ayush Das",
-            "01/09/2022",
-            "#EC9BAA"
+            "01/09/2022"
         ),
         TaskEntity(
             "UI Technical Lead",
             "A tech lead is required for VIATRIS account having expertise in Angular, ReactJs",
             "Ayush Das",
-            "01/09/2022",
-            "#FBDF07"
+            "01/09/2022"
         ),
         TaskEntity(
             "JAVA Technical Lead",
-            "A tech lead is required for VIATRIS account having expertise in JAVA, SpringBoot",
+            "A tech lead is required for INAM account having expertise in JAVA, SpringBoot",
             "Rishi Mishra",
             "01/09/2022",
             "#7FB77E"
         ),
         TaskEntity(
             "UI Technical Lead",
-            "A tech lead is required for VIATRIS account having expertise in Angular,ReactJs",
+            "A tech lead is required for INFoM account having expertise in Angular,ReactJs",
             "Raunak Sinha",
-            "01/09/2022",
-            "#7FB77E"
+            "01/09/2022"
         ),
         TaskEntity(
             "ioS Technical Lead",
@@ -94,7 +91,7 @@ class TaskFragment : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_tasks, container, false)
-
+        searchView = view.findViewById(R.id.searchView)
         return view
     }
 
@@ -131,8 +128,23 @@ class TaskFragment : Fragment(){
         return list
     }
 
+    private fun filterData() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+    }
+
     override fun onResume() {
         setData()
+        filterData()
         super.onResume()
     }
 
