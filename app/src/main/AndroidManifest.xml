@@ -41,7 +41,7 @@
 
                 <data
                     android:host="com.example.demandmanagement"
-                    android:path="/MvfcHOHU2n32yeqeapZepcLtE3Q="
+                    android:path="/l/Qd/v9msrcpTiYHOQTv3sYs/so="
                     android:scheme="msauth" />
             </intent-filter>
         </activity>
