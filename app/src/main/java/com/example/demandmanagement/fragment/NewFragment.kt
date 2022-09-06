@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridView
+import android.widget.TextView
 import com.example.demandmanagement.R
 
 class NewFragment : Fragment() {
@@ -24,6 +25,7 @@ class NewFragment : Fragment() {
             val transition = this.fragmentManager?.beginTransaction()
             transition?.replace(R.id.frameLayout, RecipientsFragment())?.commit()
         }
+
         return view
     }
 
