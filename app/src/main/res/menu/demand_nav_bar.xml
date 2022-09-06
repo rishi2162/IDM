@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/all"
+        android:title="Demands Raised" />
+
+    <item
+        android:id="@+id/approval"
+        android:title="My Approvals" />
+
+    <item
+        android:id="@+id/request"
+        android:title="My Requests" />
+
+
+</menu>

@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.demandmanagement.R
-import com.example.demandmanagement.activity.MainActivity
+import com.example.demandmanagement.fragment.demandchildfragment.DemandRaisedFragment
 
 
-class TaskDetailFragment : Fragment() {
+class DemandDetailsFragment : Fragment() {
 
     private var fCount = 0
     private var rCount = 4
@@ -22,12 +21,12 @@ class TaskDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_task_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_demand_detail, container, false)
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
         txtBack.setOnClickListener {
             val transition = fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, TaskFragment())?.commit()
+            transition?.replace(R.id.frameLayout, DemandRaisedFragment())?.commit()
         }
 
         var tvText = view.findViewById<TextView>(R.id.tvFulfilledNumber)

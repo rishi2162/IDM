@@ -3,29 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.TaskFragment">
+    tools:context=".fragment.demandchildfragment.MyApprovalFragment">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
 
-        <TextView
-            android:id="@+id/tvTasks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="All Demands"
-            android:textColor="@color/incture_theme"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
 
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTasks"
             android:layout_marginTop="5dp"
             android:iconifiedByDefault="false"
             android:queryHint="Search in demands" />

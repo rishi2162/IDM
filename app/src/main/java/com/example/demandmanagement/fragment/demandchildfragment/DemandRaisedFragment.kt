@@ -1,9 +1,8 @@
-package com.example.demandmanagement.fragment
+package com.example.demandmanagement.fragment.demandchildfragment
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
@@ -13,19 +12,19 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
-import com.example.demandmanagement.adapter.TaskAdapter
+import com.example.demandmanagement.adapter.DemandRaisedAdapter
 import com.example.demandmanagement.model.TaskEntity
 import com.example.demandmanagement.util.SwipeToDeleteCallback
-import kotlinx.android.synthetic.main.fragment_tasks.*
+import kotlinx.android.synthetic.main.fragment_demand_raised.*
 
 /**
  * A simple [Fragment] subclass.
  * Use the [Tasks.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TaskFragment : Fragment() {
+class DemandRaisedFragment : Fragment() {
 
-    lateinit var mAdapter: TaskAdapter
+    lateinit var mAdapter: DemandRaisedAdapter
     lateinit var searchView: SearchView
 
     private val taskList = arrayListOf<TaskEntity>(
@@ -90,7 +89,7 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_tasks, container, false)
+        val view = inflater.inflate(R.layout.fragment_demand_raised, container, false)
         searchView = view.findViewById(R.id.searchView)
         return view
     }
@@ -104,7 +103,7 @@ class TaskFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        mAdapter = TaskAdapter(requireActivity(), taskList, this)
+        mAdapter = DemandRaisedAdapter(requireActivity(), taskList, this)
         recyclerTasks.adapter = mAdapter
 
         val swipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {

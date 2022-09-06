@@ -35,6 +35,7 @@ class ViewPagerAdapter(
 //            transition?.replace(R.id.frameLayout, TaskDetailFragment())?.commit()
             if (context is MainActivity) {
                 (context as MainActivity).moveToTaskIcon()
+
             }
         }
     }

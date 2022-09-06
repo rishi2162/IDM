@@ -1,6 +1,5 @@
 package com.example.demandmanagement.adapter
 
-import android.R.id
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -10,18 +9,18 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
-import com.example.demandmanagement.fragment.TaskDetailFragment
+import com.example.demandmanagement.fragment.DemandDetailsFragment
 import com.example.demandmanagement.model.TaskEntity
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class TaskAdapter(
+class MyRequestAdapter(
     val context: Context,
     private val tasks: ArrayList<TaskEntity>,
     val fragment: Fragment
 ) :
-    RecyclerView.Adapter<TaskAdapter.ViewHolder>(), Filterable {
+    RecyclerView.Adapter<MyRequestAdapter.ViewHolder>(), Filterable {
 
     var filterList = ArrayList<TaskEntity>()
 
@@ -43,10 +42,11 @@ class TaskAdapter(
         holder.dateView.text = currentItem.date
         holder.colorItemView.setBackgroundColor(Color.parseColor(currentItem.color))
 
+
         holder.itemView.setOnClickListener {
             //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
             val transition = fragment.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, TaskDetailFragment())?.commit()
+            transition?.replace(R.id.frameLayout, DemandDetailsFragment())?.commit()
 
         }
     }
@@ -100,6 +100,7 @@ class TaskAdapter(
         val authorView: TextView = itemView.findViewById(R.id.tvAuthor)
         val dateView: TextView = itemView.findViewById(R.id.tvDate)
         val colorItemView: View = itemView.findViewById(R.id.label)
+        val editIconView: View = itemView.findViewById(R.id.iconEdit)
 
     }
 }

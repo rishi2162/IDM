@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.example.demandmanagement.fragment.DemandDetailsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> replaceFragments(HomeFragment())
                 R.id.newDemand -> replaceFragments(NewFragment())
-                R.id.tasks -> replaceFragments((TaskFragment()))
+                R.id.tasks -> replaceFragments((DemandFragment()))
                 R.id.profile -> replaceFragments(ProfileFragment())
 
                 else -> {
@@ -43,14 +43,14 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayout, TaskDetailFragment()).commit()
+        fragmentTransaction.replace(R.id.frameLayout, DemandDetailsFragment()).commit()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
 
             when (it.itemId) {
                 R.id.home -> replaceFragments(HomeFragment())
                 R.id.newDemand -> replaceFragments(NewFragment())
-                R.id.tasks -> replaceFragments((TaskFragment()))
+                R.id.tasks -> replaceFragments((DemandFragment()))
                 R.id.profile -> replaceFragments(ProfileFragment())
 
                 else -> {
