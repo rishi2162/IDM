@@ -7,7 +7,6 @@
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_input.xml" value="0.166" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_input_recipients.xml" value="0.2115" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_next_button.xml" value="0.166" />
-        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.166" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.2115" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_blank.xml" value="0.2" />
@@ -20,6 +19,12 @@
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/item_page.xml" value="0.32947976878612717" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/task_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/menu/bottom_nav_bar.xml" value="0.1" />
+        <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/drawable/custom_input.xml" value="0.2075" />
+        <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/drop_down_item_yoe.xml" value="0.14130434782608695" />
+        <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/fragment_new.xml" value="0.3333333333333333" />
+        <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/fragment_recipients.xml" value="0.14130434782608695" />
+        <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/fragment_tasks.xml" value="0.14130434782608695" />
+        <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/skill_grid_item.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/bg.xml" value="0.105" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/button_background.xml" value="0.105" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/custom_next_button.xml" value="0.153" />

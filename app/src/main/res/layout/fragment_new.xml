@@ -116,8 +116,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
                     android:id="@+id/dropDownYoe"
@@ -125,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter the experience in years e.g. 4+ yrs"
                     android:inputType="none"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -176,7 +175,7 @@
 
             <GridView
                 android:id="@+id/gridSkill"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginTop="20dp"
                 android:horizontalSpacing="5dp"
@@ -302,6 +301,7 @@
                 >
 
                 <AutoCompleteTextView
+                    android:id="@+id/dropDownPriority"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Choose the priority"
@@ -345,6 +345,7 @@
                 >
 
                 <AutoCompleteTextView
+                    android:id="@+id/dropDownShift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Choose a Shift"
@@ -381,6 +382,24 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/btnCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/custom_input"
+                android:hint="Select"
+                android:textColor="@color/black" />
+        </LinearLayout>
 
 
             <LinearLayout

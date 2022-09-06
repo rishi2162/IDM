@@ -7,7 +7,61 @@
     <string name="position"><u>Technical Lead</u></string>
     <string name="managerName"><u>Jyotiranjan Das</u></string>
     <string name="tasks"><![CDATA[< Tasks]]></string>
-    <string name="new_demand"><![CDATA[< New Demand]]></string>
     <string name="demand"><![CDATA[< Demand]]></string>
     <string name="raise_a_new_demand"><![CDATA[< Raise a New Demand]]></string>
+
+<!--    list of experience-->
+    <string-array name="yearOfExp">
+        <item>0-1 yr</item>
+        <item>1+ yr</item>
+        <item>2+ yr</item>
+        <item>3+ yr</item>
+        <item>4+ yr</item>
+        <item>5+ yr</item>
+        <item>6+ yr</item>
+        <item>7+ yr</item>
+        <item>8+ yr</item>
+        <item>9+ yr</item>
+    </string-array>
+
+<!--    list of locations-->
+    <string-array name="location">
+        <item>Bhubaneswar</item>
+        <item>Bengaluru</item>
+    </string-array>
+
+<!--    list of priority-->
+    <string-array name="priority">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+
+<!--    list of shifts-->
+    <string-array name="shifts">
+        <item>Day shift (9AM - 5PM)</item>
+        <item>Night shift (11PM - 7AM)</item>
+    </string-array>
+
+<!--    list of recipients-->
+
+    <string-array name="recipients">
+        <item>Rishi</item>
+        <item>Ayush</item>
+        <item>Anish</item>
+        <item>Saswat</item>
+        <item>Rishi2</item>
+        <item>Ayush2</item>
+        <item>Anish2</item>
+        <item>Saswat2</item>
+        <item>Rishi3</item>
+        <item>Ayush3</item>
+        <item>Anish3</item>
+        <item>Saswat3</item>
+        <item>Rishi4</item>
+        <item>Ayush4</item>
+        <item>Anish4</item>
+        <item>Saswat4</item>
+    </string-array>
+
 </resources>
