@@ -1,24 +1,31 @@
 package com.example.demandmanagement.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
-import com.example.demandmanagement.fragment.DemandDetailsFragment
+import org.json.JSONArray
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var responseData = JSONArray()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //iniRefreshListener()
+
         replaceFragments(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -65,6 +72,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragments(fragment: Fragment) {
+        val bundle = Bundle()
+        bundle.putString("responseData", apiCall().toString())
+        Log.d("response", apiCall().toString())
+        fragment.arguments = bundle
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -87,4 +98,27 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
+    private fun apiCall(): JSONArray {
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://json.extendsclass.com/bin/322d051a3560"
+        val jsonArrayRequest = object : JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                // Log.i("successRequest", response.toString())
+                responseData = response
+            },
+            {
+                Log.d("error", it.localizedMessage)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest)
+
+
+        return responseData
+    }
+
 }
