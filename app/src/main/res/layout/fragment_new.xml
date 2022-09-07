@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:text="(Enter a comma in between skills)"
+                    android:text="(Click enter to add skill)"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -173,14 +173,15 @@
                 android:paddingRight="10dp"
                 android:paddingBottom="20dp" />
 
-            <GridView
-                android:id="@+id/gridSkill"
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/skillsChipGroup"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginTop="20dp"
-                android:horizontalSpacing="5dp"
-                android:numColumns="2"
-                android:verticalSpacing="10dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="@+id/inputSkill"
+                app:layout_constraintTop_toBottomOf="@+id/inputSkill"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
