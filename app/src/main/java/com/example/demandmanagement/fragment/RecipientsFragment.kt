@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isVisible
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.Skill
 import com.example.demandmanagement.model.Recipient
@@ -88,21 +89,34 @@ class RecipientsFragment : Fragment() {
         var ivAddTwo = view.findViewById<ImageView>(R.id.ivAddTwo)
         var ivAddThree = view.findViewById<ImageView>(R.id.ivAddThree)
 
+        var ivRemoveOne = view.findViewById<ImageView>(R.id.ivRemoveOne)
+        var ivRemoveTwo = view.findViewById<ImageView>(R.id.ivRemoveTwo)
+        var ivRemoveThree = view.findViewById<ImageView>(R.id.ivRemoveThree)
+
 
         // 1
         ivAddOne.setOnClickListener{
+            ivAddOne.visibility = View.GONE
+            ivRemoveOne.visibility = View.VISIBLE
+
             val name = "All Managers"
             addChip(name)
         }
 
         // 2
         ivAddTwo.setOnClickListener{
+            ivAddTwo.visibility = View.GONE
+            ivRemoveTwo.visibility = View.VISIBLE
+
             val name = "Talent Acquisition"
             addChip(name)
         }
 
         // 3
         ivAddThree.setOnClickListener{
+            ivAddThree.visibility = View.GONE
+            ivRemoveThree.visibility = View.VISIBLE
+
             val name = "Leadership Team"
             addChip(name)
         }
@@ -118,6 +132,20 @@ class RecipientsFragment : Fragment() {
         chip.isCloseIconVisible = true
 
         chip.setOnCloseIconClickListener{
+            if(text == "All Managers" && ivRemoveOne.isVisible){
+                ivAddOne.visibility = View.VISIBLE
+                ivRemoveOne.visibility = View.GONE
+            }
+
+            if(text == "Talent Acquisition" && ivRemoveTwo.isVisible){
+                ivAddTwo.visibility = View.VISIBLE
+                ivRemoveTwo.visibility = View.GONE
+            }
+
+            if(text == "Leadership Team" && ivRemoveThree.isVisible){
+                ivAddThree.visibility = View.VISIBLE
+                ivRemoveThree.visibility = View.GONE
+            }
             chipGroupRecipients.removeView(chip)
         }
 

@@ -103,6 +103,15 @@
                         android:layout_marginTop="8dp"
                         android:src="@drawable/ic_baseline_add_circle_24" />
 
+                    <ImageView
+                        android:id="@+id/ivRemoveOne"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_remove_circle_24" />
+
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -152,6 +161,14 @@
                         android:layout_marginTop="8dp"
                         android:src="@drawable/ic_baseline_add_circle_24" />
 
+                    <ImageView
+                        android:id="@+id/ivRemoveTwo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_remove_circle_24" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -200,6 +217,14 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="8dp"
                         android:src="@drawable/ic_baseline_add_circle_24" />
+
+                    <ImageView
+                        android:id="@+id/ivRemoveThree"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_remove_circle_24" />
 
 
                     <TextView
