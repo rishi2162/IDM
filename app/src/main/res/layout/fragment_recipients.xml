@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="2dp"
-    >
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/tvNewDemand"
@@ -24,15 +23,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_margin="8dp"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,42 +54,41 @@
         </LinearLayout>
 
         <AutoCompleteTextView
+            android:id="@+id/autoCompleteRecipients"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/custom_input"
+            android:completionThreshold="1"
             android:hint="Enter email Id of recipients"
+            android:inputType="textPersonName"
             android:padding="5dp"
-            android:paddingBottom="10dp"
-            android:id="@+id/autoCompleteRecipients"/>
+            android:paddingBottom="10dp" />
 
-        <GridView
-            android:id="@+id/gridRecipient"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupRecipients"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:layout_marginTop="20dp"
-            android:horizontalSpacing="5dp"
-            android:numColumns="2"
-            android:scrollbars="vertical"
-            android:verticalSpacing="10dp" />
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteRecipients"
+            app:layout_constraintStart_toStartOf="@+id/autoCompleteRecipients"
+            app:layout_constraintTop_toBottomOf="@id/autoCompleteRecipients" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:padding="5dp"
             android:layout_gravity="center_horizontal"
-            >
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="3">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#B5E0F9"
                 android:layout_weight="1"
-                app:cardCornerRadius="20dp"
-                >
+                android:backgroundTint="#B5E0F9"
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,36 +97,35 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/ivAddOne"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_add_circle_24"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_baseline_add_circle_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
                         android:paddingLeft="3dp"
                         android:text="All"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
                         android:paddingLeft="3dp"
                         android:text="Managers"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -140,10 +135,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#C8F3C7"
                 android:layout_weight="1"
-                app:cardCornerRadius="20dp"
-                >
+                android:backgroundTint="#C8F3C7"
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -152,36 +146,35 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/ivAddTwo"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_add_circle_24"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_baseline_add_circle_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
                         android:paddingLeft="3dp"
                         android:text="Talent"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
                         android:paddingLeft="3dp"
                         android:text="Acquisition"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -191,10 +184,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#ECD1B1"
                 android:layout_weight="1"
-                app:cardCornerRadius="20dp"
-                >
+                android:backgroundTint="#ECD1B1"
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -203,36 +195,36 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/ivAddThree"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_add_circle_24"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_baseline_add_circle_24" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
                         android:paddingLeft="3dp"
                         android:text="Leadership"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
                         android:paddingLeft="3dp"
                         android:text="Team"
                         android:textAlignment="center"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -251,7 +243,6 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:cornerRadius="18dp" />
-
 
 
     </LinearLayout>

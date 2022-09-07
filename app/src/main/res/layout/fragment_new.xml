@@ -160,12 +160,13 @@
 
             </LinearLayout>
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/inputSkill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_input"
                 android:ems="10"
+                android:completionThreshold="1"
                 android:hint="Enter at least 1 skills"
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"

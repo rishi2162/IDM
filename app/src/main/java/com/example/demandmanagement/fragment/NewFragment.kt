@@ -23,16 +23,33 @@ class NewFragment : Fragment() {
     @SuppressLint("NewApi")
     var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.US)
 
+
+
     // Chip Group
-    private lateinit var inputSkill: EditText
+    private lateinit var inputSkill: AutoCompleteTextView
     private lateinit var skillsChipGroup: ChipGroup
+
+    var skills: List<String> = listOf(
+        "HTML",
+        "CSS",
+        "Python",
+        "Java",
+        "JavaScript",
+        "Swift",
+        "C++",
+        "C#",
+        "R",
+        "Golang (Go)"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_new, container, false)
+
         val btnCalendarView = view.findViewById<TextView>(R.id.btnCalendar)
         val inputYOE = view.findViewById<AutoCompleteTextView>(R.id.dropDownYoe)
         val inputLOC = view.findViewById<AutoCompleteTextView>(R.id.dropDownLocation)
@@ -87,6 +104,9 @@ class NewFragment : Fragment() {
 
         inputSkill = view.findViewById(R.id.inputSkill)
         skillsChipGroup = view.findViewById(R.id.skillsChipGroup)
+
+        var adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, skills)
+        inputSkill.setAdapter(adapter)
 
         inputSkill.setOnKeyListener { _, keyCode, event ->
 
