@@ -2,7 +2,9 @@ package com.example.demandmanagement.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //iniRefreshListener()
         replaceFragments(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -67,5 +70,21 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
+    }
+
+    private fun iniRefreshListener() {
+        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipe_layout)
+        swipeRefreshLayout.setOnRefreshListener { // This method gets called when user pull for refresh,
+            // You can make your API call here,
+            val handler = Handler()
+            handler.postDelayed(
+                {
+                    if (swipeRefreshLayout.isRefreshing) {
+                        swipeRefreshLayout.isRefreshing = false
+                    }
+                },
+                3000,
+            )
+        }
     }
 }

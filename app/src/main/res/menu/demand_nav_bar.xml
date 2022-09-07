@@ -6,12 +6,11 @@
         android:title="Demands Raised" />
 
     <item
-        android:id="@+id/approval"
-        android:title="My Approvals" />
-
-    <item
         android:id="@+id/request"
         android:title="My Requests" />
 
+    <item
+        android:id="@+id/approval"
+        android:title="My Approvals" />
 
 </menu>
