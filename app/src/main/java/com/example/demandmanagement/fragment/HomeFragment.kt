@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
         Log.d("homeData", responseData)
 
         //setViewContent(, view)
+        postToList()
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
         Log.i("ViewPager", view_pager2.toString())
@@ -59,7 +60,7 @@ class HomeFragment : Fragment() {
         val indicator = view?.findViewById<CircleIndicator3>(R.id.indicator)
         indicator?.setViewPager(view_pager2)
 
-        iniRefreshListener()
+        //iniRefreshListener()
         return view
     }
 

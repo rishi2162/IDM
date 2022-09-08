@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         //iniRefreshListener()
 
+        responseData = apiCall()
         replaceFragments(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragments(fragment: Fragment) {
         val bundle = Bundle()
-        bundle.putString("responseData", apiCall().toString())
+        bundle.putString("responseData", responseData.toString())
         //Log.d("response", apiCall().toString())
         fragment.arguments = bundle
 
