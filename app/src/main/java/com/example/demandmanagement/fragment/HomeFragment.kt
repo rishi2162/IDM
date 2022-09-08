@@ -1,22 +1,25 @@
 package com.example.demandmanagement.fragment
 
+import android.R.attr.defaultValue
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.demandmanagement.R
 import com.example.demandmanagement.adapter.ViewPagerAdapter
 import me.relex.circleindicator.CircleIndicator3
 
+
 class HomeFragment : Fragment() {
 
     private var notificationsList = mutableListOf<String>()
+    private var responseData = ""
 
     private fun addToList(notification: String) {
         notificationsList.add(notification)
@@ -36,7 +39,13 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        postToList()
+        val bundle = this.arguments
+        if (bundle != null) {
+            responseData = bundle.getString("responseData").toString()
+        }
+        Log.d("homeData", responseData)
+
+
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
         Log.i("ViewPager", view_pager2.toString())

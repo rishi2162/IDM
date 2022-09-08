@@ -13,6 +13,7 @@ import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
 import org.json.JSONArray
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragments(fragment: Fragment) {
         val bundle = Bundle()
         bundle.putString("responseData", apiCall().toString())
-        Log.d("response", apiCall().toString())
+        //Log.d("response", apiCall().toString())
         fragment.arguments = bundle
 
         val fragmentManager = supportFragmentManager
