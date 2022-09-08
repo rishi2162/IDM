@@ -1,6 +1,7 @@
 package com.example.demandmanagement.fragment
 
 import android.R.attr.defaultValue
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,7 +14,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.demandmanagement.R
 import com.example.demandmanagement.adapter.ViewPagerAdapter
+import kotlinx.android.synthetic.main.fragment_home.*
 import me.relex.circleindicator.CircleIndicator3
+import org.json.JSONArray
 
 
 class HomeFragment : Fragment() {
@@ -45,7 +48,7 @@ class HomeFragment : Fragment() {
         }
         Log.d("homeData", responseData)
 
-
+        //setViewContent(, view)
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
         Log.i("ViewPager", view_pager2.toString())
@@ -73,4 +76,24 @@ class HomeFragment : Fragment() {
             }, 3000)
         })
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun setViewContent(response: JSONArray, view: View) {
+        tvWelcome.text = "Welcome ${
+            response.getJSONObject(0).getJSONObject("user").getString("fname")
+        }"
+        drToday.text =
+            response.getJSONObject(2).getJSONObject("home").getString("drToday").toString()
+        drThisMonth.text =
+            response.getJSONObject(2).getJSONObject("home").getString("drThisMonth").toString()
+        drTotal.text =
+            response.getJSONObject(2).getJSONObject("home").getString("drTotal").toString()
+        dfToday.text =
+            response.getJSONObject(2).getJSONObject("home").getString("dfToday").toString()
+        dfThisMonth.text =
+            response.getJSONObject(2).getJSONObject("home").getString("dfThisMonth").toString()
+        dfTotal.text =
+            response.getJSONObject(2).getJSONObject("home").getString("dfTotal").toString()
+    }
+
 }
