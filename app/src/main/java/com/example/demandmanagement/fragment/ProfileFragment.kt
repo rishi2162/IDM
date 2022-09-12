@@ -77,6 +77,11 @@ class ProfileFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setViewContent(response: JSONArray, view: View) {
+
+        shortUserName.text = response.getJSONObject(0).getJSONObject("user")
+            .getString("fname").get(0) + "" + response.getJSONObject(0).getJSONObject("user")
+            .getString("lname").get(0)
+
         userName.text = response.getJSONObject(0).getJSONObject("user")
             .getString("fname") + " " + response.getJSONObject(0).getJSONObject("user")
             .getString("lname")
