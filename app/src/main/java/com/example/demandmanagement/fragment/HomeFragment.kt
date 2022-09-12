@@ -1,7 +1,7 @@
 package com.example.demandmanagement.fragment
 
-import android.R.attr.defaultValue
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,9 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -21,8 +24,9 @@ import org.json.JSONArray
 
 class HomeFragment : Fragment() {
 
+    var responseData = JSONArray()
+
     private var notificationsList = mutableListOf<String>()
-    private var responseData = ""
 
     private fun addToList(notification: String) {
         notificationsList.add(notification)
@@ -42,13 +46,15 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val bundle = this.arguments
-        if (bundle != null) {
-            responseData = bundle.getString("responseData").toString()
-        }
-        Log.d("homeData", responseData)
+//        val bundle = this.arguments
+//        if (bundle != null) {
+//            responseData = bundle.getString("responseData").toString()
+//        }
+//        Log.d("homeData", responseData)
 
-        //setViewContent(, view)
+
+        responseData = apiCall(view)
+        
         postToList()
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
@@ -96,5 +102,30 @@ class HomeFragment : Fragment() {
         dfTotal.text =
             response.getJSONObject(2).getJSONObject("home").getString("dfTotal").toString()
     }
+
+    private fun apiCall(view: View): JSONArray {
+        val queue = Volley.newRequestQueue(activity as Context)
+        val url = "https://json.extendsclass.com/bin/322d051a3560"
+        val jsonArrayRequest = object : JsonArrayRequest(
+            Method.GET, url, null,
+            { response ->
+                // Log.i("successRequest", response.toString())
+                responseData = response
+                //Log.d("successRequest", responseData.toString())
+                setViewContent(responseData, view)
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest)
+
+        return responseData
+    }
+
 
 }

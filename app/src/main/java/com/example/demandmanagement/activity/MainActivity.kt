@@ -6,14 +6,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
 import org.json.JSONArray
-import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -76,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragments(fragment: Fragment) {
         val bundle = Bundle()
         bundle.putString("responseData", responseData.toString())
-        //Log.d("response", apiCall().toString())
+        //Log.d("responseMainActivity", responseData.toString())
         fragment.arguments = bundle
 
         val fragmentManager = supportFragmentManager
@@ -105,20 +103,19 @@ class MainActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val url = "https://json.extendsclass.com/bin/322d051a3560"
         val jsonArrayRequest = object : JsonArrayRequest(
-            Request.Method.GET, url, null,
+            Method.GET, url, null,
             { response ->
                 // Log.i("successRequest", response.toString())
                 responseData = response
             },
             {
-                Log.d("error", it.localizedMessage)
+                Log.d("error", it.localizedMessage as String)
             }) {
 
         }
 
         // Add the request to the RequestQueue.
         queue.add(jsonArrayRequest)
-
 
         return responseData
     }
