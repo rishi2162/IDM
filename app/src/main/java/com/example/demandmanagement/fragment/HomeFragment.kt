@@ -66,23 +66,9 @@ class HomeFragment : Fragment() {
         val indicator = view?.findViewById<CircleIndicator3>(R.id.indicator)
         indicator?.setViewPager(view_pager2)
 
-        //iniRefreshListener()
         return view
     }
 
-    private fun iniRefreshListener() {
-        val swipeRefreshLayout = view?.findViewById<SwipeRefreshLayout>(R.id.swipe_layout)
-        swipeRefreshLayout?.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener { // This method gets called when user pull for refresh,
-            // You can make your API call here,
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                // Your Code
-                if (swipeRefreshLayout.isRefreshing) {
-                    swipeRefreshLayout.isRefreshing = false
-                    swipeRefreshLayout.visibility = View.GONE
-                }
-            }, 3000)
-        })
-    }
 
     @SuppressLint("SetTextI18n")
     private fun setViewContent(response: JSONArray, view: View) {
