@@ -78,6 +78,7 @@ class NewFragment : Fragment() {
             val transition = this.fragmentManager?.beginTransaction()
             transition?.replace(R.id.frameLayout, RecipientsFragment())?.commit()
         }
+
         btnCalendarView.setOnClickListener() {
             val getDate: Calendar = Calendar.getInstance()
             val datePicker = DatePickerDialog(

@@ -1,14 +1,25 @@
 package com.example.demandmanagement.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
+import com.example.demandmanagement.adapter.DemandRaisedAdapter
+import com.example.demandmanagement.adapter.MessageAdapter
 import com.example.demandmanagement.fragment.demandchildfragment.DemandRaisedFragment
+import com.example.demandmanagement.model.Message
+import com.example.demandmanagement.util.SwipeToDeleteCallback
+import kotlinx.android.synthetic.main.fragment_demand_detail.*
+import kotlinx.android.synthetic.main.fragment_demand_raised.*
 
 
 class DemandDetailsFragment : Fragment() {
@@ -81,6 +92,11 @@ class DemandDetailsFragment : Fragment() {
 
         }
 
+        val btnMessages = view.findViewById<Button>(R.id.btnMessages)
+        btnMessages.setOnClickListener {
+            val transition = this.fragmentManager?.beginTransaction()
+            transition?.replace(R.id.frameLayout, MessagesFragment())?.commit()
+        }
         return view
     }
 

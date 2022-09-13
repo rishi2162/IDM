@@ -9,8 +9,9 @@
     <string name="tasks"><![CDATA[< Tasks]]></string>
     <string name="demand"><![CDATA[< Demand]]></string>
     <string name="raise_a_new_demand"><![CDATA[< Raise a New Demand]]></string>
+    <string name="demand_id"><![CDATA[< Demand ID]]></string>
 
-<!--    list of experience-->
+    <!--    list of experience-->
     <string-array name="yearOfExp">
         <item>0-1 yr</item>
         <item>1+ yr</item>
@@ -24,26 +25,26 @@
         <item>9+ yr</item>
     </string-array>
 
-<!--    list of locations-->
+    <!--    list of locations-->
     <string-array name="location">
         <item>Bhubaneswar</item>
         <item>Bengaluru</item>
     </string-array>
 
-<!--    list of priority-->
+    <!--    list of priority-->
     <string-array name="priority">
         <item>Low</item>
         <item>Medium</item>
         <item>High</item>
     </string-array>
 
-<!--    list of shifts-->
+    <!--    list of shifts-->
     <string-array name="shifts">
         <item>Day shift (9AM - 5PM)</item>
         <item>Night shift (11PM - 7AM)</item>
     </string-array>
 
-<!--    list of recipients-->
+    <!--    list of recipients-->
 
     <string-array name="recipients">
         <item>Rishi</item>
