@@ -445,7 +445,7 @@
                                 android:layout_alignParentBottom="true"
                                 android:background="#FFFFFF"
                                 app:ci_drawable="@color/incture_theme"
-                                app:ci_drawable_unselected="@color/black"
+                                app:ci_drawable_unselected="@color/btnReject_color"
                                 app:ci_gravity="center"
                                 app:ci_height="2dp"
                                 app:ci_width="18dp" />
