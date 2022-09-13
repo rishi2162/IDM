@@ -354,6 +354,18 @@
 
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/btnApprovalMessages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/view_comments_background"
+                    android:backgroundTint="@color/incture_theme"
+                    android:drawableRight="@android:drawable/ic_media_play"
+                    android:text="View Comments"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
 
             </LinearLayout>
 

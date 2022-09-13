@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.example.demandmanagement.R
 
 class DemandApprovalFragment : Fragment() {
@@ -14,7 +15,15 @@ class DemandApprovalFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_demand_approval, container, false)
+        val view = inflater.inflate(R.layout.fragment_demand_approval, container, false)
+
+        val btnApprovalMessages = view.findViewById<Button>(R.id.btnApprovalMessages)
+        btnApprovalMessages.setOnClickListener {
+            val transition = this.fragmentManager?.beginTransaction()
+            transition?.replace(R.id.frameLayout, MessagesFragment())?.commit()
+        }
+
+        return view
     }
 
 }
