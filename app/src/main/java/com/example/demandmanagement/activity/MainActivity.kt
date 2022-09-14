@@ -17,7 +17,7 @@ import org.json.JSONArray
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var responseData = JSONArray()
+    lateinit var stringArray: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,16 +25,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         //iniRefreshListener()
 
-        responseData = apiCall()
-        replaceFragments(HomeFragment())
+        if (intent.extras != null) {
+            stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
+        }
+
+        replaceFragments(HomeFragment(), stringArray)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
 
             when (it.itemId) {
-                R.id.home -> replaceFragments(HomeFragment())
-                R.id.newDemand -> replaceFragments(NewFragment())
-                R.id.tasks -> replaceFragments((DemandFragment()))
-                R.id.profile -> replaceFragments(ProfileFragment())
+                R.id.home -> replaceFragments(HomeFragment(), stringArray)
+                R.id.newDemand -> replaceFragments(NewFragment(), stringArray)
+                R.id.tasks -> replaceFragments((DemandFragment()), stringArray)
+                R.id.profile -> replaceFragments(ProfileFragment(), stringArray)
 
                 else -> {
 
@@ -58,10 +61,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
 
             when (it.itemId) {
-                R.id.home -> replaceFragments(HomeFragment())
-                R.id.newDemand -> replaceFragments(NewFragment())
-                R.id.tasks -> replaceFragments((DemandFragment()))
-                R.id.profile -> replaceFragments(ProfileFragment())
+                R.id.home -> replaceFragments(HomeFragment(), stringArray)
+                R.id.newDemand -> replaceFragments(NewFragment(), stringArray)
+                R.id.tasks -> replaceFragments((DemandFragment()), stringArray)
+                R.id.profile -> replaceFragments(ProfileFragment(), stringArray)
 
                 else -> {
 
@@ -71,10 +74,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragments(fragment: Fragment) {
+    private fun replaceFragments(fragment: Fragment, stringArray: ArrayList<String>) {
         val bundle = Bundle()
-        bundle.putString("responseData", responseData.toString())
-        //Log.d("responseMainActivity", responseData.toString())
+        //bundle.putString("responseData", responseData.toString())
+        bundle.putStringArrayList("stringArray", stringArray)
+        Log.i("successRequest", stringArray.toString())
         fragment.arguments = bundle
 
         val fragmentManager = supportFragmentManager
@@ -99,25 +103,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun apiCall(): JSONArray {
-        val queue = Volley.newRequestQueue(this)
-        val url = "https://json.extendsclass.com/bin/322d051a3560"
-        val jsonArrayRequest = object : JsonArrayRequest(
-            Method.GET, url, null,
-            { response ->
-                // Log.i("successRequest", response.toString())
-                responseData = response
-            },
-            {
-                Log.d("error", it.localizedMessage as String)
-            }) {
-
-        }
-
-        // Add the request to the RequestQueue.
-        queue.add(jsonArrayRequest)
-
-        return responseData
-    }
 
 }

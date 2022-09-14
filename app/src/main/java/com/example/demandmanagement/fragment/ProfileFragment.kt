@@ -53,7 +53,7 @@ class ProfileFragment : Fragment() {
 
     private fun apiCall(view: View): JSONArray {
         val queue = Volley.newRequestQueue(activity as Context)
-        val url = "https://json.extendsclass.com/bin/322d051a3560"
+        val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

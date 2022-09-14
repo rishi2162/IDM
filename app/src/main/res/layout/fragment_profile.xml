@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="38dp"
-                    android:text="AD"
+                    android:text=""
                     android:textAllCaps="true"
                     android:textAlignment="center"
                     android:textColor="@color/white"
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:text="Ayush Das"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_below="@id/userName"
-                android:text="ayush.das@incture.com"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="22sp" />
         </RelativeLayout>

@@ -17,14 +17,27 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.adapter.ViewPagerAdapter
+import com.example.demandmanagement.model.HomeEntity
+import com.example.demandmanagement.model.UserEntity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.relex.circleindicator.CircleIndicator3
 import org.json.JSONArray
+import org.json.JSONObject
 
 
 class HomeFragment : Fragment() {
 
+    lateinit var tvWelcome: TextView
+    lateinit var drToday: TextView
+    lateinit var drThisMonth: TextView
+    lateinit var drTotal: TextView
+    lateinit var dfToday: TextView
+    lateinit var dfThisMonth: TextView
+    lateinit var dfTotal: TextView
+
     var responseData = JSONArray()
+    var stringArray = ArrayList<String>()
 
     private var notificationsList = mutableListOf<String>()
 
@@ -46,15 +59,18 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-//        val bundle = this.arguments
-//        if (bundle != null) {
-//            responseData = bundle.getString("responseData").toString()
-//        }
-//        Log.d("homeData", responseData)
+        val bundle = this.arguments
+        if (bundle != null) {
+            stringArray = bundle.getStringArrayList("stringArray") as ArrayList<String>
+            if (!stringArray.isEmpty()) {
+                setView(stringArray, view)
+            }
+        }
+        // Log.d("stringarray", stringArray.toString())
 
 
-        responseData = apiCall(view)
-        
+        //responseData = apiCall(view)
+
         postToList()
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
@@ -70,35 +86,35 @@ class HomeFragment : Fragment() {
     }
 
 
-    @SuppressLint("SetTextI18n")
-    private fun setViewContent(response: JSONArray, view: View) {
-        tvWelcome.text = "Welcome ${
-            response.getJSONObject(0).getJSONObject("user").getString("fname")
-        }"
-        drToday.text =
-            response.getJSONObject(2).getJSONObject("home").getString("drToday").toString()
-        drThisMonth.text =
-            response.getJSONObject(2).getJSONObject("home").getString("drThisMonth").toString()
-        drTotal.text =
-            response.getJSONObject(2).getJSONObject("home").getString("drTotal").toString()
-        dfToday.text =
-            response.getJSONObject(2).getJSONObject("home").getString("dfToday").toString()
-        dfThisMonth.text =
-            response.getJSONObject(2).getJSONObject("home").getString("dfThisMonth").toString()
-        dfTotal.text =
-            response.getJSONObject(2).getJSONObject("home").getString("dfTotal").toString()
-    }
+//    @SuppressLint("SetTextI18n")
+//    private fun setViewContent(response: JSONArray, view: View) {
+//        tvWelcome.text = "Welcome ${
+//            response.getJSONObject(0).getJSONObject("user").getString("fname")
+//        }"
+//        drToday.text =
+//            response.getJSONObject(5).getJSONObject("home").getString("drToday").toString()
+//        drThisMonth.text =
+//            response.getJSONObject(5).getJSONObject("home").getString("drThisMonth").toString()
+//        drTotal.text =
+//            response.getJSONObject(5).getJSONObject("home").getString("drTotal").toString()
+//        dfToday.text =
+//            response.getJSONObject(5).getJSONObject("home").getString("dfToday").toString()
+//        dfThisMonth.text =
+//            response.getJSONObject(5).getJSONObject("home").getString("dfThisMonth").toString()
+//        dfTotal.text =
+//            response.getJSONObject(5).getJSONObject("home").getString("dfTotal").toString()
+//    }
 
     private fun apiCall(view: View): JSONArray {
         val queue = Volley.newRequestQueue(activity as Context)
-        val url = "https://json.extendsclass.com/bin/322d051a3560"
+        val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
                 // Log.i("successRequest", response.toString())
                 responseData = response
                 //Log.d("successRequest", responseData.toString())
-                setViewContent(responseData, view)
+                //setViewContent(responseData, view)
 
             },
             {
@@ -106,12 +122,49 @@ class HomeFragment : Fragment() {
             }) {
 
         }
-
         // Add the request to the RequestQueue.
         queue.add(jsonArrayRequest)
 
         return responseData
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setView(stringArray: ArrayList<String>, view: View) {
+
+        //removing the key part checking first occurence of ':'
+        val homeString = stringArray[5].subSequence(1, stringArray[5].length - 1)
+        val homeJsonString = homeString.subSequence(homeString.indexOf(":") + 1, homeString.length)
+
+        val userString = stringArray[0].subSequence(1, stringArray[0].length - 1)
+        val userJsonString = userString.subSequence(userString.indexOf(":") + 1, userString.length)
+
+        val home = Gson().fromJson(homeJsonString.toString(), HomeEntity::class.java)
+        val user = Gson().fromJson(userJsonString.toString(), UserEntity::class.java)
+        //Log.i("user", home.drToday.toString())
+
+        tvWelcome = view.findViewById(R.id.tvWelcome)
+        tvWelcome.text = "Welcome ${user.fname}"
+
+        drToday = view.findViewById(R.id.drToday)
+        drToday.text = home.drToday.toString()
+
+        drThisMonth = view.findViewById(R.id.drThisMonth)
+        drThisMonth.text = home.drThisMonth.toString()
+
+        drTotal = view.findViewById(R.id.drTotal)
+        drTotal.text = home.drTotal.toString()
+
+        dfToday = view.findViewById(R.id.dfToday)
+        dfToday.text = home.dfToday.toString()
+
+        dfThisMonth = view.findViewById(R.id.dfThisMonth)
+        dfThisMonth.text = home.dfThisMonth.toString()
+
+        dfTotal = view.findViewById(R.id.dfTotal)
+        dfTotal.text = home.dfTotal.toString()
+
+    }
+
 
 }
+
