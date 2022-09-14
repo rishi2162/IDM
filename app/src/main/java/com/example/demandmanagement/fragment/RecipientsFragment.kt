@@ -24,6 +24,12 @@ class RecipientsFragment : Fragment() {
     private lateinit var autoCompleteRecipients: AutoCompleteTextView
     private lateinit var chipGroupRecipients: ChipGroup
 
+    // Implement Save data
+    private lateinit var design : String
+    private var desc : String = ""
+    private var dueDate : String = ""
+    private var nreq : String = ""
+
     val names: List<String> = listOf(
         "Amelia",
         "Ava",
@@ -55,10 +61,32 @@ class RecipientsFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_recipients, container, false)
 
+        // Implement the save data
+        val bundle = this.arguments
+        if (bundle != null) {
+            design = bundle.getString("Designation").toString()
+            desc = bundle.getString("Description").toString()
+            dueDate = bundle.getString("DueDate").toString()
+            nreq = bundle.getString("NumReq").toString()
+        }
+
         val txtBack = view.findViewById<TextView>(R.id.tvNewDemand)
         txtBack.setOnClickListener {
-            val transition = fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, NewFragment())?.commit()
+
+            val transition = this.fragmentManager?.beginTransaction()
+            val bundle = Bundle()
+            bundle.putString("Designation", design)
+            bundle.putString("Description", desc)
+            bundle.putString("DueDate", dueDate)
+            bundle.putString("NumReq", nreq)
+
+            val fragment = NewFragment()
+            fragment.arguments = bundle
+
+            transition?.replace(R.id.frameLayout, fragment)?.commit()
+
+//            val transition = fragmentManager?.beginTransaction()
+//            transition?.replace(R.id.frameLayout, NewFragment())?.commit()
         }
 
         // Implement Auto Suggestion with chipGroup

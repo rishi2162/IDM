@@ -123,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter the experience in years e.g. 4+ yrs"
-                    android:inputType="none"
+                    android:inputType="text"
                     android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -439,6 +439,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/etNumReq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_input"

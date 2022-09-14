@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="(Click enter to add skill)"
+                android:text="(Click enter to add recipient)"
                 android:textSize="18sp" />
 
         </LinearLayout>

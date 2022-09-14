@@ -3,9 +3,11 @@ package com.example.demandmanagement.fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +30,19 @@ class NewFragment : Fragment() {
     // Chip Group
     private lateinit var inputSkill: AutoCompleteTextView
     private lateinit var skillsChipGroup: ChipGroup
+
+
+    // Implement save Data
+    private lateinit var inputDesignation : EditText
+    private var design : String = ""
+
+    private lateinit var inputDescription : EditText
+    private var desc : String = ""
+
+    private var dueDate : String = ""
+
+    private lateinit var etNumReq : EditText
+    private var nreq : String = ""
 
     var skills: List<String> = listOf(
         "HTML",
@@ -73,12 +88,6 @@ class NewFragment : Fragment() {
         inputShift.setAdapter(shiftArrayAdapter)
         inputPriority.setAdapter(priorityArrayAdapter)
 
-        val btnNextPage = view.findViewById<Button>(R.id.btnNextPage)
-        btnNextPage.setOnClickListener {
-            val transition = this.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, RecipientsFragment())?.commit()
-        }
-
         btnCalendarView.setOnClickListener() {
             val getDate: Calendar = Calendar.getInstance()
             val datePicker = DatePickerDialog(
@@ -106,7 +115,7 @@ class NewFragment : Fragment() {
         inputSkill = view.findViewById(R.id.inputSkill)
         skillsChipGroup = view.findViewById(R.id.skillsChipGroup)
 
-        var adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, skills)
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, skills)
         inputSkill.setAdapter(adapter)
 
         inputSkill.setOnKeyListener { _, keyCode, event ->
@@ -122,6 +131,50 @@ class NewFragment : Fragment() {
                 return@setOnKeyListener true
             }
             false
+        }
+
+
+        // Implementing the save data
+
+        inputDesignation = view.findViewById(R.id.inputDesignation)
+        inputDescription = view.findViewById(R.id.inputDescription)
+        etNumReq = view.findViewById(R.id.etNumReq)
+
+        val bundle = this.arguments
+        if (bundle != null) {
+            design = bundle.getString("Designation").toString()
+            desc = bundle.getString("Description").toString()
+            dueDate = bundle.getString("DueDate").toString()
+            nreq = bundle.getString("NumReq").toString()
+
+            if(design!="null"){
+                inputDesignation.setText(design)
+                inputDescription.setText(desc)
+                btnCalendarView.text = dueDate
+                etNumReq.setText(nreq)
+            }
+        }
+
+
+        // Move to the next Fragment
+        val btnNextPage = view.findViewById<Button>(R.id.btnNextPage)
+        btnNextPage.setOnClickListener {
+
+            val transition = this.fragmentManager?.beginTransaction()
+            val bundle = Bundle()
+            bundle.putString("Designation", inputDesignation.text.toString())
+            bundle.putString("Description", inputDescription.text.toString())
+            bundle.putString("DueDate", btnCalendarView.text.toString())
+            bundle.putString("NumReq", etNumReq.text.toString())
+
+
+            val fragment = RecipientsFragment()
+            fragment.arguments = bundle
+
+            transition?.replace(R.id.frameLayout, fragment)?.commit()
+
+//            val transition = this.fragmentManager?.beginTransaction()
+//            transition?.replace(R.id.frameLayout, RecipientsFragment())?.commit()
         }
 
         return view
