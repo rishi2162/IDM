@@ -2,18 +2,18 @@ package com.example.demandmanagement.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.allViews
+import androidx.core.view.isEmpty
+import androidx.fragment.app.Fragment
 import com.example.demandmanagement.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -43,6 +43,8 @@ class NewFragment : Fragment() {
 
     private lateinit var etNumReq : EditText
     private var nreq : String = ""
+
+    private var allSkills : String = ""
 
     var skills: List<String> = listOf(
         "HTML",
@@ -166,32 +168,59 @@ class NewFragment : Fragment() {
             bundle.putString("Description", inputDescription.text.toString())
             bundle.putString("DueDate", btnCalendarView.text.toString())
             bundle.putString("NumReq", etNumReq.text.toString())
+            bundle.putString("Experience", inputYOE.text.toString())
+            bundle.putString("Location", inputLOC.text.toString())
+            bundle.putString("Shift", inputShift.text.toString())
+            bundle.putString("Priority", inputPriority.text.toString())
 
+
+            val n = skillsChipGroup.childCount - 1
+            for(i in 0..n){
+                val chip = skillsChipGroup.getChildAt(i) as Chip
+                Log.i("mytag", chip.text.toString())
+                if(allSkills.isEmpty()){
+                    allSkills += chip.text.toString()
+                }
+                else{
+                    allSkills += ", ${chip.text.toString()}"
+                }
+            }
+
+
+            bundle.putString("Skills", allSkills)
 
             val fragment = RecipientsFragment()
             fragment.arguments = bundle
 
             transition?.replace(R.id.frameLayout, fragment)?.commit()
-
-//            val transition = this.fragmentManager?.beginTransaction()
-//            transition?.replace(R.id.frameLayout, RecipientsFragment())?.commit()
         }
+
 
         return view
     }
 
     private fun addChip(text: String) {
-
-        val chip = Chip(requireActivity())
-        chip.text = text
-
-        chip.isCloseIconVisible = true
-
-        chip.setOnCloseIconClickListener{
-            skillsChipGroup.removeView(chip)
+        var flag : Boolean = false
+        val n = skillsChipGroup.childCount - 1
+        for(i in 0..n){
+            val chip = skillsChipGroup.getChildAt(i) as Chip
+            Log.i("mytag", chip.text.toString())
+            if(chip.text.toString() == text){
+                flag = true
+                break
+            }
         }
+        if(!flag){
+            val chip = Chip(requireActivity())
+            chip.text = text
 
-        skillsChipGroup.addView(chip)
+            chip.isCloseIconVisible = true
+
+            chip.setOnCloseIconClickListener{
+                skillsChipGroup.removeView(chip)
+            }
+            skillsChipGroup.addView(chip)
+        }
     }
 
 }

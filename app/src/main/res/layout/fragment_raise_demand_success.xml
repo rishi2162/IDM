@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.RaiseDemandSuccess"
+    android:gravity="center"
+    >
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieCheck"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/check_anime_blue"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/lottieCheck"
+        android:text="Your demand is raised successfully"
+
+        />
+
+
+</RelativeLayout>

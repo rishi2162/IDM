@@ -160,20 +160,20 @@
 
             </LinearLayout>
 
+
             <AutoCompleteTextView
                 android:id="@+id/inputSkill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_input"
-                android:ems="10"
                 android:completionThreshold="1"
+                android:ems="10"
                 android:hint="Enter at least 1 skills"
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:paddingTop="20dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="20dp" />
-
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/skillsChipGroup"
