@@ -2,6 +2,7 @@ package com.example.demandmanagement.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,19 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
 import com.example.demandmanagement.fragment.DemandDetailsFragment
-import com.example.demandmanagement.model.TaskEntity
+import com.example.demandmanagement.model.DemandEntity
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class MyRequestAdapter(
     val context: Context,
-    private val tasks: ArrayList<TaskEntity>,
+    private val tasks: ArrayList<DemandEntity>,
     val fragment: Fragment
 ) :
     RecyclerView.Adapter<MyRequestAdapter.ViewHolder>(), Filterable {
 
-    var filterList = ArrayList<TaskEntity>()
+    var filterList = ArrayList<DemandEntity>()
 
     init {
         filterList = tasks
@@ -36,11 +37,22 @@ class MyRequestAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = filterList[position]
-        holder.designationView.text = currentItem.designation
+        holder.designationView.text = currentItem.dmDesgn
         holder.descView.text = currentItem.desc
-        holder.authorView.text = currentItem.author
+        holder.authorView.text = currentItem.userId
         holder.dateView.text = currentItem.date
-        holder.colorItemView.setBackgroundColor(Color.parseColor(currentItem.color))
+
+        when (currentItem.status) {
+            "APPROVED" -> {
+                holder.colorItemView.setBackgroundColor(Color.parseColor("#7FB77E"))
+            }
+            "PENDING" -> {
+                holder.colorItemView.setBackgroundColor(Color.parseColor("#FBDF07"))
+            }
+            "REJECTED" -> {
+                holder.colorItemView.setBackgroundColor(Color.parseColor("#EC9BAA"))
+            }
+        }
 
 
         holder.itemView.setOnClickListener {
@@ -62,13 +74,13 @@ class MyRequestAdapter(
                 if (charSearch.isEmpty()) {
                     filterList = tasks
                 } else {
-                    val resultList = ArrayList<TaskEntity>()
+                    val resultList = ArrayList<DemandEntity>()
                     for (row in tasks) {
-                        if (row.designation.lowercase(Locale.ROOT)
+                        if (row.dmDesgn.lowercase(Locale.ROOT)
                                 .contains(charSearch.lowercase(Locale.ROOT)) or row.desc.lowercase(
                                 Locale.ROOT
                             )
-                                .contains(charSearch.lowercase(Locale.ROOT)) or row.author.lowercase(
+                                .contains(charSearch.lowercase(Locale.ROOT)) or row.userId.lowercase(
                                 Locale.ROOT
                             )
                                 .contains(charSearch.lowercase(Locale.ROOT)) or row.date.lowercase(
@@ -87,7 +99,7 @@ class MyRequestAdapter(
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filterList = results?.values as ArrayList<TaskEntity>
+                filterList = results?.values as ArrayList<DemandEntity>
                 notifyDataSetChanged()
             }
         }

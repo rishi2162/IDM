@@ -13,11 +13,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.LoginActivity
+import com.example.demandmanagement.model.HomeEntity
+import com.example.demandmanagement.model.UserEntity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.json.JSONArray
@@ -25,7 +30,12 @@ import org.json.JSONArray
 
 class ProfileFragment : Fragment() {
 
-    var responseData = JSONArray()
+    lateinit var shortUserName: TextView
+    lateinit var userName: TextView
+    lateinit var userEmail: TextView
+    lateinit var pushBtn: SwitchCompat
+
+    var stringArray = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +45,14 @@ class ProfileFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        apiCall(view)
+        val bundle = this.arguments
+        if (bundle != null) {
+            stringArray = bundle.getStringArrayList("stringArray") as ArrayList<String>
+            if (!stringArray.isEmpty()) {
+                setView(stringArray, view)
+            }
+        }
+
         val btnSignOut = view.findViewById<Button>(R.id.btnSignOut)
 
         btnSignOut.setOnClickListener(View.OnClickListener {
@@ -51,46 +68,27 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-    private fun apiCall(view: View): JSONArray {
-        val queue = Volley.newRequestQueue(activity as Context)
-        val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
-        val jsonArrayRequest = object : JsonArrayRequest(
-            Method.GET, url, null,
-            { response ->
-                // Log.i("successRequest", response.toString())
-                responseData = response
-                //Log.d("successRequest", responseData.toString())
-                setViewContent(responseData, view)
-
-            },
-            {
-                Log.d("error", it.localizedMessage as String)
-            }) {
-
-        }
-
-        // Add the request to the RequestQueue.
-        queue.add(jsonArrayRequest)
-
-        return responseData
-    }
 
     @SuppressLint("SetTextI18n")
-    private fun setViewContent(response: JSONArray, view: View) {
+    private fun setView(stringArray: ArrayList<String>, view: View) {
 
-        shortUserName.text = response.getJSONObject(0).getJSONObject("user")
-            .getString("fname").get(0) + "" + response.getJSONObject(0).getJSONObject("user")
-            .getString("lname").get(0)
+        //removing the key part checking first occurence of ':
+        val userString = stringArray[0].subSequence(1, stringArray[0].length - 1)
+        val userJsonString = userString.subSequence(userString.indexOf(":") + 1, userString.length)
 
-        userName.text = response.getJSONObject(0).getJSONObject("user")
-            .getString("fname") + " " + response.getJSONObject(0).getJSONObject("user")
-            .getString("lname")
+        val user = Gson().fromJson(userJsonString.toString(), UserEntity::class.java)
 
-        userEmail.text =
-            response.getJSONObject(0).getJSONObject("user")
-                .getString("email")
-        pushBtn.isChecked = response.getJSONObject(0).getJSONObject("user")
-            .getBoolean("mailactive")
+        shortUserName = view.findViewById(R.id.shortUserName)
+        shortUserName.text = user.fname[0].toString() + user.lname[0].toString()
+
+        userName = view.findViewById(R.id.userName)
+        userName.text = user.fname + " " + user.lname
+
+        userEmail = view.findViewById(R.id.userEmail)
+        userEmail.text = user.email
+
+        pushBtn = view.findViewById(R.id.pushBtn)
+        pushBtn.isChecked = user.mailactive
 
     }
 

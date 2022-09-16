@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.example.demandmanagement.adapter.MessageAdapter
 import com.example.demandmanagement.fragment.demandchildfragment.DemandRaisedFragment
 import com.example.demandmanagement.model.Message
 import com.example.demandmanagement.util.SwipeToDeleteCallback
+import kotlinx.android.synthetic.main.fragment_demand.*
 import kotlinx.android.synthetic.main.fragment_demand_detail.*
 import kotlinx.android.synthetic.main.fragment_demand_raised.*
 
@@ -37,7 +39,8 @@ class DemandDetailsFragment : Fragment() {
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
         txtBack.setOnClickListener {
             val transition = fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, DemandRaisedFragment())?.commit()
+
+            transition?.replace(R.id.frameLayout, DemandFragment())?.commit()
         }
 
         var tvText = view.findViewById<TextView>(R.id.tvFulfilledNumber)

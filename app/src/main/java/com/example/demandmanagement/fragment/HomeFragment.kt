@@ -36,7 +36,6 @@ class HomeFragment : Fragment() {
     lateinit var dfThisMonth: TextView
     lateinit var dfTotal: TextView
 
-    var responseData = JSONArray()
     var stringArray = ArrayList<String>()
 
     private var notificationsList = mutableListOf<String>()
@@ -68,9 +67,6 @@ class HomeFragment : Fragment() {
         }
         // Log.d("stringarray", stringArray.toString())
 
-
-        //responseData = apiCall(view)
-
         postToList()
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
@@ -85,48 +81,6 @@ class HomeFragment : Fragment() {
         return view
     }
 
-
-//    @SuppressLint("SetTextI18n")
-//    private fun setViewContent(response: JSONArray, view: View) {
-//        tvWelcome.text = "Welcome ${
-//            response.getJSONObject(0).getJSONObject("user").getString("fname")
-//        }"
-//        drToday.text =
-//            response.getJSONObject(5).getJSONObject("home").getString("drToday").toString()
-//        drThisMonth.text =
-//            response.getJSONObject(5).getJSONObject("home").getString("drThisMonth").toString()
-//        drTotal.text =
-//            response.getJSONObject(5).getJSONObject("home").getString("drTotal").toString()
-//        dfToday.text =
-//            response.getJSONObject(5).getJSONObject("home").getString("dfToday").toString()
-//        dfThisMonth.text =
-//            response.getJSONObject(5).getJSONObject("home").getString("dfThisMonth").toString()
-//        dfTotal.text =
-//            response.getJSONObject(5).getJSONObject("home").getString("dfTotal").toString()
-//    }
-
-    private fun apiCall(view: View): JSONArray {
-        val queue = Volley.newRequestQueue(activity as Context)
-        val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
-        val jsonArrayRequest = object : JsonArrayRequest(
-            Method.GET, url, null,
-            { response ->
-                // Log.i("successRequest", response.toString())
-                responseData = response
-                //Log.d("successRequest", responseData.toString())
-                //setViewContent(responseData, view)
-
-            },
-            {
-                Log.d("error", it.localizedMessage as String)
-            }) {
-
-        }
-        // Add the request to the RequestQueue.
-        queue.add(jsonArrayRequest)
-
-        return responseData
-    }
 
     @SuppressLint("SetTextI18n")
     private fun setView(stringArray: ArrayList<String>, view: View) {

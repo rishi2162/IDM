@@ -18,8 +18,11 @@
             android:layout_width="5dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:background="#EC9BAA" />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/incture_box" />
 
 
         <TextView
@@ -60,7 +63,7 @@
             android:layout_below="@+id/tvDesignation"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="70dp"
             android:layout_toEndOf="@+id/label"
             android:text="Description Here"
             android:textSize="14sp"

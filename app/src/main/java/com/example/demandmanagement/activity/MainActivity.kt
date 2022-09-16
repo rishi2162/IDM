@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
         //bundle.putString("responseData", responseData.toString())
         bundle.putStringArrayList("stringArray", stringArray)
-        Log.i("successRequest", stringArray.toString())
+        //Log.i("successRequest", stringArray.toString())
         fragment.arguments = bundle
 
         val fragmentManager = supportFragmentManager
