@@ -1,29 +1,31 @@
 package com.example.demandmanagement.fragment.demandchildfragment
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
-import com.example.demandmanagement.adapter.DemandRaisedAdapter
-import com.example.demandmanagement.adapter.MyApprovalAdapter
 import com.example.demandmanagement.adapter.MyRequestAdapter
 import com.example.demandmanagement.model.DemandEntity
-import com.example.demandmanagement.model.HomeEntity
-import com.example.demandmanagement.model.TaskEntity
-import com.example.demandmanagement.model.UserEntity
 import com.example.demandmanagement.util.SwipeToDeleteCallback
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_demand_raised.*
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -100,6 +102,7 @@ class MyRequestFragment : Fragment() {
 
     override fun onResume() {
         setData()
+        //formatDate()
         filterData()
         super.onResume()
     }
@@ -108,12 +111,14 @@ class MyRequestFragment : Fragment() {
 
         try {
             //removing the key part checking first occurence of ':'
-            val myDemandObject = stringArray[4].subSequence(1, stringArray[4].length - 1)
+            val myDemandObject = stringArray[3].subSequence(1, stringArray[3].length - 1)
             val myDemandJsonString =
                 myDemandObject.subSequence(myDemandObject.indexOf(":") + 1, myDemandObject.length)
+            //Log.d("tag", myDemandJsonString.toString())
 
             //converting string to array
             val demandStringArray = myDemandJsonString.split("]},").toTypedArray()
+            //Log.d("tag", myDemandJsonString.toString())
 
             for (i in demandStringArray.indices) {
 
@@ -146,6 +151,13 @@ class MyRequestFragment : Fragment() {
 
         }
 
+    }
+
+    fun formatDate() {
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val text = "2022-01-06"
+        val date = formatter.parse(text)
+        Log.d("date", date.toString())
     }
 
 }

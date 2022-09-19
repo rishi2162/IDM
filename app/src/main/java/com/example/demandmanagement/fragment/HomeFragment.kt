@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
     private fun setView(stringArray: ArrayList<String>, view: View) {
 
         //removing the key part checking first occurence of ':'
-        val homeString = stringArray[5].subSequence(1, stringArray[5].length - 1)
+        val homeString = stringArray[4].subSequence(1, stringArray[4].length - 1)
         val homeJsonString = homeString.subSequence(homeString.indexOf(":") + 1, homeString.length)
 
         val userString = stringArray[0].subSequence(1, stringArray[0].length - 1)

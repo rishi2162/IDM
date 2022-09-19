@@ -104,7 +104,7 @@ class MyApprovalFragment : Fragment() {
 
         try {
             //removing the key part checking first occurence of ':'
-            val myDemandObject = stringArray[1].subSequence(1, stringArray[4].length - 1)
+            val myDemandObject = stringArray[1].subSequence(1, stringArray[1].length - 1)
             val myDemandJsonString =
                 myDemandObject.subSequence(myDemandObject.indexOf(":") + 1, myDemandObject.length)
 
@@ -116,7 +116,7 @@ class MyApprovalFragment : Fragment() {
                 when (i) {
                     0 -> {
                         val demand =
-                            demandStringArray[3].subSequence(1, demandStringArray[i].length)
+                            demandStringArray[1].subSequence(1, demandStringArray[i].length)
                                 .toString() + "]}"
                         val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
                         demandList.add(myDemand)

@@ -1,10 +1,13 @@
 package com.example.demandmanagement.model
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 class DemandEntity(
     val userId: String,
     val demandId: String,
     val dmDesgn: String,
-    val yoe: Int,
+    val yoe: String,
     val requiredQty: Int,
     val skills: String,
     val desc: String,

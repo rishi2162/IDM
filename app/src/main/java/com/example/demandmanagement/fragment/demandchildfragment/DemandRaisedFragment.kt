@@ -104,7 +104,7 @@ class DemandRaisedFragment : Fragment() {
 
         try {
             //removing the key part checking first occurence of ':'
-            val myDemandObject = stringArray[1].subSequence(1, stringArray[4].length - 1)
+            val myDemandObject = stringArray[2].subSequence(1, stringArray[2].length - 1)
             val myDemandJsonString =
                 myDemandObject.subSequence(myDemandObject.indexOf(":") + 1, myDemandObject.length)
 
