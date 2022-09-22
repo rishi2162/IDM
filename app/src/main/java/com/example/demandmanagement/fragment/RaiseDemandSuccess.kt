@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.demandmanagement.R
 
@@ -12,6 +13,7 @@ import com.example.demandmanagement.R
 class RaiseDemandSuccess : Fragment() {
 
     private lateinit var lottieCheck : LottieAnimationView
+    private lateinit var tvNewDemand : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +25,13 @@ class RaiseDemandSuccess : Fragment() {
         lottieCheck = view.findViewById(R.id.lottieCheck)
 
         lottieCheck.animate()
+
+        tvNewDemand = view.findViewById(R.id.tvNewDemand)
+
+        tvNewDemand.setOnClickListener {
+            val transition = this.fragmentManager?.beginTransaction()
+            transition?.replace(R.id.frameLayout, NewFragment())?.commit()
+        }
         return view
     }
 

@@ -213,17 +213,28 @@
 
             </LinearLayout>
 
-
-            <EditText
-                android:id="@+id/inputDescription"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/custom_input"
-                android:gravity="top"
-                android:inputType="text|textMultiLine"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp" />
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="200"
+                >
+
+                <EditText
+                    android:id="@+id/inputDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/custom_input"
+                    android:gravity="top"
+                    android:inputType="text|textMultiLine"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:maxLength="200"
+                    android:paddingRight="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
             <LinearLayout

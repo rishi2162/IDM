@@ -10,6 +10,7 @@
     <string name="demand"><![CDATA[< Demand]]></string>
     <string name="raise_a_new_demand"><![CDATA[< Raise a New Demand]]></string>
     <string name="demand_id"><![CDATA[< Demand ID]]></string>
+    <string name="click_here_to_raise_a_new_demand"><u>Click here to raise a new demand!</u></string>
 
     <!--    list of experience-->
     <string-array name="yearOfExp">

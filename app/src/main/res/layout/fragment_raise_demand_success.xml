@@ -12,24 +12,38 @@
         android:id="@+id/lottieCheck"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/check_anime_blue"
         android:layout_centerHorizontal="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/check_anime_blue" />
+
+    <TextView
+        android:id="@+id/tvDemandSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottieCheck"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:text="Your demand is raised successfully"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
         />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tvNewDemand"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:paddingTop="20dp"
-        android:layout_below="@+id/lottieCheck"
-        android:text="Your demand is raised successfully"
+        android:layout_below="@+id/tvDemandSuccess"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/click_here_to_raise_a_new_demand"
+        android:textColor="@color/incture_theme"
 
-        />
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

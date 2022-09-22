@@ -2,6 +2,7 @@ package com.example.demandmanagement.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -11,8 +12,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -27,7 +30,11 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_recipients.*
 import kotlinx.android.synthetic.main.skill_grid_item.view.*
 import org.json.JSONObject
-import java.util.ArrayList
+import java.nio.charset.Charset
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class RecipientsFragment : Fragment() {
 
@@ -77,6 +84,7 @@ class RecipientsFragment : Fragment() {
     )
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -98,7 +106,56 @@ class RecipientsFragment : Fragment() {
             prior = bundle.getString("Priority").toString()
         }
 
-        Log.i("myTag", allskills)
+        var dateString = ""
+        var dateArray = dueDate.split(" ").toTypedArray()
+        //Log.i("myTag", dateArray.toString())
+
+        if(dateArray[1]=="January"){
+            dateString = "01/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="February"){
+            dateString = "02/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="March"){
+            dateString = "03/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="April"){
+            dateString = "04/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="May"){
+            dateString = "05/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="June"){
+            dateString = "06/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="July"){
+            dateString = "07/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="August"){
+            dateString = "08/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="September"){
+            dateString = "09/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="October"){
+            dateString = "10/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="November"){
+            dateString = "11/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+        else if(dateArray[1]=="December"){
+            dateString = "12/" +  dateArray[0]  + "/"  + dateArray[2]
+        }
+
+
+        dateString+=" 00:00:00 AM"
+        val secondFormatter = DateTimeFormatter.ofPattern("MM/dd/uuuu hh:mm:ss a", Locale.ENGLISH)
+        val dueDateTime = LocalDateTime.parse(dateString, secondFormatter)
+
+
+        // Get the current dateTime
+        val currentDate = LocalDateTime.now()
+
 
         val txtBack = view.findViewById<TextView>(R.id.tvNewDemand)
         txtBack.setOnClickListener {
@@ -202,22 +259,24 @@ class RecipientsFragment : Fragment() {
                 }
             }
 
-//            newDemandObject.put("dmDesgn", design)
-//            newDemandObject.put("yoe", exp)
-//            newDemandObject.put("skills", allskills)
-//            newDemandObject.put("desc", desc)
-//            newDemandObject.put("location", loc)
-//            newDemandObject.put("priority", prior)
-//            newDemandObject.put("shift", shift)
-//            newDemandObject.put("dueDate", dueDate)
-//            newDemandObject.put("requiredQty", nreq)
-//            newDemandObject.put("recipients", allRecipients)
-//
-//            newDemandObject.put("userId", "INC02231")
-//            newDemandObject.put("email", "anish.raj@incture.com")
-//            //newDemandObject.put("date", )
-//
-//            apiCall(newDemandObject)
+            newDemandObject.put("userId", "INC02231")
+            newDemandObject.put("dmDesgn", design)
+            newDemandObject.put("email", "anish.raj@incture.com")
+            newDemandObject.put("yoe", exp)
+            newDemandObject.put("requiredQty", nreq.toInt())
+            newDemandObject.put("skills", allskills)
+            newDemandObject.put("desc", desc)
+            newDemandObject.put("location", loc)
+            newDemandObject.put("recipients", allRecipients)
+            newDemandObject.put("date", currentDate)
+            newDemandObject.put("dueDate", dueDateTime)
+            newDemandObject.put("status", "PENDING")
+            newDemandObject.put("fulfilledQty", 1)
+            newDemandObject.put("shift", shift)
+            newDemandObject.put("priority", prior)
+            newDemandObject.put("active", true)
+
+            apiCall(newDemandObject)
 
             val transition = this.fragmentManager?.beginTransaction()
             transition?.replace(R.id.frameLayout, RaiseDemandSuccess())?.commit()
@@ -273,9 +332,12 @@ class RecipientsFragment : Fragment() {
             Method.POST, url, newDemandObject,
             { response ->
                 Log.i("successRequest", response.toString())
+
             },
             {
+                Log.i("errorRequest", newDemandObject.toString())
                 Log.d("error", it.localizedMessage as String)
+
             }) {
             override fun getBodyContentType(): String {
                 return "application/json"
@@ -284,6 +346,23 @@ class RecipientsFragment : Fragment() {
 
         // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest)
+
+//        val jsonObjectRequest : JsonObjectRequest =
+//            object : JsonObjectRequest(Method.POST, url, newDemandObject,
+//                Response.Listener { response ->
+//                    // response
+//                    var strResp = response.toString()
+//                    Log.d("API", strResp)
+//                },
+//                Response.ErrorListener { error ->
+//                    Log.d("API", "error => $error")
+//                }
+//            ){
+//                override fun getBody(): ByteArray {
+//                    return newDemandObject.toByteArray(Charset.defaultCharset())
+//                }
+//            }
+//        queue.add(jsonObjectRequest)
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.demandmanagement.fragment
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,11 +11,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class DemandApprovalFragment : Fragment() {
+
+    private lateinit var builder : AlertDialog.Builder
+    private lateinit var btnApprove : Button
+    private lateinit var btnReject : Button
+    private lateinit var tvApprove : TextView
+    private lateinit var tvReject : TextView
 
     lateinit var tvDemandId: TextView
     lateinit var tvDate: TextView
@@ -51,7 +59,6 @@ class DemandApprovalFragment : Fragment() {
             demandJSONObject.put("skills", bundle.getString("skills"))
             demandJSONObject.put("desc", bundle.getString("desc"))
             demandJSONObject.put("requiredQty", bundle.getInt("requiredQty"))
-            demandJSONObject.put("fulfilledQty", bundle.getInt("fulfilledQty"))
 
             setView(demandJSONObject, view)
         }
@@ -62,6 +69,44 @@ class DemandApprovalFragment : Fragment() {
             transition?.replace(R.id.frameLayout, MessagesFragment())?.commit()
         }
 
+        val txtBack = view.findViewById<TextView>(R.id.txtBack)
+        txtBack.setOnClickListener {
+            (activity as MainActivity).onBackPressed()
+        }
+
+        btnApprove = view.findViewById(R.id.btnApprove)
+        btnReject = view.findViewById(R.id.btnReject)
+
+        tvApprove = view.findViewById(R.id.tvApprove)
+        tvReject = view.findViewById(R.id.tvReject)
+
+        builder = AlertDialog.Builder(requireActivity())
+
+        btnApprove.setOnClickListener {
+            builder.setTitle("Alert")
+                .setMessage("Are you sure want to approve?")
+                .setPositiveButton("Yes"){ _, it ->
+                    btnApprove.visibility = View.GONE
+                    btnReject.visibility = View.GONE
+                    tvApprove.visibility = View.VISIBLE
+                }
+                .setNegativeButton("No"){ _, it ->
+
+                }.show()
+        }
+
+        btnReject.setOnClickListener {
+            builder.setTitle("Alert")
+                .setMessage("Are you sure want to Reject?")
+                .setPositiveButton("Yes"){ _, it ->
+                    btnApprove.visibility = View.GONE
+                    btnReject.visibility = View.GONE
+                    tvReject.visibility = View.VISIBLE
+                }
+                .setNegativeButton("No"){ _, it ->
+
+                }.show()
+        }
         return view
     }
 
@@ -100,8 +145,6 @@ class DemandApprovalFragment : Fragment() {
         tvRequiredQty = view.findViewById(R.id.tvRequiredQty)
         tvRequiredQty.text = data.getInt("requiredQty").toString()
 
-        tvFulfilledQty = view.findViewById(R.id.tvFulfilledQty)
-        tvFulfilledQty.text = data.getInt("fulfilledQty").toString()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
