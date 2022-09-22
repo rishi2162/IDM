@@ -1,19 +1,30 @@
 package com.example.demandmanagement.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.fragment.DemandDetailsFragment
 import com.example.demandmanagement.model.DemandEntity
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MyRequestAdapter(
@@ -35,12 +46,13 @@ class MyRequestAdapter(
         return ViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = filterList[position]
         holder.designationView.text = currentItem.dmDesgn
         holder.descView.text = currentItem.desc
         holder.authorView.text = currentItem.userId
-        holder.dateView.text = currentItem.date
+        holder.dateView.text = convertDate(currentItem.date)
 
         when (currentItem.status) {
             "APPROVED" -> {
@@ -57,8 +69,31 @@ class MyRequestAdapter(
 
         holder.itemView.setOnClickListener {
             //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
-            val transition = fragment.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, DemandDetailsFragment())?.commit()
+            try {
+                //apiCall()
+                val transition = fragment.fragmentManager?.beginTransaction()
+                val fragment = DemandDetailsFragment()
+                val bundle = Bundle()
+                bundle.putString("demandId", currentItem.demandId)
+                bundle.putString("date", currentItem.date)
+                bundle.putString("dueDate", currentItem.dueDate)
+                bundle.putString("userId", currentItem.userId)
+                bundle.putString("priority", currentItem.priority)
+                bundle.putString("shift", currentItem.shift)
+                bundle.putString("dmDesgn", currentItem.dmDesgn)
+                bundle.putString("yoe", currentItem.yoe)
+                bundle.putString("skills", currentItem.skills)
+                bundle.putString("desc", currentItem.desc)
+                bundle.putInt("requiredQty", currentItem.requiredQty)
+                bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
+
+                fragment.arguments = bundle
+
+                transition?.replace(R.id.frameLayout, fragment)
+                    ?.addToBackStack(fragment.javaClass.name)?.commit()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
+            }
 
         }
     }
@@ -115,4 +150,18 @@ class MyRequestAdapter(
         val editIconView: View = itemView.findViewById(R.id.iconEdit)
 
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun convertDate(date: String): String? {
+        val datetime: LocalDateTime =
+            LocalDateTime.parse(
+                date.subSequence(0, date.length - 8),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.S")
+            )
+        val formattedDate: String = datetime.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
+
+        return formattedDate
+    }
+
+
 }

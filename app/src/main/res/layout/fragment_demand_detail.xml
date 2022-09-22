@@ -61,7 +61,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv2"
+                            android:id="@+id/tvDemandId"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="19dp"
@@ -82,7 +82,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv4"
+                            android:id="@+id/tvDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="19dp"
@@ -110,7 +110,7 @@
                             app:cardMaxElevation="15dp">
 
                             <TextView
-                                android:id="@+id/tvCard1"
+                                android:id="@+id/tvRequiredQty"
                                 android:layout_width="match_parent"
                                 android:layout_height="72dp"
                                 android:paddingTop="20dp"
@@ -156,7 +156,7 @@
                                     android:textSize="24sp" />
 
                                 <TextView
-                                    android:id="@+id/tvFulfilledNumber"
+                                    android:id="@+id/tvFulfilledQty"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -200,7 +200,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv6"
+                    android:id="@+id/tvDueDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -221,7 +221,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv8"
+                    android:id="@+id/tvRequester"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -242,7 +242,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv10"
+                    android:id="@+id/tvPriority"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -263,6 +263,7 @@
 
 
                 <TextView
+                    android:id="@+id/tvShift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -283,7 +284,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv12"
+                    android:id="@+id/tvDmDesgn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -304,7 +305,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv14"
+                    android:id="@+id/tvYoe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -325,7 +326,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv16"
+                    android:id="@+id/tvSkils"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
@@ -347,7 +348,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv18"
+                    android:id="@+id/tvDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"

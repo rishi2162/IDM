@@ -102,7 +102,6 @@ class MyRequestFragment : Fragment() {
 
     override fun onResume() {
         setData()
-        //formatDate()
         filterData()
         super.onResume()
     }
@@ -114,11 +113,10 @@ class MyRequestFragment : Fragment() {
             val myDemandObject = stringArray[3].subSequence(1, stringArray[3].length - 1)
             val myDemandJsonString =
                 myDemandObject.subSequence(myDemandObject.indexOf(":") + 1, myDemandObject.length)
-            //Log.d("tag", myDemandJsonString.toString())
 
             //converting string to array
             val demandStringArray = myDemandJsonString.split("]},").toTypedArray()
-            //Log.d("tag", myDemandJsonString.toString())
+
 
             for (i in demandStringArray.indices) {
 
@@ -153,11 +151,5 @@ class MyRequestFragment : Fragment() {
 
     }
 
-    fun formatDate() {
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val text = "2022-01-06"
-        val date = formatter.parse(text)
-        Log.d("date", date.toString())
-    }
 
 }

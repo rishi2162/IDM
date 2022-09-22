@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //iniRefreshListener()
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
 
     }
 
@@ -100,6 +103,14 @@ class MainActivity : AppCompatActivity() {
                 },
                 3000,
             )
+        }
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStackImmediate();
+        } else {
+            super.onBackPressed();
         }
     }
 

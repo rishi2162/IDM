@@ -2,6 +2,7 @@ package com.example.demandmanagement.fragment.demandchildfragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,10 +117,12 @@ class MyApprovalFragment : Fragment() {
                 when (i) {
                     0 -> {
                         val demand =
-                            demandStringArray[1].subSequence(1, demandStringArray[i].length)
+                            demandStringArray[i].subSequence(1, demandStringArray[i].length)
                                 .toString() + "]}"
+                        Log.d("approval", demand)
                         val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
                         demandList.add(myDemand)
+
                     }
                     demandStringArray.size - 1 -> {
                         val demand =
