@@ -116,13 +116,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
+                app:placeholderText="Enter years of experience"
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
                     android:id="@+id/dropDownYoe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter the experience in years e.g. 4+ yrs"
                     android:inputType="text"
                     android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -267,13 +267,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
+                app:placeholderText="Choose the location"
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
                     android:id="@+id/dropDownLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Choose the location"
                     android:inputType="none"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -311,13 +311,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:placeholderText="Choose the priority"
                 >
 
                 <AutoCompleteTextView
                     android:id="@+id/dropDownPriority"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Choose the priority"
                     android:inputType="none"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -355,13 +355,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:placeholderText="Choose a Shift"
                 >
 
                 <AutoCompleteTextView
                     android:id="@+id/dropDownShift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Choose a Shift"
                     android:inputType="none"
                     android:textColor="@color/black"
                     android:textSize="14sp" />

@@ -3,14 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/button_background.xml" value="0.167" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_button.xml" value="0.166" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_input.xml" value="0.166" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_input_check.xml" value="0.167" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_input_recipients.xml" value="0.2115" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/custom_next_button.xml" value="0.166" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.167" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.2115" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_baseline_remove_circle_24.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_delete.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_edit.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/ic_launcher_background.xml" value="0.167" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/incture_typo.xml" value="0.167" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/message_box_background.xml" value="0.167" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/drawable/view_comments_background.xml" value="0.167" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/drop_down_item_yoe.xml" value="0.20416666666666666" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_blank.xml" value="0.2" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_demand.xml" value="0.20416666666666666" />
         <entry key="..\:/Android Development/DemandManagement/app/src/main/res/layout/fragment_demand_approval.xml" value="0.25" />

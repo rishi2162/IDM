@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -13,10 +14,12 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.allViews
 import androidx.core.view.isEmpty
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.demandmanagement.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import kotlinx.android.synthetic.main.fragment_new.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -157,42 +160,124 @@ class NewFragment : Fragment() {
             }
         }
 
-
         // Move to the next Fragment
         val btnNextPage = view.findViewById<Button>(R.id.btnNextPage)
         btnNextPage.setOnClickListener {
 
-            val transition = this.fragmentManager?.beginTransaction()
-            val bundle = Bundle()
-            bundle.putString("Designation", inputDesignation.text.toString())
-            bundle.putString("Description", inputDescription.text.toString())
-            bundle.putString("DueDate", btnCalendarView.text.toString())
-            bundle.putString("NumReq", etNumReq.text.toString())
-            bundle.putString("Experience", inputYOE.text.toString())
-            bundle.putString("Location", inputLOC.text.toString())
-            bundle.putString("Shift", inputShift.text.toString())
-            bundle.putString("Priority", inputPriority.text.toString())
+            if(inputDesignation.text.isNotEmpty() &&
+                    inputYOE.text.isNotEmpty() &&
+                    skillsChipGroup.childCount >= 1 &&
+                    inputDescription.text.isNotEmpty() &&
+                    dropDownLocation.text.isNotEmpty() &&
+                    dropDownPriority.text.isNotEmpty() &&
+                    dropDownShift.text.isNotEmpty() &&
+                    btnCalendar.text.isNotEmpty() &&
+                    etNumReq.text.isNotEmpty()
+            ){
+                val transition = this.fragmentManager?.beginTransaction()
+                val bundle = Bundle()
+                bundle.putString("Designation", inputDesignation.text.toString())
+                bundle.putString("Description", inputDescription.text.toString())
+                bundle.putString("DueDate", btnCalendarView.text.toString())
+                bundle.putString("NumReq", etNumReq.text.toString())
+                bundle.putString("Experience", inputYOE.text.toString())
+                bundle.putString("Location", inputLOC.text.toString())
+                bundle.putString("Shift", inputShift.text.toString())
+                bundle.putString("Priority", inputPriority.text.toString())
 
 
-            val n = skillsChipGroup.childCount - 1
-            for(i in 0..n){
-                val chip = skillsChipGroup.getChildAt(i) as Chip
-                Log.i("mytag", chip.text.toString())
-                if(allSkills.isEmpty()){
-                    allSkills += chip.text.toString()
+                val n = skillsChipGroup.childCount - 1
+                for(i in 0..n){
+                    val chip = skillsChipGroup.getChildAt(i) as Chip
+                    Log.i("mytag", chip.text.toString())
+                    if(allSkills.isEmpty()){
+                        allSkills += chip.text.toString()
+                    }
+                    else{
+                        allSkills += ", ${chip.text.toString()}"
+                    }
                 }
-                else{
-                    allSkills += ", ${chip.text.toString()}"
-                }
+
+
+                bundle.putString("Skills", allSkills)
+
+                val fragment = RecipientsFragment()
+                fragment.arguments = bundle
+
+                transition?.replace(R.id.frameLayout, fragment)?.commit()
             }
+            else{
+
+                if(inputDesignation.text.isEmpty()){
+                    inputDesignation.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(inputDesignation.text.isNotEmpty()){
+                    inputDesignation.setBackgroundResource(R.drawable.custom_input)
+                }
 
 
-            bundle.putString("Skills", allSkills)
+                if(inputYOE.text.isEmpty()){
+                    inputYOE.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(inputYOE.text.isNotEmpty()){
+                    inputYOE.setBackgroundResource(R.drawable.custom_input)
+                }
 
-            val fragment = RecipientsFragment()
-            fragment.arguments = bundle
+                if(skillsChipGroup.childCount < 1){
+                    inputSkill.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(skillsChipGroup.childCount >= 1){
+                    inputSkill.setBackgroundResource(R.drawable.custom_input)
+                }
 
-            transition?.replace(R.id.frameLayout, fragment)?.commit()
+                if(inputDescription.text.isEmpty()){
+                    inputDescription.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(inputDescription.text.isNotEmpty()){
+                    inputDescription.setBackgroundResource(R.drawable.custom_input)
+                }
+
+                if(dropDownLocation.text.isEmpty()){
+                    dropDownLocation.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(dropDownLocation.text.isNotEmpty()){
+                    dropDownLocation.setBackgroundResource(R.drawable.custom_input)
+                }
+
+                if(dropDownPriority.text.isEmpty()){
+                    dropDownPriority.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(dropDownPriority.text.isNotEmpty()){
+                    dropDownPriority.setBackgroundResource(R.drawable.custom_input)
+                }
+
+                if(dropDownShift.text.isEmpty()){
+                    dropDownShift.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(dropDownShift.text.isNotEmpty()){
+                    dropDownShift.setBackgroundResource(R.drawable.custom_input)
+                }
+
+                if(btnCalendar.text.isEmpty()){
+                    btnCalendar.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(btnCalendar.text.isNotEmpty()){
+                    btnCalendar.setBackgroundResource(R.drawable.custom_input)
+                }
+
+                if(etNumReq.text.isEmpty()){
+                    etNumReq.setBackgroundResource(R.drawable.custom_input_check)
+                }
+                if(etNumReq.text.isNotEmpty()){
+                    etNumReq.setBackgroundResource(R.drawable.custom_input)
+                }
+
+                Toast.makeText(
+                    requireActivity(),
+                    "Fill all the mandatory fields",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
 

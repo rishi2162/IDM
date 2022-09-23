@@ -248,39 +248,49 @@ class RecipientsFragment : Fragment() {
         btnRaiseDemand = view.findViewById(R.id.btnRaiseDemand)
 
         btnRaiseDemand.setOnClickListener {
-            val n = chipGroupRecipients.childCount - 1
-            for(i in 0..n){
-                val chip = chipGroupRecipients.getChildAt(i) as Chip
-                if(allRecipients.isEmpty()){
-                    allRecipients += chip.text.toString()
+            if(chipGroupRecipients.childCount >=1 ){
+                val n = chipGroupRecipients.childCount - 1
+                for(i in 0..n){
+                    val chip = chipGroupRecipients.getChildAt(i) as Chip
+                    if(allRecipients.isEmpty()){
+                        allRecipients += chip.text.toString()
+                    }
+                    else{
+                        allRecipients += ", ${chip.text.toString()}"
+                    }
                 }
-                else{
-                    allRecipients += ", ${chip.text.toString()}"
-                }
+
+                newDemandObject.put("userId", "INC02231")
+                newDemandObject.put("dmDesgn", design)
+                newDemandObject.put("email", "anish.raj@incture.com")
+                newDemandObject.put("yoe", exp)
+                newDemandObject.put("requiredQty", nreq.toInt())
+                newDemandObject.put("skills", allskills)
+                newDemandObject.put("desc", desc)
+                newDemandObject.put("location", loc)
+                newDemandObject.put("recipients", allRecipients)
+                newDemandObject.put("date", currentDate)
+                newDemandObject.put("dueDate", dueDateTime)
+                newDemandObject.put("status", "PENDING")
+                newDemandObject.put("fulfilledQty", 1)
+                newDemandObject.put("shift", shift)
+                newDemandObject.put("priority", prior)
+                newDemandObject.put("active", true)
+
+                apiCall(newDemandObject)
+
+                val transition = this.fragmentManager?.beginTransaction()
+                transition?.replace(R.id.frameLayout, RaiseDemandSuccess())?.commit()
             }
+            else{
+                autoCompleteRecipients.setBackgroundResource(R.drawable.custom_input_check)
 
-            newDemandObject.put("userId", "INC02231")
-            newDemandObject.put("dmDesgn", design)
-            newDemandObject.put("email", "anish.raj@incture.com")
-            newDemandObject.put("yoe", exp)
-            newDemandObject.put("requiredQty", nreq.toInt())
-            newDemandObject.put("skills", allskills)
-            newDemandObject.put("desc", desc)
-            newDemandObject.put("location", loc)
-            newDemandObject.put("recipients", allRecipients)
-            newDemandObject.put("date", currentDate)
-            newDemandObject.put("dueDate", dueDateTime)
-            newDemandObject.put("status", "PENDING")
-            newDemandObject.put("fulfilledQty", 1)
-            newDemandObject.put("shift", shift)
-            newDemandObject.put("priority", prior)
-            newDemandObject.put("active", true)
-
-            apiCall(newDemandObject)
-
-            val transition = this.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, RaiseDemandSuccess())?.commit()
-
+                Toast.makeText(
+                    requireActivity(),
+                    "Please add at least one recipients",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         return view
