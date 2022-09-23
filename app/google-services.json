@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "581730376879",
-    "project_id": "incture-demand-management",
-    "storage_bucket": "incture-demand-management.appspot.com"
+    "project_number": "126662768401",
+    "project_id": "incture-demand-managemen-152e5",
+    "storage_bucket": "incture-demand-managemen-152e5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:581730376879:android:45c7608a807a727a37885a",
+        "mobilesdk_app_id": "1:126662768401:android:a6b7b8dea72b88bc87feb0",
         "android_client_info": {
           "package_name": "com.example.demandmanagement"
         }
       },
       "oauth_client": [
         {
-          "client_id": "581730376879-ak2o1bef1im60e2c50fc5tao4aiemfot.apps.googleusercontent.com",
+          "client_id": "126662768401-cga5a5sut00s60ghj1veaibpp03lckp5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVxDAMJAD-OL6fezJUZDn-zrTjEI-U6h4"
+          "current_key": "AIzaSyBFM-RNJ61GucsdJzKlB20c4clvkgNYiEs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "581730376879-ak2o1bef1im60e2c50fc5tao4aiemfot.apps.googleusercontent.com",
+              "client_id": "126662768401-cga5a5sut00s60ghj1veaibpp03lckp5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "126662768401-gqg81ep0qjsvh73qmn4taoa0i3th5r74.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.incture.PushNotification"
+              }
             }
           ]
         }

@@ -144,17 +144,17 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/cherryWorkIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/appIcon"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/cherrywork_logo" />
+                android:src="@drawable/idm" />
 
             <TextView
                 android:id="@+id/cherryWorkTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cherryWorkIcon"
+                android:layout_below="@id/appIcon"
                 android:padding="5dp"
                 android:text="Version 1.0.1"
                 android:textAlignment="center" />
