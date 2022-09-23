@@ -66,7 +66,9 @@ class DemandApprovalFragment : Fragment() {
         val btnApprovalMessages = view.findViewById<Button>(R.id.btnApprovalMessages)
         btnApprovalMessages.setOnClickListener {
             val transition = this.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, MessagesFragment())?.commit()
+            val fragment = MessagesFragment()
+            transition?.replace(R.id.frameLayout, fragment)
+                ?.addToBackStack(fragment.javaClass.name)?.commit()
         }
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)

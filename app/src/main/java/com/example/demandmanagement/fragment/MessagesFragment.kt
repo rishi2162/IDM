@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.MessageAdapter
 import com.example.demandmanagement.model.Message
 
@@ -32,12 +33,9 @@ class MessagesFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_messages, container, false)
 
-        //activity?.title =
-
         val txtDemandBack = view.findViewById<TextView>(R.id.txtDemandBack)
         txtDemandBack.setOnClickListener {
-            val transition = fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, DemandDetailsFragment())?.commit()
+            (activity as MainActivity).onBackPressed()
         }
 
         setData(view)

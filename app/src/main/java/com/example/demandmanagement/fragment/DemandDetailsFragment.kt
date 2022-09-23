@@ -130,7 +130,9 @@ class DemandDetailsFragment : Fragment() {
         val btnMessages = view.findViewById<Button>(R.id.btnMessages)
         btnMessages.setOnClickListener {
             val transition = this.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, MessagesFragment())?.commit()
+            val fragment = MessagesFragment()
+            transition?.replace(R.id.frameLayout, fragment)
+                ?.addToBackStack(fragment.javaClass.name)?.commit()
         }
 
 
