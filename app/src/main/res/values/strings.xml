@@ -14,16 +14,17 @@
 
     <!--    list of experience-->
     <string-array name="yearOfExp">
-        <item>0-1 yr</item>
-        <item>1+ yr</item>
-        <item>2+ yr</item>
-        <item>3+ yr</item>
-        <item>4+ yr</item>
-        <item>5+ yr</item>
-        <item>6+ yr</item>
-        <item>7+ yr</item>
-        <item>8+ yr</item>
-        <item>9+ yr</item>
+        <item>0-1 years</item>
+        <item>1+ years</item>
+        <item>2+ years</item>
+        <item>3+ years</item>
+        <item>4+ years</item>
+        <item>5+ years</item>
+        <item>6+ years</item>
+        <item>7+ years</item>
+        <item>8+ years</item>
+        <item>9+ years</item>
+        <item>10+ years</item>
     </string-array>
 
     <!--    list of locations-->

@@ -39,6 +39,8 @@ class NewFragment : Fragment() {
     private lateinit var inputDesignation : EditText
     private var design : String = ""
 
+    private var exp :String = ""
+
     private lateinit var inputDescription : EditText
     private var desc : String = ""
 
@@ -48,6 +50,10 @@ class NewFragment : Fragment() {
     private var nreq : String = ""
 
     private var allSkills : String = ""
+
+    private var loc : String = ""
+    private var prior : String = ""
+    private var shift : String = ""
 
     var skills: List<String> = listOf(
         "HTML",
@@ -148,15 +154,29 @@ class NewFragment : Fragment() {
         val bundle = this.arguments
         if (bundle != null) {
             design = bundle.getString("Designation").toString()
+            exp = bundle.getString("Experience").toString()
+            allSkills = bundle.getString("allSkills").toString()
             desc = bundle.getString("Description").toString()
+            loc = bundle.getString("Location").toString()
+            prior = bundle.getString("Priority").toString()
+            shift = bundle.getString("Shift").toString()
             dueDate = bundle.getString("DueDate").toString()
             nreq = bundle.getString("NumReq").toString()
 
             if(design!="null"){
                 inputDesignation.setText(design)
+                inputYOE.setText(exp)
                 inputDescription.setText(desc)
+                inputLOC.setText(loc)
+                inputPriority.setText(prior)
+                inputShift.setText(shift)
                 btnCalendarView.text = dueDate
                 etNumReq.setText(nreq)
+
+                var allSkillsArray = allSkills.split(",").toTypedArray()
+                for (i in 1..allSkillsArray.size-1){
+                    addChip(allSkillsArray[i])
+                }
             }
         }
 
@@ -176,15 +196,6 @@ class NewFragment : Fragment() {
             ){
                 val transition = this.fragmentManager?.beginTransaction()
                 val bundle = Bundle()
-                bundle.putString("Designation", inputDesignation.text.toString())
-                bundle.putString("Description", inputDescription.text.toString())
-                bundle.putString("DueDate", btnCalendarView.text.toString())
-                bundle.putString("NumReq", etNumReq.text.toString())
-                bundle.putString("Experience", inputYOE.text.toString())
-                bundle.putString("Location", inputLOC.text.toString())
-                bundle.putString("Shift", inputShift.text.toString())
-                bundle.putString("Priority", inputPriority.text.toString())
-
 
                 val n = skillsChipGroup.childCount - 1
                 for(i in 0..n){
@@ -198,12 +209,18 @@ class NewFragment : Fragment() {
                     }
                 }
 
-
+                bundle.putString("Designation", inputDesignation.text.toString())
+                bundle.putString("Experience", inputYOE.text.toString())
                 bundle.putString("Skills", allSkills)
+                bundle.putString("Description", inputDescription.text.toString())
+                bundle.putString("Location", dropDownLocation.text.toString())
+                bundle.putString("Priority", inputPriority.text.toString())
+                bundle.putString("Shift", inputShift.text.toString())
+                bundle.putString("DueDate", btnCalendarView.text.toString())
+                bundle.putString("NumReq", etNumReq.text.toString())
 
                 val fragment = RecipientsFragment()
                 fragment.arguments = bundle
-
                 transition?.replace(R.id.frameLayout, fragment)?.commit()
             }
             else{

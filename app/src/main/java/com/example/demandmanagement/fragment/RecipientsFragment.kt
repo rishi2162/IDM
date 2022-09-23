@@ -96,14 +96,14 @@ class RecipientsFragment : Fragment() {
         val bundle = this.arguments
         if (bundle != null) {
             design = bundle.getString("Designation").toString()
-            desc = bundle.getString("Description").toString()
-            dueDate = bundle.getString("DueDate").toString()
-            nreq = bundle.getString("NumReq").toString()
             exp = bundle.getString("Experience").toString()
             allskills = bundle.getString("Skills").toString()
+            desc = bundle.getString("Description").toString()
             loc = bundle.getString("Location").toString()
             shift = bundle.getString("Shift").toString()
             prior = bundle.getString("Priority").toString()
+            dueDate = bundle.getString("DueDate").toString()
+            nreq = bundle.getString("NumReq").toString()
         }
 
         var dateString = ""
@@ -163,11 +163,14 @@ class RecipientsFragment : Fragment() {
             val transition = this.fragmentManager?.beginTransaction()
             val bundle = Bundle()
             bundle.putString("Designation", design)
+            bundle.putString("Experience", exp)
+            bundle.putString("allSkills", allskills)
             bundle.putString("Description", desc)
+            bundle.putString("Location", loc)
+            bundle.putString("Priority", prior)
+            bundle.putString("Shift", shift)
             bundle.putString("DueDate", dueDate)
             bundle.putString("NumReq", nreq)
-
-            bundle.putString("Experience", exp)
 
             val fragment = NewFragment()
             fragment.arguments = bundle
