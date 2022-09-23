@@ -18,10 +18,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var stringArray: ArrayList<String>
+    lateinit var deviceId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -29,8 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         if (intent.extras != null) {
             stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
-        }
+            deviceId = intent.getStringExtra("deviceId").toString()
 
+        }
+        Log.i("deviceId", deviceId)
         replaceFragments(HomeFragment(), stringArray)
 
         binding.bottomNavigationView.setOnItemSelectedListener {

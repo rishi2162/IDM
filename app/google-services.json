@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "581730376879",
+    "project_id": "incture-demand-management",
+    "storage_bucket": "incture-demand-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581730376879:android:45c7608a807a727a37885a",
+        "android_client_info": {
+          "package_name": "com.example.demandmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581730376879-ak2o1bef1im60e2c50fc5tao4aiemfot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVxDAMJAD-OL6fezJUZDn-zrTjEI-U6h4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581730376879-ak2o1bef1im60e2c50fc5tao4aiemfot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

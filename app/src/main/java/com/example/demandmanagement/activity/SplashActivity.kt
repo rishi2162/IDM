@@ -8,9 +8,12 @@ import android.util.Log
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
+import com.google.firebase.messaging.FirebaseMessaging
 import org.json.JSONArray
 
 class SplashActivity : AppCompatActivity() {
+
+    private var deviceId = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +21,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         apiCall()
+
 
 //        Handler().postDelayed({
 //            val intent = Intent(this, MainActivity::class.java)
@@ -34,9 +38,19 @@ class SplashActivity : AppCompatActivity() {
             Method.GET, url, null,
             { response ->
                 //Log.i("successRequest", response.toString())
+
+                FirebaseMessaging.getInstance().token
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val token = task.result
+                            deviceId = token
+                        }
+                    }
+
                 Handler().postDelayed({
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putStringArrayListExtra("response", convertToStringArray(response))
+                    intent.putExtra("deviceId", deviceId)
                     //Log.i("response", convertToStringArray(response).toString())
 
                     startActivity(intent)
@@ -61,4 +75,6 @@ class SplashActivity : AppCompatActivity() {
         }
         return stringArray
     }
+
+
 }
