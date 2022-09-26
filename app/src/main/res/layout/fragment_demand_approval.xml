@@ -7,6 +7,28 @@
     android:orientation="vertical"
     tools:context=".fragment.DemandApprovalFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieApproved"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/lottie_approved_inc"
+        android:layout_gravity="center"
+        app:lottie_speed="1"
+        android:visibility="gone"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieRejected"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/lottie_rejected"
+        android:layout_gravity="center"
+        app:lottie_speed="1"
+        android:visibility="gone"
+        />
+
 
     <RelativeLayout
         android:layout_width="match_parent"

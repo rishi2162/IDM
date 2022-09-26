@@ -1,8 +1,12 @@
 package com.example.demandmanagement.fragment
 
+import android.animation.Animator
 import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +14,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.airbnb.lottie.LottieAnimationView
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
+import kotlinx.android.synthetic.main.fragment_demand_approval.*
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -36,6 +42,9 @@ class DemandApprovalFragment : Fragment() {
     lateinit var tvDesc: TextView
     lateinit var tvRequiredQty: TextView
     lateinit var tvFulfilledQty: TextView
+
+    private lateinit var lottieApproved : LottieAnimationView
+    private lateinit var lottieRejected : LottieAnimationView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -91,6 +100,32 @@ class DemandApprovalFragment : Fragment() {
                     btnApprove.visibility = View.GONE
                     btnReject.visibility = View.GONE
                     tvApprove.visibility = View.VISIBLE
+
+                    lottieApproved = view.findViewById(R.id.lottieApproved)
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                        lottieApproved.visibility = View.VISIBLE
+                        lottieApproved.speed = 0.40F
+                    }, 100)
+
+                    lottieApproved.addAnimatorListener(object : Animator.AnimatorListener{
+                        override fun onAnimationStart(p0: Animator?) {
+                            Log.i("myTag", "temp")
+                        }
+
+                        override fun onAnimationEnd(p0: Animator?) {
+                            lottieApproved.visibility = View.GONE
+                        }
+
+                        override fun onAnimationCancel(p0: Animator?) {
+                            TODO("Not yet implemented")
+                        }
+
+                        override fun onAnimationRepeat(p0: Animator?) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+
                 }
                 .setNegativeButton("No"){ _, it ->
 
@@ -104,6 +139,31 @@ class DemandApprovalFragment : Fragment() {
                     btnApprove.visibility = View.GONE
                     btnReject.visibility = View.GONE
                     tvReject.visibility = View.VISIBLE
+
+                    lottieRejected = view.findViewById(R.id.lottieRejected)
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                        lottieRejected.visibility = View.VISIBLE
+                        lottieRejected.speed = 0.60F
+                    }, 100)
+
+                    lottieRejected.addAnimatorListener(object : Animator.AnimatorListener{
+                        override fun onAnimationStart(p0: Animator?) {
+                            Log.i("myTag", "temp")
+                        }
+
+                        override fun onAnimationEnd(p0: Animator?) {
+                            lottieRejected.visibility = View.GONE
+                        }
+
+                        override fun onAnimationCancel(p0: Animator?) {
+                            TODO("Not yet implemented")
+                        }
+
+                        override fun onAnimationRepeat(p0: Animator?) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
                 }
                 .setNegativeButton("No"){ _, it ->
 
