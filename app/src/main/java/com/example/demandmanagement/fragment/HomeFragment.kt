@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
         //Log.i("user", home.drToday.toString())
 
         tvWelcome = view.findViewById(R.id.tvWelcome)
-        tvWelcome.text = "Welcome ${user.fname}"
+        tvWelcome.text = "Welcome ${user.fname},"
 
         drToday = view.findViewById(R.id.drToday)
         drToday.text = home.drToday.toString()
