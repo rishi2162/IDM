@@ -2,6 +2,7 @@ package com.example.demandmanagement.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,9 +17,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.ViewPagerAdapter
 import com.example.demandmanagement.model.HomeEntity
 import com.example.demandmanagement.model.UserEntity
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.relex.circleindicator.CircleIndicator3
@@ -69,6 +72,7 @@ class HomeFragment : Fragment() {
 
         postToList()
 
+
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
         Log.i("ViewPager", view_pager2.toString())
         view_pager2?.adapter = ViewPagerAdapter(notificationsList, this, requireContext())
@@ -78,6 +82,7 @@ class HomeFragment : Fragment() {
         val indicator = view?.findViewById<CircleIndicator3>(R.id.indicator)
         indicator?.setViewPager(view_pager2)
 
+//        onPullToRefresh(view)
         return view
     }
 
@@ -118,7 +123,6 @@ class HomeFragment : Fragment() {
         dfTotal.text = home.dfTotal.toString()
 
     }
-
 
 }
 

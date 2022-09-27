@@ -3,6 +3,7 @@ package com.example.demandmanagement.activity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -11,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.json.JSONArray
 
 
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //iniRefreshListener()
+        onPullToRefresh()
 
         if (intent.extras != null) {
             stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
@@ -93,10 +95,10 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun iniRefreshListener() {
-        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipe_layout)
-        swipeRefreshLayout.setOnRefreshListener { // This method gets called when user pull for refresh,
-            // You can make your API call here,
+    private fun onPullToRefresh() {
+        var swipeRefreshLayout : SwipeRefreshLayout = findViewById(R.id.swipe_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+
             val handler = Handler()
             handler.postDelayed(
                 {
@@ -104,9 +106,43 @@ class MainActivity : AppCompatActivity() {
                         swipeRefreshLayout.isRefreshing = false
                     }
                 },
-                3000,
+                2000,
             )
+            stringArray = apiCall()
+
+
         }
+    }
+
+    private fun apiCall(): ArrayList<String> {
+        val queue = Volley.newRequestQueue(this)
+        //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
+        val url = "https://mocki.io/v1/81c3c27f-a4c1-44bd-81c2-d9898b101b45"
+        val jsonArrayRequest = object : JsonArrayRequest(
+            Method.GET, url, null,
+            { response ->
+                //Log.i("successRequest", response.toString())
+                stringArray = convertToStringArray(response)
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest)
+
+        return stringArray
+    }
+
+    private fun convertToStringArray(jsonArray: JSONArray): ArrayList<String> {
+        val stringArray = ArrayList<String>()
+        for (i in 0 until jsonArray.length()) {
+            stringArray.add(jsonArray.get(i).toString())
+        }
+        return stringArray
     }
 
     override fun onBackPressed() {
