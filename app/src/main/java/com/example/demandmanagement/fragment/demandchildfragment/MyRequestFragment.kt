@@ -117,30 +117,38 @@ class MyRequestFragment : Fragment() {
             //converting string to array
             val demandStringArray = myDemandJsonString.split("]},").toTypedArray()
 
+            if (demandStringArray.size == 1) {
+                val demand =
+                    demandStringArray[0].subSequence(1, demandStringArray[0].length - 1)
+                        .toString()
 
-            for (i in demandStringArray.indices) {
+                val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                demandList.add(myDemand)
+            } else {
+                for (i in demandStringArray.indices) {
 
-                when (i) {
-                    0 -> {
-                        val demand =
-                            demandStringArray[i].subSequence(1, demandStringArray[i].length)
-                                .toString() + "]}"
-                        val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
-                        demandList.add(myDemand)
-                    }
-                    demandStringArray.size - 1 -> {
-                        val demand =
-                            demandStringArray[i].subSequence(0, demandStringArray[i].length - 1)
-                                .toString()
-                        val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
-                        demandList.add(myDemand)
-                    }
-                    else -> {
-                        val demand = demandStringArray[i] + "]}"
-                        val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
-                        demandList.add(myDemand)
-                    }
+                    when (i) {
+                        0 -> {
+                            val demand =
+                                demandStringArray[i].subSequence(1, demandStringArray[i].length)
+                                    .toString() + "]}"
+                            val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                            demandList.add(myDemand)
+                        }
+                        demandStringArray.size - 1 -> {
+                            val demand =
+                                demandStringArray[i].subSequence(0, demandStringArray[i].length - 1)
+                                    .toString()
+                            val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                            demandList.add(myDemand)
+                        }
+                        else -> {
+                            val demand = demandStringArray[i] + "]}"
+                            val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                            demandList.add(myDemand)
+                        }
 
+                    }
                 }
             }
         } catch (e: Exception) {

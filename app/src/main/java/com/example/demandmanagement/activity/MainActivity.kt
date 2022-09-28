@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onPullToRefresh() {
-        var swipeRefreshLayout : SwipeRefreshLayout = findViewById(R.id.swipe_layout)
+        var swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
         swipeRefreshLayout.setOnRefreshListener {
 
             val handler = Handler()
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
     private fun apiCall(): ArrayList<String> {
         val queue = Volley.newRequestQueue(this)
         //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
-        val url = "https://mocki.io/v1/81c3c27f-a4c1-44bd-81c2-d9898b101b45"
+        val url = "https://mocki.io/v1/036d0ae9-0b3b-4bb4-a413-8b95b6137717"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
@@ -151,6 +151,16 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed();
         }
+    }
+
+    fun disableSwipe() {
+        var swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
+        swipeRefreshLayout.isEnabled = false
+    }
+
+    fun enableSwipe() {
+        var swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
+        swipeRefreshLayout.isEnabled = true
     }
 
 

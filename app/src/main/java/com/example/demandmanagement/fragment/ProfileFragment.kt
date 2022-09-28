@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.LoginActivity
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.model.HomeEntity
 import com.example.demandmanagement.model.UserEntity
 import com.google.gson.Gson
@@ -44,6 +45,8 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        (activity as MainActivity).disableSwipe()
 
         val bundle = this.arguments
         if (bundle != null) {

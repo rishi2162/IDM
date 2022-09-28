@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.databinding.FragmentDemandBinding
 import com.example.demandmanagement.fragment.demandchildfragment.DemandRaisedFragment
 import com.example.demandmanagement.fragment.demandchildfragment.MyApprovalFragment
@@ -26,6 +27,9 @@ class DemandFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_demand, container, false)
+
+        (activity as MainActivity).enableSwipe()
+
         binding = FragmentDemandBinding.inflate(layoutInflater)
         inflater.inflate(R.layout.fragment_demand, container, false)
 

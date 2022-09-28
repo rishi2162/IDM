@@ -2,6 +2,7 @@ package com.example.demandmanagement.fragment.demandchildfragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -111,30 +112,45 @@ class DemandRaisedFragment : Fragment() {
             //converting string to array
             val demandStringArray = myDemandJsonString.split("]},").toTypedArray()
 
-            for (i in demandStringArray.indices) {
+            if (demandStringArray.size == 1) {
+                val demand =
+                    demandStringArray[0].subSequence(1, demandStringArray[0].length - 1)
+                        .toString()
 
-                when (i) {
-                    0 -> {
-                        val demand =
-                            demandStringArray[i].subSequence(1, demandStringArray[i].length)
-                                .toString() + "]}"
-                        val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
-                        demandList.add(myDemand)
-                    }
-                    demandStringArray.size - 1 -> {
-                        val demand =
-                            demandStringArray[i].subSequence(0, demandStringArray[i].length - 1)
-                                .toString()
-                        val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
-                        demandList.add(myDemand)
-                    }
-                    else -> {
-                        val demand = demandStringArray[i] + "]}"
-                        val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
-                        demandList.add(myDemand)
-                    }
+                val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                demandList.add(myDemand)
 
+            } else {
+                for (i in demandStringArray.indices) {
+
+                    when (i) {
+                        0 -> {
+                            val demand =
+                                demandStringArray[i].subSequence(1, demandStringArray[i].length)
+                                    .toString() + "]}"
+                            val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                            demandList.add(myDemand)
+                        }
+                        demandStringArray.size - 1 -> {
+                            val demand =
+                                demandStringArray[i].subSequence(0, demandStringArray[i].length - 1)
+                                    .toString()
+                            val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                            demandList.add(myDemand)
+                        }
+                        else -> {
+                            val demand = demandStringArray[i] + "]}"
+                            val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
+                            demandList.add(myDemand)
+                        }
+
+                    }
                 }
+            }
+
+            if (demandList.isEmpty()) {
+                val transition = this.fragmentManager?.beginTransaction()
+                transition?.replace(R.id.frameDemand, NoDemandFoundFragment())?.commit()
             }
         } catch (e: Exception) {
             val transition = this.fragmentManager?.beginTransaction()

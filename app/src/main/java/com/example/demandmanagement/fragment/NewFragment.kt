@@ -17,6 +17,7 @@ import androidx.core.view.isEmpty
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.fragment_new.*
@@ -27,8 +28,6 @@ class NewFragment : Fragment() {
 
     @SuppressLint("NewApi")
     var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.US)
-
-
 
     // Chip Group
     private lateinit var inputSkill: AutoCompleteTextView
@@ -75,6 +74,8 @@ class NewFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_new, container, false)
+
+        (activity as MainActivity).disableSwipe()
 
         val btnCalendarView = view.findViewById<TextView>(R.id.btnCalendar)
         val inputYOE = view.findViewById<AutoCompleteTextView>(R.id.dropDownYoe)
@@ -324,5 +325,6 @@ class NewFragment : Fragment() {
             skillsChipGroup.addView(chip)
         }
     }
+
 
 }

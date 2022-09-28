@@ -2,16 +2,22 @@ package com.example.demandmanagement.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
+import com.example.demandmanagement.fragment.DemandApprovalFragment
 import com.example.demandmanagement.fragment.DemandDetailsFragment
+import com.example.demandmanagement.fragment.demandchildfragment.NoDemandFoundFragment
 import com.example.demandmanagement.model.DemandEntity
-import com.example.demandmanagement.model.TaskEntity
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,20 +41,51 @@ class DemandRaisedAdapter(
         return ViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = filterList[position]
-        holder.designationView.text = currentItem.dmDesgn
-        holder.descView.text = currentItem.desc
-        holder.authorView.text = currentItem.userId
-        holder.dateView.text = currentItem.date
-        holder.editIconView.visibility = View.INVISIBLE
 
-        holder.itemView.setOnClickListener {
-            //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
+        if (filterList[position] == null) {
             val transition = fragment.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, DemandDetailsFragment())?.commit()
+            transition?.replace(R.id.frameDemand, NoDemandFoundFragment())?.commit()
+        } else {
+            val currentItem = filterList[position]
+            holder.designationView.text = currentItem.dmDesgn
+            holder.descView.text = currentItem.desc
+            holder.authorView.text = currentItem.userId
+            holder.dateView.text = convertDate(currentItem.date)
+            holder.editIconView.visibility = View.INVISIBLE
 
+            holder.itemView.setOnClickListener {
+                //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
+                try {
+                    //apiCall()
+                    val transition = fragment.fragmentManager?.beginTransaction()
+                    val fragment = DemandDetailsFragment()
+                    val bundle = Bundle()
+                    bundle.putString("demandId", currentItem.demandId)
+                    bundle.putString("date", currentItem.date)
+                    bundle.putString("dueDate", currentItem.dueDate)
+                    bundle.putString("userId", currentItem.userId)
+                    bundle.putString("priority", currentItem.priority)
+                    bundle.putString("shift", currentItem.shift)
+                    bundle.putString("dmDesgn", currentItem.dmDesgn)
+                    bundle.putString("yoe", currentItem.yoe)
+                    bundle.putString("skills", currentItem.skills)
+                    bundle.putString("desc", currentItem.desc)
+                    bundle.putInt("requiredQty", currentItem.requiredQty)
+                    bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
+
+                    fragment.arguments = bundle
+
+                    transition?.replace(R.id.frameLayout, fragment)
+                        ?.addToBackStack(fragment.javaClass.name)?.commit()
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
+                }
+
+            }
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -102,5 +139,17 @@ class DemandRaisedAdapter(
         val colorItemView: View = itemView.findViewById(R.id.label)
         val editIconView: View = itemView.findViewById(R.id.iconEdit)
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun convertDate(date: String): String? {
+        val datetime: LocalDateTime =
+            LocalDateTime.parse(
+                date.subSequence(0, date.length - 8),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.S")
+            )
+        val formattedDate: String = datetime.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
+
+        return formattedDate
     }
 }

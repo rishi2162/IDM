@@ -61,6 +61,8 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        (activity as MainActivity).enableSwipe()
+
         val bundle = this.arguments
         if (bundle != null) {
             stringArray = bundle.getStringArrayList("stringArray") as ArrayList<String>

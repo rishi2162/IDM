@@ -92,6 +92,8 @@ class RecipientsFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_recipients, container, false)
 
+        (activity as MainActivity).disableSwipe()
+
         // Implement the save data
         val bundle = this.arguments
         if (bundle != null) {
