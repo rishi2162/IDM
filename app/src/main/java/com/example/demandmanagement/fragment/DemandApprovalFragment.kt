@@ -15,9 +15,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.airbnb.lottie.LottieAnimationView
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import kotlinx.android.synthetic.main.fragment_demand_approval.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -74,10 +77,7 @@ class DemandApprovalFragment : Fragment() {
 
         val btnApprovalMessages = view.findViewById<Button>(R.id.btnApprovalMessages)
         btnApprovalMessages.setOnClickListener {
-            val transition = this.fragmentManager?.beginTransaction()
-            val fragment = MessagesFragment()
-            transition?.replace(R.id.frameLayout, fragment)
-                ?.addToBackStack(fragment.javaClass.name)?.commit()
+            commentApiCall()
         }
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
@@ -172,6 +172,35 @@ class DemandApprovalFragment : Fragment() {
         return view
     }
 
+    private fun commentApiCall() {
+        val queue = Volley.newRequestQueue(requireContext())
+        //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
+        val url = "https://mocki.io/v1/a5acae23-d03e-4388-b359-b21e2e68fa3e"
+        val jsonArrayRequest = object : JsonArrayRequest(
+            Method.GET, url, null,
+            { response ->
+                //Log.i("successRequest", response.toString())
+                val commentArray = convertToStringArray(response)
+                val transition = this.fragmentManager?.beginTransaction()
+                val fragment = MessagesFragment()
+                val commentBundle = Bundle()
+                commentBundle.putStringArrayList("commentStringArray", commentArray)
+                fragment.arguments = commentBundle
+
+                transition?.replace(R.id.frameLayout, fragment)
+                    ?.addToBackStack(fragment.javaClass.name)?.commit()
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest)
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setView(data: JSONObject, view: View) {
         tvDemandId = view.findViewById(R.id.tvDemandId)
@@ -221,4 +250,11 @@ class DemandApprovalFragment : Fragment() {
         return formattedDate
     }
 
+    private fun convertToStringArray(jsonArray: JSONArray): ArrayList<String> {
+        val stringArray = ArrayList<String>()
+        for (i in 0 until jsonArray.length()) {
+            stringArray.add(jsonArray.get(i).toString())
+        }
+        return stringArray
+    }
 }

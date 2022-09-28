@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
+import com.example.demandmanagement.model.CommentEntity
 import com.example.demandmanagement.model.Message
 
-class MessageAdapter(val context: Context, val messageList: ArrayList<Message>, val loggedInUser: String):
+class MessageAdapter(val context: Context, val messageList: ArrayList<CommentEntity>, val loggedInUser: String):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val ITEM_RECEIVE = 1
@@ -32,7 +33,7 @@ class MessageAdapter(val context: Context, val messageList: ArrayList<Message>, 
     override fun getItemViewType(position: Int): Int {
         val currMessage = messageList[position]
 
-        if(currMessage.username == loggedInUser){
+        if(currMessage.name == loggedInUser){
             return ITEM_SENT
         }
         else{
@@ -46,13 +47,17 @@ class MessageAdapter(val context: Context, val messageList: ArrayList<Message>, 
         if(holder.javaClass == SentViewHolder::class.java){
             // Do the stuff for SentViewHolder
             val viewHolder = holder as SentViewHolder
-            holder.sentMessage.text = currMessage.message
+            holder.sentMessage.text = currMessage.comment
+            holder.name.text = currMessage.name
+            holder.date.text = currMessage.date
 
         }
         else{
             // Do stuff for receive view holder
             val viewHolder = holder as ReceiveViewHolder
-            holder.ReceiveMessage.text = currMessage.message
+            holder.ReceiveMessage.text = currMessage.comment
+            holder.name.text = currMessage.name
+            holder.date.text = currMessage.date
         }
 
     }
@@ -63,10 +68,14 @@ class MessageAdapter(val context: Context, val messageList: ArrayList<Message>, 
 
     class SentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val sentMessage = itemView.findViewById<TextView>(R.id.tvSentMessage)
+        val name = itemView.findViewById<TextView>(R.id.tvName)
+        val date = itemView.findViewById<TextView>(R.id.tvDate)
 
     }
 
     class ReceiveViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val ReceiveMessage = itemView.findViewById<TextView>(R.id.tvReceiveMessage)
+        val name = itemView.findViewById<TextView>(R.id.tvName)
+        val date = itemView.findViewById<TextView>(R.id.tvDate)
     }
 }
