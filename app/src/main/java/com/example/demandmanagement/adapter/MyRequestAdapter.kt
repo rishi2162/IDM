@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.fragment.DemandDetailsFragment
+import com.example.demandmanagement.fragment.demandchildfragment.NoDemandFoundFragment
 import com.example.demandmanagement.model.DemandEntity
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -48,54 +49,63 @@ class MyRequestAdapter(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = filterList[position]
-        holder.designationView.text = currentItem.dmDesgn
-        holder.descView.text = currentItem.desc
-        holder.authorView.text = currentItem.userId
-        holder.dateView.text = convertDate(currentItem.date)
 
-        when (currentItem.status) {
-            "APPROVED" -> {
-                holder.colorItemView.setBackgroundColor(Color.parseColor("#7FB77E"))
+        if (filterList[position] == null) {
+            val transition = fragment.fragmentManager?.beginTransaction()
+            transition?.replace(R.id.frameDemand, NoDemandFoundFragment())?.commit()
+        } else {
+            val currentItem = filterList[position]
+            holder.designationView.text = currentItem.dmDesgn
+            holder.descView.text = currentItem.desc
+            holder.authorView.text = currentItem.userId
+            holder.dateView.text = convertDate(currentItem.date)
+
+            when (currentItem.status) {
+                "APPROVED" -> {
+                    holder.colorItemView.setBackgroundColor(Color.parseColor("#7FB77E"))
+                }
+                "PENDING" -> {
+                    holder.colorItemView.setBackgroundColor(Color.parseColor("#FBDF07"))
+                }
+                "REJECTED" -> {
+                    holder.colorItemView.setBackgroundColor(Color.parseColor("#EC9BAA"))
+                }
             }
-            "PENDING" -> {
-                holder.colorItemView.setBackgroundColor(Color.parseColor("#FBDF07"))
-            }
-            "REJECTED" -> {
-                holder.colorItemView.setBackgroundColor(Color.parseColor("#EC9BAA"))
+
+
+            holder.itemView.setOnClickListener {
+                //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
+                try {
+                    //apiCall()
+                    val transition = fragment.fragmentManager?.beginTransaction()
+                    val fragment = DemandDetailsFragment()
+                    val bundle = Bundle()
+                    bundle.putString("demandId", currentItem.demandId)
+                    bundle.putString("date", currentItem.date)
+                    bundle.putString("dueDate", currentItem.dueDate)
+                    bundle.putString("userId", currentItem.userId)
+                    bundle.putString("priority", currentItem.priority)
+                    bundle.putString("shift", currentItem.shift)
+                    bundle.putString("dmDesgn", currentItem.dmDesgn)
+                    bundle.putString("yoe", currentItem.yoe)
+                    bundle.putString("skills", currentItem.skills)
+                    bundle.putString("desc", currentItem.desc)
+                    bundle.putInt("requiredQty", currentItem.requiredQty)
+                    bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
+
+                    bundle.putString("state", "send")
+
+                    fragment.arguments = bundle
+
+                    transition?.replace(R.id.frameLayout, fragment)
+                        ?.addToBackStack(fragment.javaClass.name)?.commit()
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
+                }
+
             }
         }
 
-
-        holder.itemView.setOnClickListener {
-            //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
-            try {
-                //apiCall()
-                val transition = fragment.fragmentManager?.beginTransaction()
-                val fragment = DemandDetailsFragment()
-                val bundle = Bundle()
-                bundle.putString("demandId", currentItem.demandId)
-                bundle.putString("date", currentItem.date)
-                bundle.putString("dueDate", currentItem.dueDate)
-                bundle.putString("userId", currentItem.userId)
-                bundle.putString("priority", currentItem.priority)
-                bundle.putString("shift", currentItem.shift)
-                bundle.putString("dmDesgn", currentItem.dmDesgn)
-                bundle.putString("yoe", currentItem.yoe)
-                bundle.putString("skills", currentItem.skills)
-                bundle.putString("desc", currentItem.desc)
-                bundle.putInt("requiredQty", currentItem.requiredQty)
-                bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
-
-                fragment.arguments = bundle
-
-                transition?.replace(R.id.frameLayout, fragment)
-                    ?.addToBackStack(fragment.javaClass.name)?.commit()
-            } catch (e: Exception) {
-                Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
-            }
-
-        }
     }
 
     override fun getItemCount(): Int {

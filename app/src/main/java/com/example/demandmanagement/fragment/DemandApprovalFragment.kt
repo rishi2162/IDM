@@ -82,7 +82,7 @@ class DemandApprovalFragment : Fragment() {
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
         txtBack.setOnClickListener {
-            (activity as MainActivity).onBackPressed()
+            (activity as MainActivity).switchBackToDemand()
         }
 
         btnApprove = view.findViewById(R.id.btnApprove)

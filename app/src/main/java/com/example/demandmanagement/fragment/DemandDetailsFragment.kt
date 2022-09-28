@@ -35,6 +35,8 @@ class DemandDetailsFragment : Fragment() {
     lateinit var tvRequiredQty: TextView
     lateinit var tvFulfilledQty: TextView
 
+    var state = ""
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -63,6 +65,7 @@ class DemandDetailsFragment : Fragment() {
             demandJSONObject.put("fulfilledQty", bundle.getInt("fulfilledQty"))
 
             rCount = bundle.getInt("requiredQty")
+            state = bundle.getString("state").toString()
 
 
             setView(demandJSONObject, view)
@@ -70,12 +73,17 @@ class DemandDetailsFragment : Fragment() {
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
         txtBack.setOnClickListener {
-            (activity as MainActivity).onBackPressed()
+            (activity as MainActivity).switchBackToDemand()
         }
 
 
         val btnLeft = view.findViewById<TextView>(R.id.btnLeft)
         val btnRight = view.findViewById<TextView>(R.id.btnRight)
+
+        if(state == "received"){
+            btnLeft.visibility = View.GONE
+            btnRight.visibility = View.GONE
+        }
 
         tvFulfilledQty.text = fCount.toString()
 

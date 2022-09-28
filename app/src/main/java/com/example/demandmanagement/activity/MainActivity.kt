@@ -3,7 +3,7 @@ package com.example.demandmanagement.activity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.View
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
         return stringArray
     }
 
-    override fun onBackPressed() {
+    fun onBackKeyPressed() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStackImmediate();
         } else {
@@ -154,14 +154,40 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun disableSwipe() {
-        var swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
+        val swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
         swipeRefreshLayout.isEnabled = false
     }
 
     fun enableSwipe() {
-        var swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
+        val swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
         swipeRefreshLayout.isEnabled = true
     }
 
+    fun switchBackToDemand() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.bottomNavigationView.selectedItemId = R.id.tasks
+
+        replaceFragments((DemandFragment()), stringArray)
+
+        binding.bottomNavigationView.setOnItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.home -> replaceFragments(HomeFragment(), stringArray)
+                R.id.newDemand -> replaceFragments(NewFragment(), stringArray)
+                R.id.tasks -> replaceFragments((DemandFragment()), stringArray)
+                R.id.profile -> replaceFragments(ProfileFragment(), stringArray)
+
+                else -> {
+
+                }
+            }
+            true
+        }
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 
 }

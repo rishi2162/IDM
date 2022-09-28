@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
 import com.example.demandmanagement.fragment.DemandApprovalFragment
 import com.example.demandmanagement.fragment.DemandDetailsFragment
+import com.example.demandmanagement.fragment.demandchildfragment.NoDemandFoundFragment
 import com.example.demandmanagement.model.DemandEntity
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -42,39 +43,45 @@ class MyApprovalAdapter(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = filterList[position]
-        holder.designationView.text = currentItem.dmDesgn
-        holder.descView.text = currentItem.desc
-        holder.authorView.text = currentItem.userId
-        holder.dateView.text = convertDate(currentItem.date)
-        holder.editIconView.visibility = View.INVISIBLE
+        if (filterList[position] == null) {
+            val transition = fragment.fragmentManager?.beginTransaction()
+            transition?.replace(R.id.frameDemand, NoDemandFoundFragment())?.commit()
+        } else {
+            val currentItem = filterList[position]
+            holder.designationView.text = currentItem.dmDesgn
+            holder.descView.text = currentItem.desc
+            holder.authorView.text = currentItem.userId
+            holder.dateView.text = convertDate(currentItem.date)
+            holder.editIconView.visibility = View.INVISIBLE
 
-        holder.itemView.setOnClickListener {
-            //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
-            try {
-                //apiCall()
-                val transition = fragment.fragmentManager?.beginTransaction()
-                val fragment = DemandApprovalFragment()
-                val bundle = Bundle()
-                bundle.putString("demandId", currentItem.demandId)
-                bundle.putString("date", currentItem.date)
-                bundle.putString("dueDate", currentItem.dueDate)
-                bundle.putString("userId", currentItem.userId)
-                bundle.putString("priority", currentItem.priority)
-                bundle.putString("shift", currentItem.shift)
-                bundle.putString("dmDesgn", currentItem.dmDesgn)
-                bundle.putString("yoe", currentItem.yoe)
-                bundle.putString("skills", currentItem.skills)
-                bundle.putString("desc", currentItem.desc)
-                bundle.putInt("requiredQty", currentItem.requiredQty)
-                bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
+            holder.itemView.setOnClickListener {
+                //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
+                try {
+                    //apiCall()
+                    val transition = fragment.fragmentManager?.beginTransaction()
+                    val fragment = DemandApprovalFragment()
+                    val bundle = Bundle()
+                    bundle.putString("demandId", currentItem.demandId)
+                    bundle.putString("date", currentItem.date)
+                    bundle.putString("dueDate", currentItem.dueDate)
+                    bundle.putString("userId", currentItem.userId)
+                    bundle.putString("priority", currentItem.priority)
+                    bundle.putString("shift", currentItem.shift)
+                    bundle.putString("dmDesgn", currentItem.dmDesgn)
+                    bundle.putString("yoe", currentItem.yoe)
+                    bundle.putString("skills", currentItem.skills)
+                    bundle.putString("desc", currentItem.desc)
+                    bundle.putInt("requiredQty", currentItem.requiredQty)
+                    bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
 
-                fragment.arguments = bundle
+                    fragment.arguments = bundle
 
-                transition?.replace(R.id.frameLayout, fragment)
-                    ?.addToBackStack(fragment.javaClass.name)?.commit()
-            } catch (e: Exception) {
-                Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
+                    transition?.replace(R.id.frameLayout, fragment)
+                        ?.addToBackStack(fragment.javaClass.name)?.commit()
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
+                }
+
             }
         }
     }

@@ -75,6 +75,8 @@ class DemandRaisedAdapter(
                     bundle.putInt("requiredQty", currentItem.requiredQty)
                     bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
 
+                    bundle.putString("state", "received")
+
                     fragment.arguments = bundle
 
                     transition?.replace(R.id.frameLayout, fragment)

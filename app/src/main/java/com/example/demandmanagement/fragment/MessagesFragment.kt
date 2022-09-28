@@ -35,7 +35,7 @@ class MessagesFragment : Fragment() {
 
         val txtDemandBack = view.findViewById<TextView>(R.id.txtDemandBack)
         txtDemandBack.setOnClickListener {
-            (activity as MainActivity).onBackPressed()
+            (activity as MainActivity).onBackKeyPressed()
         }
 
         setData(view)
