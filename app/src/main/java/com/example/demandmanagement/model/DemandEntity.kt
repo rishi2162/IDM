@@ -6,6 +6,7 @@ import kotlin.collections.ArrayList
 class DemandEntity(
     val userId: String,
     val demandId: String,
+    val name: String,
     val dmDesgn: String,
     val yoe: String,
     val requiredQty: Int,

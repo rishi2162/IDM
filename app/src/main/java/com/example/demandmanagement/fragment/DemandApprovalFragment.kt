@@ -65,7 +65,7 @@ class DemandApprovalFragment : Fragment() {
             demandJSONObject.put("demandId", bundle.getString("demandId"))
             demandJSONObject.put("date", bundle.getString("date"))
             demandJSONObject.put("dueDate", bundle.getString("dueDate"))
-            demandJSONObject.put("requesterUserId", bundle.getString("userId"))
+            demandJSONObject.put("requesterName", bundle.getString("name"))
             demandJSONObject.put("priority", bundle.getString("priority"))
             demandJSONObject.put("shift", bundle.getString("shift"))
             demandJSONObject.put("dmDesgn", bundle.getString("dmDesgn"))
@@ -220,7 +220,7 @@ class DemandApprovalFragment : Fragment() {
         tvDueDate.text = convertDate(data.getString("dueDate"))
 
         tvRequester = view.findViewById(R.id.tvRequester)
-        tvRequester.text = data.getString("requesterUserId")
+        tvRequester.text = data.getString("requesterName")
 
         tvPriority = view.findViewById(R.id.tvPriority)
         tvPriority.text = data.getString("priority")

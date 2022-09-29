@@ -51,7 +51,7 @@ class DemandRaisedAdapter(
             val currentItem = filterList[position]
             holder.designationView.text = currentItem.dmDesgn
             holder.descView.text = currentItem.desc
-            holder.authorView.text = currentItem.userId
+            holder.authorView.text = currentItem.name
             holder.dateView.text = convertDate(currentItem.date)
             holder.editIconView.visibility = View.INVISIBLE
 
@@ -65,7 +65,7 @@ class DemandRaisedAdapter(
                     bundle.putString("demandId", currentItem.demandId)
                     bundle.putString("date", currentItem.date)
                     bundle.putString("dueDate", currentItem.dueDate)
-                    bundle.putString("userId", currentItem.userId)
+                    bundle.putString("name", currentItem.name)
                     bundle.putString("priority", currentItem.priority)
                     bundle.putString("shift", currentItem.shift)
                     bundle.putString("dmDesgn", currentItem.dmDesgn)
