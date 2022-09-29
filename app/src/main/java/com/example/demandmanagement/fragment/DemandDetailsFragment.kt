@@ -32,6 +32,7 @@ class DemandDetailsFragment : Fragment() {
     lateinit var tvRequester: TextView
     lateinit var tvPriority: TextView
     lateinit var tvShift: TextView
+    lateinit var tvLocation: TextView
     lateinit var tvDmDesgn: TextView
     lateinit var tvYoe: TextView
     lateinit var tvSkills: TextView
@@ -62,6 +63,7 @@ class DemandDetailsFragment : Fragment() {
             demandJSONObject.put("requesterName", bundle.getString("name"))
             demandJSONObject.put("priority", bundle.getString("priority"))
             demandJSONObject.put("shift", bundle.getString("shift"))
+            demandJSONObject.put("location", bundle.getString("location"))
             demandJSONObject.put("dmDesgn", bundle.getString("dmDesgn"))
             demandJSONObject.put("yoe", bundle.getString("yoe"))
             demandJSONObject.put("skills", bundle.getString("skills"))
@@ -202,6 +204,9 @@ class DemandDetailsFragment : Fragment() {
 
         tvShift = view.findViewById(R.id.tvShift)
         tvShift.text = data.getString("shift")
+
+        tvLocation = view.findViewById(R.id.tvLocation)
+        tvLocation.text = data.getString("location")
 
         tvDmDesgn = view.findViewById(R.id.tvDmDesgn)
         tvDmDesgn.text = data.getString("dmDesgn")

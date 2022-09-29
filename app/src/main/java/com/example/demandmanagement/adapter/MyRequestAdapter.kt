@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.fragment.DemandDetailsFragment
+import com.example.demandmanagement.fragment.NewFragment
 import com.example.demandmanagement.fragment.demandchildfragment.NoDemandFoundFragment
 import com.example.demandmanagement.model.DemandEntity
 import java.time.LocalDate
@@ -72,6 +73,32 @@ class MyRequestAdapter(
                 }
             }
 
+            holder.editIconView.setOnClickListener {
+                val editBundle = Bundle()
+                editBundle.putString("demandId", currentItem.demandId)
+                editBundle.putString("date", currentItem.date)
+                editBundle.putString("DueDate", currentItem.dueDate)
+                editBundle.putString("userId", currentItem.userId)
+                editBundle.putString("name", currentItem.name)
+                editBundle.putString("Priority", currentItem.priority)
+                editBundle.putString("Location", currentItem.location)
+                editBundle.putString("recipients", currentItem.recipients)
+                editBundle.putString("Shift", currentItem.shift)
+                editBundle.putString("Designation", currentItem.dmDesgn)
+                editBundle.putString("Experience", currentItem.yoe)
+                editBundle.putString("allSkills", currentItem.skills)
+                editBundle.putString("Description", currentItem.desc)
+                editBundle.putString("NumReq", currentItem.requiredQty.toString())
+                editBundle.putString("fulfilledQty", currentItem.fulfilledQty.toString())
+
+                val transition = fragment.fragmentManager?.beginTransaction()
+                val fragment = NewFragment()
+                fragment.arguments = editBundle
+
+                transition?.replace(R.id.frameLayout, fragment)
+                    ?.addToBackStack(fragment.javaClass.name)?.commit()
+            }
+
 
             holder.itemView.setOnClickListener {
                 //Toast.makeText(context, "Task Clicked", Toast.LENGTH_SHORT).show()
@@ -85,6 +112,8 @@ class MyRequestAdapter(
                     bundle.putString("dueDate", currentItem.dueDate)
                     bundle.putString("name", currentItem.name)
                     bundle.putString("priority", currentItem.priority)
+                    bundle.putString("location", currentItem.location)
+                    bundle.putString("recipients", currentItem.recipients)
                     bundle.putString("shift", currentItem.shift)
                     bundle.putString("dmDesgn", currentItem.dmDesgn)
                     bundle.putString("yoe", currentItem.yoe)
@@ -102,7 +131,6 @@ class MyRequestAdapter(
                 } catch (e: Exception) {
                     Toast.makeText(context, "Unable to process", Toast.LENGTH_SHORT).show()
                 }
-
             }
         }
 
