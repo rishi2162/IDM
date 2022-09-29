@@ -25,7 +25,35 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/etEnterMsg"
         android:layout_below="@+id/txtDemandBack"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="10dp" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieCheckNoComment"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="0.35"
+        app:lottie_rawRes="@raw/no_comments_lottie"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/tvNoComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottieCheckNoComment"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:text="No Comments Found!"
+        android:textColor="@color/incture_theme"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
         />
 
     <LinearLayout

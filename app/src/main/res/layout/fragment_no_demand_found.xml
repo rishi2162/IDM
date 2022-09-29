@@ -26,7 +26,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
         android:paddingRight="20dp"
-        android:text="No Demands Found"
+        android:text="No Demands Found!"
         android:textColor="@color/incture_theme"
         android:textSize="24sp"
         android:textStyle="bold"

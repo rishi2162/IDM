@@ -57,6 +57,8 @@ class DemandApprovalFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_demand_approval, container, false)
 
+        (activity as MainActivity).disableSwipe()
+
         val bundle = this.arguments
         if (bundle != null) {
             val demandJSONObject = JSONObject()
@@ -77,7 +79,11 @@ class DemandApprovalFragment : Fragment() {
 
         val btnApprovalMessages = view.findViewById<Button>(R.id.btnApprovalMessages)
         btnApprovalMessages.setOnClickListener {
-            commentApiCall()
+            if(bundle != null) {
+                commentApiCall(bundle.getString("demandId").toString())
+            }else{
+                commentApiCall("D")
+            }
         }
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
@@ -172,10 +178,10 @@ class DemandApprovalFragment : Fragment() {
         return view
     }
 
-    private fun commentApiCall() {
+    private fun commentApiCall(demandId: String) {
         val queue = Volley.newRequestQueue(requireContext())
         //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
-        val url = "https://mocki.io/v1/a5acae23-d03e-4388-b359-b21e2e68fa3e"
+        val url = "http://20.235.214.47:8080/fetchComments/${demandId}"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
@@ -185,6 +191,7 @@ class DemandApprovalFragment : Fragment() {
                 val fragment = MessagesFragment()
                 val commentBundle = Bundle()
                 commentBundle.putStringArrayList("commentStringArray", commentArray)
+                commentBundle.putString("demandId", demandId)
                 fragment.arguments = commentBundle
 
                 transition?.replace(R.id.frameLayout, fragment)
