@@ -35,24 +35,24 @@ class NewFragment : Fragment() {
 
 
     // Implement save Data
-    private lateinit var inputDesignation : EditText
-    private var design : String = ""
+    private lateinit var inputDesignation: EditText
+    private var design: String = ""
 
-    private var exp :String = ""
+    private var exp: String = ""
 
-    private lateinit var inputDescription : EditText
-    private var desc : String = ""
+    private lateinit var inputDescription: EditText
+    private var desc: String = ""
 
-    private var dueDate : String = ""
+    private var dueDate: String = ""
 
-    private lateinit var etNumReq : EditText
-    private var nreq : String = ""
+    private lateinit var etNumReq: EditText
+    private var nreq: String = ""
 
-    private var allSkills : String = ""
+    private var allSkills: String = ""
 
-    private var loc : String = ""
-    private var prior : String = ""
-    private var shift : String = ""
+    private var loc: String = ""
+    private var prior: String = ""
+    private var shift: String = ""
 
     var skills: List<String> = listOf(
         "HTML",
@@ -164,7 +164,7 @@ class NewFragment : Fragment() {
             dueDate = bundle.getString("DueDate").toString()
             nreq = bundle.getString("NumReq").toString()
 
-            if(design!="null"){
+            if (design != "null") {
                 inputDesignation.setText(design)
                 inputYOE.setText(exp)
                 inputDescription.setText(desc)
@@ -175,8 +175,9 @@ class NewFragment : Fragment() {
                 etNumReq.setText(nreq)
 
                 var allSkillsArray = allSkills.split(",").toTypedArray()
-                for (i in 1..allSkillsArray.size-1){
-                    addChip(allSkillsArray[i])
+                for (i in 0..allSkillsArray.size - 1) {
+                    if(allSkillsArray[i]!="null" && allSkillsArray[i].isNotEmpty())
+                        addChip(allSkillsArray[i])
                 }
             }
         }
@@ -185,27 +186,25 @@ class NewFragment : Fragment() {
         val btnNextPage = view.findViewById<Button>(R.id.btnNextPage)
         btnNextPage.setOnClickListener {
 
-            if(inputDesignation.text.isNotEmpty() &&
-                    inputYOE.text.isNotEmpty() &&
-                    skillsChipGroup.childCount >= 1 &&
-                    inputDescription.text.isNotEmpty() &&
-                    dropDownLocation.text.isNotEmpty() &&
-                    dropDownPriority.text.isNotEmpty() &&
-                    dropDownShift.text.isNotEmpty() &&
-                    btnCalendar.text.isNotEmpty() &&
-                    etNumReq.text.isNotEmpty()
-            ){
+            if (inputDesignation.text.isNotEmpty() &&
+                inputYOE.text.isNotEmpty() &&
+                skillsChipGroup.childCount >= 1 &&
+                inputDescription.text.isNotEmpty() &&
+                dropDownLocation.text.isNotEmpty() &&
+                dropDownPriority.text.isNotEmpty() &&
+                dropDownShift.text.isNotEmpty() &&
+                btnCalendar.text.isNotEmpty() &&
+                etNumReq.text.isNotEmpty()
+            ) {
                 val transition = this.fragmentManager?.beginTransaction()
                 val bundle = Bundle()
 
                 val n = skillsChipGroup.childCount - 1
-                for(i in 0..n){
+                for (i in 0..n) {
                     val chip = skillsChipGroup.getChildAt(i) as Chip
-                    Log.i("mytag", chip.text.toString())
-                    if(allSkills.isEmpty()){
+                    if (allSkills.isEmpty()) {
                         allSkills += chip.text.toString()
-                    }
-                    else{
+                    } else {
                         allSkills += ", ${chip.text.toString()}"
                     }
                 }
@@ -223,70 +222,69 @@ class NewFragment : Fragment() {
                 val fragment = RecipientsFragment()
                 fragment.arguments = bundle
                 transition?.replace(R.id.frameLayout, fragment)?.commit()
-            }
-            else{
+            } else {
 
-                if(inputDesignation.text.isEmpty()){
+                if (inputDesignation.text.isEmpty()) {
                     inputDesignation.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(inputDesignation.text.isNotEmpty()){
+                if (inputDesignation.text.isNotEmpty()) {
                     inputDesignation.setBackgroundResource(R.drawable.custom_input)
                 }
 
 
-                if(inputYOE.text.isEmpty()){
+                if (inputYOE.text.isEmpty()) {
                     inputYOE.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(inputYOE.text.isNotEmpty()){
+                if (inputYOE.text.isNotEmpty()) {
                     inputYOE.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(skillsChipGroup.childCount < 1){
+                if (skillsChipGroup.childCount < 1) {
                     inputSkill.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(skillsChipGroup.childCount >= 1){
+                if (skillsChipGroup.childCount >= 1) {
                     inputSkill.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(inputDescription.text.isEmpty()){
+                if (inputDescription.text.isEmpty()) {
                     inputDescription.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(inputDescription.text.isNotEmpty()){
+                if (inputDescription.text.isNotEmpty()) {
                     inputDescription.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(dropDownLocation.text.isEmpty()){
+                if (dropDownLocation.text.isEmpty()) {
                     dropDownLocation.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(dropDownLocation.text.isNotEmpty()){
+                if (dropDownLocation.text.isNotEmpty()) {
                     dropDownLocation.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(dropDownPriority.text.isEmpty()){
+                if (dropDownPriority.text.isEmpty()) {
                     dropDownPriority.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(dropDownPriority.text.isNotEmpty()){
+                if (dropDownPriority.text.isNotEmpty()) {
                     dropDownPriority.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(dropDownShift.text.isEmpty()){
+                if (dropDownShift.text.isEmpty()) {
                     dropDownShift.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(dropDownShift.text.isNotEmpty()){
+                if (dropDownShift.text.isNotEmpty()) {
                     dropDownShift.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(btnCalendar.text.isEmpty()){
+                if (btnCalendar.text.isEmpty()) {
                     btnCalendar.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(btnCalendar.text.isNotEmpty()){
+                if (btnCalendar.text.isNotEmpty()) {
                     btnCalendar.setBackgroundResource(R.drawable.custom_input)
                 }
 
-                if(etNumReq.text.isEmpty()){
+                if (etNumReq.text.isEmpty()) {
                     etNumReq.setBackgroundResource(R.drawable.custom_input_check)
                 }
-                if(etNumReq.text.isNotEmpty()){
+                if (etNumReq.text.isNotEmpty()) {
                     etNumReq.setBackgroundResource(R.drawable.custom_input)
                 }
 
@@ -303,23 +301,22 @@ class NewFragment : Fragment() {
     }
 
     private fun addChip(text: String) {
-        var flag : Boolean = false
+        var flag: Boolean = false
         val n = skillsChipGroup.childCount - 1
-        for(i in 0..n){
+        for (i in 0..n) {
             val chip = skillsChipGroup.getChildAt(i) as Chip
-            Log.i("mytag", chip.text.toString())
-            if(chip.text.toString() == text){
+            if (chip.text.toString() == text) {
                 flag = true
                 break
             }
         }
-        if(!flag){
+        if (!flag) {
             val chip = Chip(requireActivity())
             chip.text = text
 
             chip.isCloseIconVisible = true
 
-            chip.setOnCloseIconClickListener{
+            chip.setOnCloseIconClickListener {
                 skillsChipGroup.removeView(chip)
             }
             skillsChipGroup.addView(chip)

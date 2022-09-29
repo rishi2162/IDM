@@ -75,9 +75,14 @@ class MyRequestAdapter(
 
             holder.editIconView.setOnClickListener {
                 val editBundle = Bundle()
+                if(!currentItem.skills.contains(",")){
+                    editBundle.putString("allSkills", currentItem.skills+",")
+                }else{
+                    editBundle.putString("allSkills", currentItem.skills)
+                }
                 editBundle.putString("demandId", currentItem.demandId)
                 editBundle.putString("date", currentItem.date)
-                editBundle.putString("DueDate", currentItem.dueDate)
+                editBundle.putString("DueDate", convertDateSlash(currentItem.dueDate))
                 editBundle.putString("userId", currentItem.userId)
                 editBundle.putString("name", currentItem.name)
                 editBundle.putString("Priority", currentItem.priority)
@@ -86,7 +91,6 @@ class MyRequestAdapter(
                 editBundle.putString("Shift", currentItem.shift)
                 editBundle.putString("Designation", currentItem.dmDesgn)
                 editBundle.putString("Experience", currentItem.yoe)
-                editBundle.putString("allSkills", currentItem.skills)
                 editBundle.putString("Description", currentItem.desc)
                 editBundle.putString("NumReq", currentItem.requiredQty.toString())
                 editBundle.putString("fulfilledQty", currentItem.fulfilledQty.toString())
@@ -197,6 +201,18 @@ class MyRequestAdapter(
                 DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.S")
             )
         val formattedDate: String = datetime.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
+
+        return formattedDate
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun convertDateSlash(date: String): String? {
+        val datetime: LocalDateTime =
+            LocalDateTime.parse(
+                date.subSequence(0, date.length - 8),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.S")
+            )
+        val formattedDate: String = datetime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
 
         return formattedDate
     }
