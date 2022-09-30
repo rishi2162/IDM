@@ -175,6 +175,7 @@ class RecipientsFragment : Fragment() {
             val bundle = Bundle()
 
             val n = chipGroupRecipients.childCount - 1
+            allRecipients = ""
             for (i in 0..n) {
                 val chip = chipGroupRecipients.getChildAt(i) as Chip
                 if (allRecipients.isEmpty()) {

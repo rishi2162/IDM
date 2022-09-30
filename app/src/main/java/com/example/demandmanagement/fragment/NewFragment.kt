@@ -204,6 +204,7 @@ class NewFragment : Fragment() {
                 val bundle = Bundle()
 
                 val n = skillsChipGroup.childCount - 1
+                allSkills = ""
                 for (i in 0..n) {
                     val chip = skillsChipGroup.getChildAt(i) as Chip
                     if (allSkills.isEmpty() || allSkills==null) {
