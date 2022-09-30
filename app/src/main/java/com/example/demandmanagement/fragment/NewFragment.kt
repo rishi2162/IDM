@@ -53,6 +53,7 @@ class NewFragment : Fragment() {
     private var loc: String = ""
     private var prior: String = ""
     private var shift: String = ""
+    private var allrecipients = ""
 
     var skills: List<String> = listOf(
         "HTML",
@@ -163,6 +164,9 @@ class NewFragment : Fragment() {
             shift = bundle.getString("Shift").toString()
             dueDate = bundle.getString("DueDate").toString()
             nreq = bundle.getString("NumReq").toString()
+            allrecipients = bundle.getString("recipients").toString()
+
+            Log.i("recip", allrecipients.toString())
 
             if (design != "null") {
                 inputDesignation.setText(design)
@@ -175,7 +179,7 @@ class NewFragment : Fragment() {
                 etNumReq.setText(nreq)
 
                 var allSkillsArray = allSkills.split(",").toTypedArray()
-                for (i in 0..allSkillsArray.size - 1) {
+                for (i in allSkillsArray.indices) {
                     if(allSkillsArray[i]!="null" && allSkillsArray[i].isNotEmpty())
                         addChip(allSkillsArray[i])
                 }
@@ -202,10 +206,20 @@ class NewFragment : Fragment() {
                 val n = skillsChipGroup.childCount - 1
                 for (i in 0..n) {
                     val chip = skillsChipGroup.getChildAt(i) as Chip
-                    if (allSkills.isEmpty()) {
+                    if (allSkills.isEmpty() || allSkills==null) {
                         allSkills += chip.text.toString()
                     } else {
-                        allSkills += ", ${chip.text.toString()}"
+                        var skillFound : Boolean = false
+                        val allSkillsArray = allSkills.split(",").toTypedArray()
+                        for (element in allSkillsArray) {
+                            if(element.lowercase(Locale.ROOT) == chip.text.toString().toLowerCase()) {
+                                skillFound = true
+                                break
+                            }
+                        }
+                        if(!skillFound) {
+                            allSkills += ", ${chip.text.toString()}"
+                        }
                     }
                 }
 
@@ -218,6 +232,7 @@ class NewFragment : Fragment() {
                 bundle.putString("Shift", inputShift.text.toString())
                 bundle.putString("DueDate", btnCalendarView.text.toString())
                 bundle.putString("NumReq", etNumReq.text.toString())
+                bundle.putString("recipients", allrecipients)
 
                 val fragment = RecipientsFragment()
                 fragment.arguments = bundle
@@ -305,7 +320,7 @@ class NewFragment : Fragment() {
         val n = skillsChipGroup.childCount - 1
         for (i in 0..n) {
             val chip = skillsChipGroup.getChildAt(i) as Chip
-            if (chip.text.toString() == text) {
+            if (chip.text.toString().lowercase() == text.lowercase()) {
                 flag = true
                 break
             }

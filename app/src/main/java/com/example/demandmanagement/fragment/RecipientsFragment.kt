@@ -94,6 +94,8 @@ class RecipientsFragment : Fragment() {
 
         (activity as MainActivity).disableSwipe()
 
+        chipGroupRecipients = view.findViewById(R.id.chipGroupRecipients)
+
         // Implement the save data
         val bundle = this.arguments
         if (bundle != null) {
@@ -106,6 +108,13 @@ class RecipientsFragment : Fragment() {
             prior = bundle.getString("Priority").toString()
             dueDate = bundle.getString("DueDate").toString()
             nreq = bundle.getString("NumReq").toString()
+            allRecipients = bundle.getString("recipients").toString()
+
+            val allRecipientsArray = allRecipients.split(",").toTypedArray()
+            for (j in allRecipientsArray.indices) {
+                if(allRecipientsArray[j]!="null" && allRecipientsArray[j].isNotEmpty())
+                    addChip(allRecipientsArray[j])
+            }
         }
 
         var dateString = ""
@@ -164,6 +173,27 @@ class RecipientsFragment : Fragment() {
 
             val transition = this.fragmentManager?.beginTransaction()
             val bundle = Bundle()
+
+            val n = chipGroupRecipients.childCount - 1
+            for (i in 0..n) {
+                val chip = chipGroupRecipients.getChildAt(i) as Chip
+                if (allRecipients.isEmpty()) {
+                    allRecipients += chip.text.toString()
+                } else {
+                    var skillFound : Boolean = false
+                    val allSkillsArray = allRecipients.split(",").toTypedArray()
+                    for (element in allSkillsArray) {
+                        if(element.lowercase(Locale.ROOT) == chip.text.toString().toLowerCase()) {
+                            skillFound = true
+                            break
+                        }
+                    }
+                    if(!skillFound) {
+                        allRecipients += ", ${chip.text.toString()}"
+                    }
+                }
+            }
+
             bundle.putString("Designation", design)
             bundle.putString("Experience", exp)
             bundle.putString("allSkills", allskills)
@@ -173,6 +203,7 @@ class RecipientsFragment : Fragment() {
             bundle.putString("Shift", shift)
             bundle.putString("DueDate", dueDate)
             bundle.putString("NumReq", nreq)
+            bundle.putString("recipients", allRecipients)
 
             val fragment = NewFragment()
             fragment.arguments = bundle
