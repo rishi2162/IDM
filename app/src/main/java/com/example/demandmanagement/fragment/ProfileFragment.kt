@@ -13,20 +13,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
-import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.LoginActivity
 import com.example.demandmanagement.activity.MainActivity
-import com.example.demandmanagement.model.HomeEntity
 import com.example.demandmanagement.model.UserEntity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.json.JSONArray
+import org.json.JSONObject
 
 
 class ProfileFragment : Fragment() {
@@ -37,6 +41,7 @@ class ProfileFragment : Fragment() {
     lateinit var pushBtn: SwitchCompat
 
     var stringArray = ArrayList<String>()
+    lateinit var user: UserEntity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +73,13 @@ class ProfileFragment : Fragment() {
             requireActivity().startActivity(intent)
             requireActivity().finish()
         })
+
+        pushBtn = view.findViewById(R.id.pushBtn)
+        pushBtn.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            // do something, the isChecked will be
+            // true if the switch is in the On position
+            apiCall()
+        })
         return view
     }
 
@@ -79,7 +91,7 @@ class ProfileFragment : Fragment() {
         val userString = stringArray[0].subSequence(1, stringArray[0].length - 1)
         val userJsonString = userString.subSequence(userString.indexOf(":") + 1, userString.length)
 
-        val user = Gson().fromJson(userJsonString.toString(), UserEntity::class.java)
+        user = Gson().fromJson(userJsonString.toString(), UserEntity::class.java)
 
         shortUserName = view.findViewById(R.id.shortUserName)
         shortUserName.text = user.fname[0].toString() + user.lname[0].toString()
@@ -93,6 +105,29 @@ class ProfileFragment : Fragment() {
         pushBtn = view.findViewById(R.id.pushBtn)
         pushBtn.isChecked = user.mailactive
 
+    }
+
+    private fun apiCall() {
+
+        val queue = Volley.newRequestQueue(requireActivity())
+        val url = "http://20.219.231.57:8080/changeEmailNotification/${user.email}"
+        val stringRequest = StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                // Display the first 500 characters of the response string.
+                //Log.d("successRequest", response)
+                Toast.makeText(
+                    requireActivity(),
+                    "Email notification status changed",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            {
+                Log.d("error", it.localizedMessage)
+            })
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest)
     }
 
 

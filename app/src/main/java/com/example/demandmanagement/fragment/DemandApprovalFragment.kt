@@ -183,8 +183,7 @@ class DemandApprovalFragment : Fragment() {
 
     private fun commentApiCall(demandId: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
-        val url = "http://20.235.214.47:8080/fetchComments/${demandId}"
+        val url = "http://20.219.231.57:8080/fetchComments/${demandId}"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
