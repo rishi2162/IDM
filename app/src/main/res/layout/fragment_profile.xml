@@ -37,8 +37,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="38dp"
                     android:text=""
-                    android:textAllCaps="true"
                     android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="60sp" />
 
@@ -99,7 +99,8 @@
                 android:layout_height="69dp"
                 android:checked="true"
                 android:padding="28dp"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                android:theme="@style/SwitchCompatTheme" />
 
         </LinearLayout>
 
@@ -120,13 +121,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textColor="@color/white"
                 android:background="@drawable/button_background"
                 android:fontFamily="sans-serif-medium"
                 android:padding="12dp"
                 android:paddingBottom="5dp"
                 android:text="Sign Out"
                 android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
 
