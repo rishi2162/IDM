@@ -334,20 +334,14 @@ class SingleAccountModeFragment : Fragment() {
     }
 
     /**
-     * Pass the account details
+     * Pass the account details to MainActivity
      */
     private fun filterMsalData(graphResponse: JSONObject) {
-        val jsonData = JSONObject()
-//        jsonData.put("name", graphResponse.get("displayName"))
-//        jsonData.put("email", graphResponse.get("mail"))
-//        jsonData.put("userId", graphResponse.get("id"))
 
-        //postData(jsonData)
         val intent = Intent(requireActivity() as Context, MainActivity::class.java)
-        // intent.putExtra("name",response.getString("name"))
+        intent.putExtra("userEmail", graphResponse.get("mail").toString())
         requireActivity().startActivity(intent)
         requireActivity().finish()
-        Log.i("jsonData", jsonData.toString())
 
     }
 
@@ -388,37 +382,6 @@ class SingleAccountModeFragment : Fragment() {
             .show()
     }
 
-    /**
-     * POST Api call
-     */
-    private fun postData(requestBody: JSONObject) {
-
-        val queue = Volley.newRequestQueue(activity as Context)
-        val url = "https://foodmgmtservice.practicei.xyz/admin/item"
-
-        val jsonObjectRequest = object : JsonObjectRequest(
-            Request.Method.POST, url, requestBody,
-            { response ->
-                Log.d("successRequest", response.getString("data").toString())
-                val intent = Intent(requireActivity() as Context, MainActivity::class.java)
-               // intent.putExtra("name",response.getString("name"))
-                requireActivity().startActivity(intent)
-                requireActivity().finish()
-
-            },
-            {
-                Log.d("error", it.localizedMessage)
-            }) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["Content-type"] = "application/json"
-                return headers
-            }
-        }
-
-        // Add the request to the RequestQueue.
-        queue.add(jsonObjectRequest)
-    }
 
 
     private fun refreshApp() {
