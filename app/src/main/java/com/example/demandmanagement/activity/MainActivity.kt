@@ -12,8 +12,11 @@ import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
 import com.example.demandmanagement.fragment.*
+import com.example.demandmanagement.model.UserEntity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.json.JSONArray
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -86,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
         //bundle.putString("responseData", responseData.toString())
         bundle.putStringArrayList("stringArray", stringArray)
+
         //Log.i("successRequest", stringArray.toString())
         fragment.arguments = bundle
 
@@ -116,7 +120,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun apiCall(): ArrayList<String> {
         val queue = Volley.newRequestQueue(this)
-        //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
         val url = "https://mocki.io/v1/036d0ae9-0b3b-4bb4-a413-8b95b6137717"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
@@ -188,6 +191,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         moveTaskToBack(true)
+    }
+
+    fun getUserData(): JSONObject {
+        val userString = stringArray[0].subSequence(1, stringArray[0].length - 1)
+        val userJsonString = userString.subSequence(userString.indexOf(":") + 1, userString.length)
+        val user = Gson().fromJson(userJsonString.toString(), UserEntity::class.java)
+        val dataJson = JSONObject()
+        dataJson.put("loggedInUser", user.fname + " " + user.lname)
+        dataJson.put("loggedInEmail", user.email)
+        dataJson.put("loggedInUserId", user.userid)
+
+        return dataJson
     }
 
 }

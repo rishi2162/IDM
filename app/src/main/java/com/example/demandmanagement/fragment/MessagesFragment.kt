@@ -1,41 +1,43 @@
 package com.example.demandmanagement.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.MessageAdapter
 import com.example.demandmanagement.model.CommentEntity
-import com.example.demandmanagement.model.DemandEntity
 import com.example.demandmanagement.model.Message
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_messages.*
 import org.json.JSONObject
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class MessagesFragment : Fragment() {
 
-    private var loggedInUser = ""
+    private var userData = JSONObject()
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
 
     var commentList = arrayListOf<CommentEntity>()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,7 @@ class MessagesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_messages, container, false)
 
         (activity as MainActivity).disableSwipe()
+        userData = (activity as MainActivity).getUserData()
 
         var commentArray = ArrayList<String>()
         var demandId = ""
@@ -103,7 +106,7 @@ class MessagesFragment : Fragment() {
 
         btnMessage.setOnClickListener {
             val mess = messageBox.text.toString()
-            if (mess.isNotEmpty()) {
+//            if (mess.isNotEmpty()) {
 //                messageList.add(
 //                    CommentEntity(
 //                        "Rishi Mishra",
@@ -112,6 +115,28 @@ class MessagesFragment : Fragment() {
 //                    )
 //                )
 //                messageBox.setText("")
+//           }
+
+            if (mess.isNotEmpty()) {
+                val messPayload = JSONObject()
+                messPayload.put("demandId", demandId)
+                messPayload.put("requserId", userData.getString("loggedInUserId"))
+                messPayload.put("comment", mess)
+                messPayload.put("date", LocalDateTime.now())
+
+                apiCall(messPayload)
+                messageBox.setText("")
+
+                commentList.add(
+                    CommentEntity(
+                        "COOO",
+                        mess,
+                        "INC0000",
+                        userData.getString("loggedInUser"),
+                        LocalDateTime.now().toString() + "+00:00"
+
+                    )
+                )
             }
             messageBox.onEditorAction(EditorInfo.IME_ACTION_DONE)
         }
@@ -125,7 +150,28 @@ class MessagesFragment : Fragment() {
         val myLinearLayoutManager = LinearLayoutManager(activity)
         messRecyclerView.layoutManager = myLinearLayoutManager
 
-        messageAdapter = MessageAdapter(requireActivity(), commentList, "C")
+        messageAdapter =
+            MessageAdapter(requireActivity(), commentList, userData.getString("loggedInUser"))
         messRecyclerView.adapter = messageAdapter
     }
+
+    private fun apiCall(jsonObject: JSONObject) {
+        val queue = Volley.newRequestQueue(requireContext())
+        val url = "http://20.219.231.57:8080/createComment"
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Method.POST, url, jsonObject,
+            { response ->
+                //Log.i("successRequest", response.toString())
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest)
+    }
+
 }
