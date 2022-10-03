@@ -3,8 +3,11 @@ package com.example.demandmanagement.util
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
@@ -12,6 +15,7 @@ import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.SplashActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+
 
 const val channelId = "notification_channel"
 const val channelName = "com.example.demandmanagement"

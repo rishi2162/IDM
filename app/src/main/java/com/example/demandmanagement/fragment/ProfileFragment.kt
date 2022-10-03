@@ -115,10 +115,14 @@ class ProfileFragment : Fragment() {
             Request.Method.POST, url,
             { response ->
                 // Display the first 500 characters of the response string.
-                //Log.d("successRequest", response)
+                Log.d("successRequest", response)
+                var status = "enabled"
+                if(response.contains("inactive")){
+                    status = "disabled"
+                }
                 Toast.makeText(
                     requireActivity(),
-                    "Email notification status changed",
+                    "Email service ${status}",
                     Toast.LENGTH_SHORT
                 ).show()
             },
