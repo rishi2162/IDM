@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.ViewPagerAdapter
+import com.example.demandmanagement.model.DemandEntity
 import com.example.demandmanagement.model.HomeEntity
 import com.example.demandmanagement.model.UserEntity
 import com.google.firebase.messaging.FirebaseMessaging
@@ -41,17 +42,18 @@ class HomeFragment : Fragment() {
 
     var stringArray = ArrayList<String>()
 
-    private var notificationsList = mutableListOf<String>()
+    private var notificationsList = ArrayList<DemandEntity>()
 
-    private fun addToList(notification: String) {
-        notificationsList.add(notification)
-    }
-
-    private fun postToList() {
-        for (i in 1..5) {
-            addToList(" A technical lead is required for VIATRIS account having ....")
-        }
-    }
+//    private fun addToList(notification: String) {
+//        notificationsList.add(notification)
+//    }
+//
+//    private fun postToList() {
+//        for (i in 1..5) {
+//            addToList(" A technical lead is required for VIATRIS account having ....")
+//            notificationsList.add(notification)
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +74,7 @@ class HomeFragment : Fragment() {
         }
         // Log.d("stringarray", stringArray.toString())
 
-        postToList()
+        //postToList()
 
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
@@ -101,7 +103,9 @@ class HomeFragment : Fragment() {
 
         val home = Gson().fromJson(homeJsonString.toString(), HomeEntity::class.java)
         val user = Gson().fromJson(userJsonString.toString(), UserEntity::class.java)
-        //Log.i("user", home.drToday.toString())
+        //Log.i("home", home.demand.toString())
+
+        addToViewPager(home.demand)
 
         tvWelcome = view.findViewById(R.id.tvWelcome)
         tvWelcome.text = "Welcome ${user.fname},"
@@ -123,8 +127,12 @@ class HomeFragment : Fragment() {
 
         dfTotal = view.findViewById(R.id.dfTotal)
         dfTotal.text = home.dfTotal.toString()
-
     }
+
+    private fun addToViewPager(demandArray: ArrayList<DemandEntity>) {
+        notificationsList = demandArray
+    }
+
 
 }
 

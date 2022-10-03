@@ -6,6 +6,7 @@ class HomeEntity(
     var drTotal: Int,
     var dfToday: Int,
     var dfThisMonth: Int,
-    var dfTotal: Int
+    var dfTotal: Int,
+    var demand: ArrayList<DemandEntity>
 ) {
 }
