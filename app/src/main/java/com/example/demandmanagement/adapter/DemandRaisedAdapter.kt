@@ -67,6 +67,8 @@ class DemandRaisedAdapter(
                     bundle.putString("dueDate", currentItem.dueDate)
                     bundle.putString("name", currentItem.name)
                     bundle.putString("priority", currentItem.priority)
+                    bundle.putString("location", currentItem.location)
+                    bundle.putString("recipients", currentItem.recipients)
                     bundle.putString("shift", currentItem.shift)
                     bundle.putString("dmDesgn", currentItem.dmDesgn)
                     bundle.putString("yoe", currentItem.yoe)

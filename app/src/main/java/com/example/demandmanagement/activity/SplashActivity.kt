@@ -22,17 +22,10 @@ class SplashActivity : AppCompatActivity() {
 
         apiCall()
 
-
-//        Handler().postDelayed({
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }, 2000)
     }
 
     private fun apiCall() {
         val queue = Volley.newRequestQueue(this)
-        //val url = "https://demandmgmt.azurewebsites.net/getDetails/va@gmail.com"
         val url = "https://mocki.io/v1/81c3c27f-a4c1-44bd-81c2-d9898b101b45"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
