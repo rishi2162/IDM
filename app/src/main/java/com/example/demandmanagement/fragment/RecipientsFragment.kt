@@ -55,6 +55,7 @@ class RecipientsFragment : Fragment() {
     private lateinit var shift : String
 
     private var allRecipients : String = ""
+    private var demandID:String? = null
 
     private val newDemandObject = JSONObject()
 
@@ -109,6 +110,7 @@ class RecipientsFragment : Fragment() {
             dueDate = bundle.getString("DueDate").toString()
             nreq = bundle.getString("NumReq").toString()
             allRecipients = bundle.getString("recipients").toString()
+            demandID = bundle.getString("demandID").toString()
 
             val allRecipientsArray = allRecipients.split(",").toTypedArray()
             for (j in allRecipientsArray.indices) {
@@ -205,6 +207,7 @@ class RecipientsFragment : Fragment() {
             bundle.putString("DueDate", dueDate)
             bundle.putString("NumReq", nreq)
             bundle.putString("recipients", allRecipients)
+            bundle.putString("demandID", demandID)
 
             val fragment = NewFragment()
             fragment.arguments = bundle

@@ -55,6 +55,8 @@ class NewFragment : Fragment() {
     private var shift: String = ""
     private var allrecipients = ""
 
+    private var demandID:String? = null
+
     var skills: List<String> = listOf(
         "HTML",
         "CSS",
@@ -165,6 +167,7 @@ class NewFragment : Fragment() {
             dueDate = bundle.getString("DueDate").toString()
             nreq = bundle.getString("NumReq").toString()
             allrecipients = bundle.getString("recipients").toString()
+            demandID = bundle.getString("demandID").toString()
 
             Log.i("recip", allrecipients.toString())
 
@@ -234,6 +237,7 @@ class NewFragment : Fragment() {
                 bundle.putString("DueDate", btnCalendarView.text.toString())
                 bundle.putString("NumReq", etNumReq.text.toString())
                 bundle.putString("recipients", allrecipients)
+                bundle.putString("demandID", demandID)
 
                 val fragment = RecipientsFragment()
                 fragment.arguments = bundle

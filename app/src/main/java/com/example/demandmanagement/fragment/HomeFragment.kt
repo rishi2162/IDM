@@ -132,7 +132,5 @@ class HomeFragment : Fragment() {
     private fun addToViewPager(demandArray: ArrayList<DemandEntity>) {
         notificationsList = demandArray
     }
-
-
 }
 
