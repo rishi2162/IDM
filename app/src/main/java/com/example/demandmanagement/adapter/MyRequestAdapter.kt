@@ -69,7 +69,7 @@ class MyRequestAdapter(
                     holder.colorItemView.setBackgroundColor(Color.parseColor("#FBDF07"))
                 }
                 "REJECTED" -> {
-                    holder.colorItemView.setBackgroundColor(Color.parseColor("#EC9BAA"))
+                    holder.colorItemView.setBackgroundColor(Color.parseColor("#B22222"))
                 }
             }
 

@@ -13,9 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.airbnb.lottie.LottieAnimationView
+import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
@@ -27,11 +30,11 @@ import java.time.format.DateTimeFormatter
 
 class DemandApprovalFragment : Fragment() {
 
-    private lateinit var builder : AlertDialog.Builder
-    private lateinit var btnApprove : Button
-    private lateinit var btnReject : Button
-    private lateinit var tvApprove : TextView
-    private lateinit var tvReject : TextView
+    private lateinit var builder: AlertDialog.Builder
+    private lateinit var btnApprove: Button
+    private lateinit var btnReject: Button
+    private lateinit var tvApprove: TextView
+    private lateinit var tvReject: TextView
 
     lateinit var tvDemandId: TextView
     lateinit var tvDate: TextView
@@ -47,8 +50,8 @@ class DemandApprovalFragment : Fragment() {
     lateinit var tvRequiredQty: TextView
     lateinit var tvFulfilledQty: TextView
 
-    private lateinit var lottieApproved : LottieAnimationView
-    private lateinit var lottieRejected : LottieAnimationView
+    private lateinit var lottieApproved: LottieAnimationView
+    private lateinit var lottieRejected: LottieAnimationView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -82,9 +85,9 @@ class DemandApprovalFragment : Fragment() {
 
         val btnApprovalMessages = view.findViewById<Button>(R.id.btnApprovalMessages)
         btnApprovalMessages.setOnClickListener {
-            if(bundle != null) {
+            if (bundle != null) {
                 commentApiCall(bundle.getString("demandId").toString())
-            }else{
+            } else {
                 commentApiCall("D")
             }
         }
@@ -105,7 +108,7 @@ class DemandApprovalFragment : Fragment() {
         btnApprove.setOnClickListener {
             builder.setTitle("Alert")
                 .setMessage("Are you sure want to approve?")
-                .setPositiveButton("Yes"){ _, it ->
+                .setPositiveButton("Yes") { _, it ->
                     btnApprove.visibility = View.GONE
                     btnReject.visibility = View.GONE
                     tvApprove.visibility = View.VISIBLE
@@ -116,7 +119,7 @@ class DemandApprovalFragment : Fragment() {
                         lottieApproved.speed = 0.40F
                     }, 100)
 
-                    lottieApproved.addAnimatorListener(object : Animator.AnimatorListener{
+                    lottieApproved.addAnimatorListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(p0: Animator?) {
                             Log.i("myTag", "temp")
                         }
@@ -135,8 +138,10 @@ class DemandApprovalFragment : Fragment() {
 
                     })
 
+                    statusApiCall(bundle?.getString("demandId").toString(), "APPROVED")
+
                 }
-                .setNegativeButton("No"){ _, it ->
+                .setNegativeButton("No") { _, it ->
 
                 }.show()
         }
@@ -144,7 +149,7 @@ class DemandApprovalFragment : Fragment() {
         btnReject.setOnClickListener {
             builder.setTitle("Alert")
                 .setMessage("Are you sure want to Reject?")
-                .setPositiveButton("Yes"){ _, it ->
+                .setPositiveButton("Yes") { _, it ->
                     btnApprove.visibility = View.GONE
                     btnReject.visibility = View.GONE
                     tvReject.visibility = View.VISIBLE
@@ -155,7 +160,7 @@ class DemandApprovalFragment : Fragment() {
                         lottieRejected.speed = 0.60F
                     }, 100)
 
-                    lottieRejected.addAnimatorListener(object : Animator.AnimatorListener{
+                    lottieRejected.addAnimatorListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(p0: Animator?) {
                             Log.i("myTag", "temp")
                         }
@@ -173,8 +178,10 @@ class DemandApprovalFragment : Fragment() {
                         }
 
                     })
+
+                    statusApiCall(bundle?.getString("demandId").toString(), "REJECTED")
                 }
-                .setNegativeButton("No"){ _, it ->
+                .setNegativeButton("No") { _, it ->
 
                 }.show()
         }
@@ -268,5 +275,21 @@ class DemandApprovalFragment : Fragment() {
             stringArray.add(jsonArray.get(i).toString())
         }
         return stringArray
+    }
+
+    private fun statusApiCall(demandId: String, status: String) {
+        val queue = Volley.newRequestQueue(requireContext())
+        val url = "http://20.219.231.57:8080/changeDemandStatus/${demandId}/${status}"
+        val stringRequest = StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                // Display the first 500 characters of the response string.
+
+            },
+            {
+                Log.d("error", it.localizedMessage)
+            })
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest)
     }
 }

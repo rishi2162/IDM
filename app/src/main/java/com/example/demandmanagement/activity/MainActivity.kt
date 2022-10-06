@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun apiCall(): ArrayList<String> {
         val queue = Volley.newRequestQueue(this)
-        val url = "https://mocki.io/v1/036d0ae9-0b3b-4bb4-a413-8b95b6137717"
+        val url = "http://20.219.231.57:8080/getDetails/va@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
