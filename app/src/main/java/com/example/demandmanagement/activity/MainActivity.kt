@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun apiCall(): ArrayList<String> {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://20.219.231.57:8080/getDetails/va@gmail.com"
+        val url = "http://20.219.231.57:8080/getDetails/cr@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

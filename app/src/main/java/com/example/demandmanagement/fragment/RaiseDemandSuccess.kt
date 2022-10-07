@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.demandmanagement.R
+import org.w3c.dom.Text
 
 
 class RaiseDemandSuccess : Fragment() {
@@ -20,7 +21,18 @@ class RaiseDemandSuccess : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_raise_demand_success, container, false)
+
+        val tvDemandSuccess = view.findViewById<TextView>(R.id.tvDemandSuccess)
+        val tvDemandUpdate = view.findViewById<TextView>(R.id.tvDemandUpdate)
+
+        val bundle = this.arguments
+        val demandId = bundle?.getString("demandId").toString()
+        if(demandId!=null){
+            tvDemandSuccess.visibility = View.GONE
+            tvDemandUpdate.visibility = View.VISIBLE
+        }
 
         lottieCheck = view.findViewById(R.id.lottieCheck)
 

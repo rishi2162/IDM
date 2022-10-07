@@ -80,7 +80,7 @@ class MyRequestAdapter(
                 }else{
                     editBundle.putString("allSkills", currentItem.skills)
                 }
-                editBundle.putString("demandId", currentItem.demandId)
+                editBundle.putString("demandID", currentItem.demandId)
                 editBundle.putString("date", currentItem.date)
                 editBundle.putString("DueDate", convertDateSlash(currentItem.dueDate))
                 editBundle.putString("userId", currentItem.userId)

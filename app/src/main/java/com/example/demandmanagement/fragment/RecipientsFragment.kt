@@ -41,21 +41,21 @@ class RecipientsFragment : Fragment() {
     private lateinit var autoCompleteRecipients: AutoCompleteTextView
     private lateinit var chipGroupRecipients: ChipGroup
 
-    private lateinit var btnRaiseDemand : Button
+    private lateinit var btnRaiseDemand: Button
 
     // Implement Save data
-    private lateinit var design : String
-    private lateinit var desc : String
-    private lateinit var dueDate : String
-    private lateinit var nreq : String
-    private lateinit var exp : String
-    private lateinit var allskills : String
-    private lateinit var loc : String
-    private lateinit var prior : String
-    private lateinit var shift : String
+    private lateinit var design: String
+    private lateinit var desc: String
+    private lateinit var dueDate: String
+    private lateinit var nreq: String
+    private lateinit var exp: String
+    private lateinit var allskills: String
+    private lateinit var loc: String
+    private lateinit var prior: String
+    private lateinit var shift: String
 
-    private var allRecipients : String = ""
-    private var demandID:String? = null
+    private var allRecipients: String = ""
+    private var demandID: String? = null
 
     private val newDemandObject = JSONObject()
 
@@ -97,6 +97,18 @@ class RecipientsFragment : Fragment() {
 
         chipGroupRecipients = view.findViewById(R.id.chipGroupRecipients)
 
+        // implement visibility of imageViews
+        var ivAddOne = view.findViewById<ImageView>(R.id.ivAddOne)
+        var ivAddTwo = view.findViewById<ImageView>(R.id.ivAddTwo)
+        var ivAddThree = view.findViewById<ImageView>(R.id.ivAddThree)
+
+        var ivRemoveOne = view.findViewById<ImageView>(R.id.ivRemoveOne)
+        var ivRemoveTwo = view.findViewById<ImageView>(R.id.ivRemoveTwo)
+        var ivRemoveThree = view.findViewById<ImageView>(R.id.ivRemoveThree)
+
+        autoCompleteRecipients = view.findViewById(R.id.autoCompleteRecipients)
+        chipGroupRecipients = view.findViewById(R.id.chipGroupRecipients)
+
         // Implement the save data
         val bundle = this.arguments
         if (bundle != null) {
@@ -112,56 +124,60 @@ class RecipientsFragment : Fragment() {
             allRecipients = bundle.getString("recipients").toString()
             demandID = bundle.getString("demandID").toString()
 
-            val allRecipientsArray = allRecipients.split(",").toTypedArray()
-            for (j in allRecipientsArray.indices) {
-                if(allRecipientsArray[j]!="null" && allRecipientsArray[j].isNotEmpty())
-                    addChip(allRecipientsArray[j])
+            if (allRecipients.isNotEmpty()) {
+                val allRecipientsArray = allRecipients.split(",").toTypedArray()
+                for (j in allRecipientsArray.indices) {
+                    if (allRecipientsArray[j] != "null" && allRecipientsArray[j].isNotEmpty())
+                        addChip(allRecipientsArray[j])
+                    if (allRecipientsArray[j] == "All Managers") {
+                        ivAddOne.visibility = View.GONE
+                        ivRemoveOne.visibility = View.VISIBLE
+                    }
+                    if (allRecipientsArray[j] == "Talent Acquisition") {
+                        ivAddTwo.visibility = View.GONE
+                        ivRemoveTwo.visibility = View.VISIBLE
+                    }
+                    if (allRecipientsArray[j] == "Leadership Team") {
+                        ivAddThree.visibility = View.GONE
+                        ivRemoveThree.visibility = View.VISIBLE
+                    }
+                }
             }
         }
 
+        Log.d("demandID", demandID!!)
+
         var dateString = ""
         var dateArray = dueDate.split(" ").toTypedArray()
-        //Log.i("myTag", dateArray.toString())
 
-        if(dateArray[1]=="January"){
-            dateString = "01/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="February"){
-            dateString = "02/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="March"){
-            dateString = "03/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="April"){
-            dateString = "04/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="May"){
-            dateString = "05/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="June"){
-            dateString = "06/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="July"){
-            dateString = "07/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="August"){
-            dateString = "08/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="September"){
-            dateString = "09/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="October"){
-            dateString = "10/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="November"){
-            dateString = "11/" +  dateArray[0]  + "/"  + dateArray[2]
-        }
-        else if(dateArray[1]=="December"){
-            dateString = "12/" +  dateArray[0]  + "/"  + dateArray[2]
+        if (dateArray[1] == "January") {
+            dateString = "01/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "February") {
+            dateString = "02/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "March") {
+            dateString = "03/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "April") {
+            dateString = "04/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "May") {
+            dateString = "05/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "June") {
+            dateString = "06/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "July") {
+            dateString = "07/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "August") {
+            dateString = "08/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "September") {
+            dateString = "09/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "October") {
+            dateString = "10/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "November") {
+            dateString = "11/" + dateArray[0] + "/" + dateArray[2]
+        } else if (dateArray[1] == "December") {
+            dateString = "12/" + dateArray[0] + "/" + dateArray[2]
         }
 
 
-        dateString+=" 00:00:00 AM"
+        dateString += " 00:00:00 AM"
         val secondFormatter = DateTimeFormatter.ofPattern("MM/dd/uuuu hh:mm:ss a", Locale.ENGLISH)
         val dueDateTime = LocalDateTime.parse(dateString, secondFormatter)
 
@@ -174,6 +190,7 @@ class RecipientsFragment : Fragment() {
         txtBack.setOnClickListener {
 
             val transition = this.fragmentManager?.beginTransaction()
+
             val bundle = Bundle()
 
             val n = chipGroupRecipients.childCount - 1
@@ -183,17 +200,7 @@ class RecipientsFragment : Fragment() {
                 if (allRecipients.isEmpty()) {
                     allRecipients += chip.text.toString()
                 } else {
-                    var skillFound : Boolean = false
-                    val allSkillsArray = allRecipients.split(",").toTypedArray()
-                    for (element in allSkillsArray) {
-                        if(element.lowercase(Locale.ROOT) == chip.text.toString().toLowerCase()) {
-                            skillFound = true
-                            break
-                        }
-                    }
-                    if(!skillFound) {
-                        allRecipients += ", ${chip.text.toString()}"
-                    }
+                    allRecipients += ",${chip.text.toString()}"
                 }
             }
 
@@ -220,9 +227,6 @@ class RecipientsFragment : Fragment() {
 
         // Implement Auto Suggestion with chipGroup
 
-        autoCompleteRecipients = view.findViewById(R.id.autoCompleteRecipients)
-        chipGroupRecipients = view.findViewById(R.id.chipGroupRecipients)
-
         var adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, names)
         autoCompleteRecipients.setAdapter(adapter)
 
@@ -234,31 +238,15 @@ class RecipientsFragment : Fragment() {
 
                 val name = autoCompleteRecipients.text.toString()
                 addChip(name)
-                if(allRecipients.isEmpty()){
-                    allRecipients += "$name"
-                }
-                else{
-                    allRecipients += ", $name"
-                }
+
                 autoCompleteRecipients.text.clear()
                 return@setOnKeyListener true
             }
             false
         }
 
-
-        // implement visibility of imageViews
-        var ivAddOne = view.findViewById<ImageView>(R.id.ivAddOne)
-        var ivAddTwo = view.findViewById<ImageView>(R.id.ivAddTwo)
-        var ivAddThree = view.findViewById<ImageView>(R.id.ivAddThree)
-
-        var ivRemoveOne = view.findViewById<ImageView>(R.id.ivRemoveOne)
-        var ivRemoveTwo = view.findViewById<ImageView>(R.id.ivRemoveTwo)
-        var ivRemoveThree = view.findViewById<ImageView>(R.id.ivRemoveThree)
-
-
         // 1
-        ivAddOne.setOnClickListener{
+        ivAddOne.setOnClickListener {
             ivAddOne.visibility = View.GONE
             ivRemoveOne.visibility = View.VISIBLE
 
@@ -267,7 +255,7 @@ class RecipientsFragment : Fragment() {
         }
 
         // 2
-        ivAddTwo.setOnClickListener{
+        ivAddTwo.setOnClickListener {
             ivAddTwo.visibility = View.GONE
             ivRemoveTwo.visibility = View.VISIBLE
 
@@ -276,7 +264,7 @@ class RecipientsFragment : Fragment() {
         }
 
         // 3
-        ivAddThree.setOnClickListener{
+        ivAddThree.setOnClickListener {
             ivAddThree.visibility = View.GONE
             ivRemoveThree.visibility = View.VISIBLE
 
@@ -285,24 +273,29 @@ class RecipientsFragment : Fragment() {
         }
 
 
+        // get userId
+        val userid = (activity as MainActivity).getUserData().getString("loggedInUserId")
+        val emailId = (activity as MainActivity).getUserData().getString("loggedInEmail")
+
         btnRaiseDemand = view.findViewById(R.id.btnRaiseDemand)
 
         btnRaiseDemand.setOnClickListener {
-            if(chipGroupRecipients.childCount >=1 ){
+            if (chipGroupRecipients.childCount >= 1) {
+
                 val n = chipGroupRecipients.childCount - 1
-                for(i in 0..n){
+                allRecipients = ""
+                for (i in 0..n) {
                     val chip = chipGroupRecipients.getChildAt(i) as Chip
-                    if(allRecipients.isEmpty()){
+                    if (allRecipients.isEmpty()) {
                         allRecipients += chip.text.toString()
-                    }
-                    else{
-                        allRecipients += ", ${chip.text.toString()}"
+                    } else {
+                        allRecipients += ",${chip.text.toString()}"
                     }
                 }
 
-                newDemandObject.put("userId", "INC02231")
+                newDemandObject.put("userId", userid)
                 newDemandObject.put("dmDesgn", design)
-                newDemandObject.put("email", "anish.raj@incture.com")
+                newDemandObject.put("email", emailId)
                 newDemandObject.put("yoe", exp)
                 newDemandObject.put("requiredQty", nreq.toInt())
                 newDemandObject.put("skills", allskills)
@@ -311,18 +304,16 @@ class RecipientsFragment : Fragment() {
                 newDemandObject.put("recipients", allRecipients)
                 newDemandObject.put("date", currentDate)
                 newDemandObject.put("dueDate", dueDateTime)
-                newDemandObject.put("status", "PENDING")
+                //newDemandObject.put("status", "PENDING")
                 newDemandObject.put("fulfilledQty", 1)
                 newDemandObject.put("shift", shift)
                 newDemandObject.put("priority", prior)
                 newDemandObject.put("active", true)
 
-                apiCall(newDemandObject)
 
-                val transition = this.fragmentManager?.beginTransaction()
-                transition?.replace(R.id.frameLayout, RaiseDemandSuccess())?.commit()
-            }
-            else{
+                apiCall(newDemandObject, demandID!!)
+
+            } else {
                 autoCompleteRecipients.setBackgroundResource(R.drawable.custom_input_check)
 
                 Toast.makeText(
@@ -338,33 +329,33 @@ class RecipientsFragment : Fragment() {
 
     private fun addChip(text: String) {
 
-        var flag : Boolean = false
+        var flag: Boolean = false
         val n = chipGroupRecipients.childCount - 1
-        for(i in 0..n){
+        for (i in 0..n) {
             val chip = chipGroupRecipients.getChildAt(i) as Chip
-            if(chip.text.toString() == text){
+            if (chip.text.toString() == text) {
                 flag = true
                 break
             }
         }
-        if(!flag){
+        if (!flag) {
             val chip = Chip(requireActivity())
             chip.text = text
 
             chip.isCloseIconVisible = true
 
-            chip.setOnCloseIconClickListener{
-                if(text == "All Managers" && ivRemoveOne.isVisible){
+            chip.setOnCloseIconClickListener {
+                if (text == "All Managers" && ivRemoveOne.isVisible) {
                     ivAddOne.visibility = View.VISIBLE
                     ivRemoveOne.visibility = View.GONE
                 }
 
-                if(text == "Talent Acquisition" && ivRemoveTwo.isVisible){
+                if (text == "Talent Acquisition" && ivRemoveTwo.isVisible) {
                     ivAddTwo.visibility = View.VISIBLE
                     ivRemoveTwo.visibility = View.GONE
                 }
 
-                if(text == "Leadership Team" && ivRemoveThree.isVisible){
+                if (text == "Leadership Team" && ivRemoveThree.isVisible) {
                     ivAddThree.visibility = View.VISIBLE
                     ivRemoveThree.visibility = View.GONE
                 }
@@ -375,17 +366,29 @@ class RecipientsFragment : Fragment() {
         }
     }
 
-    private fun apiCall(newDemandObject : JSONObject) {
+    private fun apiCall(newDemandObject: JSONObject, demandID: String) {
         val queue = Volley.newRequestQueue(requireActivity())
-        val url = "https://demandmgmt.azurewebsites.net/demand"
+        var url = ""
+
+        if(demandID == null){
+            url = "http://20.219.231.57:8080/demand"
+        }
+        else{
+            url = "http://20.219.231.57:8080/editDemand/${demandID}"
+        }
+
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.POST, url, newDemandObject,
             { response ->
-                Log.i("successRequest", response.toString())
-
+                Log.d("successRequest", response.toString())
+                val transition = this.fragmentManager?.beginTransaction()
+                val fragment = RaiseDemandSuccess()
+                val bundle = Bundle()
+                bundle.putString("demandID", demandID)
+                fragment.arguments = bundle
+                transition?.replace(R.id.frameLayout, fragment)?.commit()
             },
             {
-                Log.i("errorRequest", newDemandObject.toString())
                 Log.d("error", it.localizedMessage as String)
 
             }) {
@@ -396,23 +399,6 @@ class RecipientsFragment : Fragment() {
 
         // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest)
-
-//        val jsonObjectRequest : JsonObjectRequest =
-//            object : JsonObjectRequest(Method.POST, url, newDemandObject,
-//                Response.Listener { response ->
-//                    // response
-//                    var strResp = response.toString()
-//                    Log.d("API", strResp)
-//                },
-//                Response.ErrorListener { error ->
-//                    Log.d("API", "error => $error")
-//                }
-//            ){
-//                override fun getBody(): ByteArray {
-//                    return newDemandObject.toByteArray(Charset.defaultCharset())
-//                }
-//            }
-//        queue.add(jsonObjectRequest)
     }
 }
 

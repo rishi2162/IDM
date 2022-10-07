@@ -32,6 +32,21 @@
         />
 
     <TextView
+        android:id="@+id/tvDemandUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottieCheck"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:text="Your demand is updated successfully"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+
+    <TextView
         android:id="@+id/tvNewDemand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

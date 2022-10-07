@@ -53,7 +53,7 @@ class NewFragment : Fragment() {
     private var loc: String = ""
     private var prior: String = ""
     private var shift: String = ""
-    private var allrecipients = ""
+    private var allrecipients :String = ""
 
     private var demandID:String? = null
 
@@ -93,10 +93,8 @@ class NewFragment : Fragment() {
 
         val locArrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, locList)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, yoeList)
-        val shiftArrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, shiftList)
-        val priorityArrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, priorityList)
+        val shiftArrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, shiftList)
+        val priorityArrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, priorityList)
 
         inputYOE.setAdapter(arrayAdapter)
         inputLOC.setAdapter(locArrayAdapter)
@@ -169,7 +167,7 @@ class NewFragment : Fragment() {
             allrecipients = bundle.getString("recipients").toString()
             demandID = bundle.getString("demandID").toString()
 
-            Log.i("recip", allrecipients.toString())
+            Log.i("demandId", demandID!!)
 
             if (design != "null") {
                 inputDesignation.setText(design)
