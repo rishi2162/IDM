@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
@@ -72,6 +73,8 @@ class DemandDetailsFragment : Fragment() {
             demandJSONObject.put("fulfilledQty", bundle.getInt("fulfilledQty"))
 
             rCount = bundle.getInt("requiredQty")
+            fCount = bundle.getInt("fulfilledQty")
+
             state = bundle.getString("state").toString()
 
 
@@ -92,7 +95,6 @@ class DemandDetailsFragment : Fragment() {
             btnRight.visibility = View.GONE
         }
 
-        tvFulfilledQty.text = fCount.toString()
 
         btnLeft.setOnClickListener {
             if (fCount > 0) {
@@ -105,6 +107,8 @@ class DemandDetailsFragment : Fragment() {
             }
 
             tvFulfilledQty.text = fCount.toString()
+
+            fulfillQtyChAPI(bundle?.getString("demandId").toString(), "decrease")
         }
 
         btnRight.setOnClickListener {
@@ -139,7 +143,7 @@ class DemandDetailsFragment : Fragment() {
                     ).show()
                 }
             }
-
+            fulfillQtyChAPI(bundle?.getString("demandId").toString(), "increase")
         }
 
         val btnMessages = view.findViewById<Button>(R.id.btnMessages)
@@ -246,5 +250,22 @@ class DemandDetailsFragment : Fragment() {
         return stringArray
     }
 
+    private fun fulfillQtyChAPI(demandId: String, operator:String) {
+        val queue = Volley.newRequestQueue(requireContext())
+        val url = "http://20.219.231.57:8080/updateFulfilledQty/${demandId}/${operator}"
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Method.POST, url, null,
+            { response ->
 
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest)
+    }
 }
