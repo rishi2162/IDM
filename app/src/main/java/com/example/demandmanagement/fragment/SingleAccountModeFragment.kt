@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,17 +12,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.util.MSGraphRequestWrapper
+import com.google.firebase.messaging.FirebaseMessaging
 import com.microsoft.identity.client.*
 import com.microsoft.identity.client.exception.MsalClientException
 import com.microsoft.identity.client.exception.MsalException
 import com.microsoft.identity.client.exception.MsalServiceException
 import com.microsoft.identity.client.exception.MsalUiRequiredException
 import kotlinx.android.synthetic.main.fragment_single_account_mode.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 
@@ -33,6 +37,8 @@ class SingleAccountModeFragment : Fragment() {
 
     /* Azure AD Variables */
     private var mSingleAccountApp: ISingleAccountPublicClientApplication? = null
+
+    private var deviceId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -300,9 +306,8 @@ class SingleAccountModeFragment : Fragment() {
             authenticationResult.accessToken,
             { response ->
                 /* Successfully called graph, process data and send to UI */
-                Log.d(TAG, "Response: $response")
                 displayGraphResult(response)
-                filterMsalData(response)
+                passToNextActivity(response)
             },
             { error ->
                 Log.d(TAG, "Error: $error")
@@ -336,12 +341,10 @@ class SingleAccountModeFragment : Fragment() {
     /**
      * Pass the account details to MainActivity
      */
-    private fun filterMsalData(graphResponse: JSONObject) {
+    private fun passToNextActivity(graphResponse: JSONObject) {
 
-        val intent = Intent(requireActivity() as Context, MainActivity::class.java)
-        intent.putExtra("userEmail", graphResponse.get("mail").toString())
-        requireActivity().startActivity(intent)
-        requireActivity().finish()
+        val email = graphResponse.get("mail").toString()
+        apiCall(email)
 
     }
 
@@ -383,7 +386,6 @@ class SingleAccountModeFragment : Fragment() {
     }
 
 
-
     private fun refreshApp() {
         if (btn_signIn.isEnabled) {
 
@@ -397,24 +399,68 @@ class SingleAccountModeFragment : Fragment() {
         }
     }
 
-    private fun signOut(){
+    private fun signOut() {
 //        if (mSingleAccountApp == null) {
 //                return@OnClickListener
 //            }
 
-            /**
-             * Removes the signed-in account and cached tokens from this app.
-             */
-            mSingleAccountApp!!.signOut(object :
-                ISingleAccountPublicClientApplication.SignOutCallback {
-                override fun onSignOut() {
-                    updateUI(null)
-                    performOperationOnSignOut()
-                }
+        /**
+         * Removes the signed-in account and cached tokens from this app.
+         */
+        mSingleAccountApp!!.signOut(object :
+            ISingleAccountPublicClientApplication.SignOutCallback {
+            override fun onSignOut() {
+                updateUI(null)
+                performOperationOnSignOut()
+            }
 
-                override fun onError(exception: MsalException) {
-                    displayError(exception)
-                }
-            })
+            override fun onError(exception: MsalException) {
+                displayError(exception)
+            }
+        })
+    }
+
+    private fun apiCall(email: String) {
+        val queue = Volley.newRequestQueue(requireActivity())
+        val url = "http://20.219.231.57:8080/getDetails/${email}"
+        val jsonArrayRequest = object : JsonArrayRequest(
+            Method.GET, url, null,
+            { response ->
+                //Log.i("successRequest", response.toString())
+
+                FirebaseMessaging.getInstance().token
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val token = task.result
+                            deviceId = token
+                        }
+                    }
+
+                Handler().postDelayed({
+                    val intent = Intent(requireActivity() as Context, MainActivity::class.java)
+                    intent.putStringArrayListExtra("response", convertToStringArray(response))
+                    intent.putExtra("deviceId", deviceId)
+                    requireActivity().startActivity(intent)
+                    requireActivity().overridePendingTransition(R.raw.fadein, R.raw.fadeout);
+                    requireActivity().finish()
+                }, 2000)
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest)
+    }
+
+    private fun convertToStringArray(jsonArray: JSONArray): ArrayList<String> {
+        val stringArray = ArrayList<String>()
+        for (i in 0 until jsonArray.length()) {
+            stringArray.add(jsonArray.get(i).toString())
+        }
+        return stringArray
     }
 }

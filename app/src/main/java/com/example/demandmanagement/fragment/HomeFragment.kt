@@ -78,7 +78,10 @@ class HomeFragment : Fragment() {
 
 
         val view_pager2 = view?.findViewById<ViewPager2>(R.id.view_pager2)
-        Log.i("ViewPager", view_pager2.toString())
+        if (notificationsList.isEmpty()) {
+            val tvNoNotify = view.findViewById<TextView>(R.id.tvNoNotify)
+            tvNoNotify.visibility = View.VISIBLE
+        }
         view_pager2?.adapter = ViewPagerAdapter(notificationsList, this, requireContext())
         view_pager2?.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
