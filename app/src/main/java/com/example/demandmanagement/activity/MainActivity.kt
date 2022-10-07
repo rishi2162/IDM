@@ -1,9 +1,12 @@
 package com.example.demandmanagement.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.KeyEvent
+import android.view.View
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -35,10 +38,10 @@ class MainActivity : AppCompatActivity() {
 
         if (intent.extras != null) {
             stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
-            deviceId = intent.getStringExtra("deviceId").toString()
+            //deviceId = intent.getStringExtra("deviceId").toString()
 
         }
-        Log.i("deviceId", deviceId)
+        //Log.i("deviceId", deviceId)
         replaceFragments(HomeFragment(), stringArray)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -109,16 +112,16 @@ class MainActivity : AppCompatActivity() {
                     if (swipeRefreshLayout.isRefreshing) {
                         swipeRefreshLayout.isRefreshing = false
                     }
-                },
-                2000,
-            )
-            stringArray = apiCall()
 
+                },
+                1000,
+            )
+            apiCall()
 
         }
     }
 
-    private fun apiCall(): ArrayList<String> {
+    private fun apiCall() {
         val queue = Volley.newRequestQueue(this)
         val url = "http://20.219.231.57:8080/getDetails/cr@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
@@ -126,6 +129,18 @@ class MainActivity : AppCompatActivity() {
             { response ->
                 //Log.i("successRequest", response.toString())
                 stringArray = convertToStringArray(response)
+
+                val loadingLayout = findViewById<RelativeLayout>(R.id.loadingLayout)
+                loadingLayout.visibility = View.VISIBLE
+                loadingLayout.animate().translationY(-2000F).setDuration(5000).setStartDelay(1000)
+                Handler().postDelayed({
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putStringArrayListExtra("response", stringArray)
+                    startActivity(intent)
+                    overridePendingTransition(R.raw.fadein, R.raw.fadeout);
+                    finish()
+                }, 3000)
+
 
             },
             {
@@ -136,8 +151,6 @@ class MainActivity : AppCompatActivity() {
 
         // Add the request to the RequestQueue.
         queue.add(jsonArrayRequest)
-
-        return stringArray
     }
 
     private fun convertToStringArray(jsonArray: JSONArray): ArrayList<String> {

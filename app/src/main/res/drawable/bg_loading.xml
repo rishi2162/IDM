@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/incture_theme" />
+
+    <corners
+        android:bottomLeftRadius="80dp"
+        android:bottomRightRadius="80dp"
+        android:radius="1dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+
+</shape>

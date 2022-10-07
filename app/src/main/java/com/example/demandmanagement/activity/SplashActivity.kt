@@ -47,6 +47,7 @@ class SplashActivity : AppCompatActivity() {
                     //Log.i("response", convertToStringArray(response).toString())
 
                     startActivity(intent)
+                    overridePendingTransition(R.raw.fadein, R.raw.fadeout);
                     finish()
                 }, 2000)
 

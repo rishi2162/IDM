@@ -51,11 +51,13 @@
         <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/fragment_tasks.xml" value="0.14130434782608695" />
         <entry key="..\:/Android-Learning/Demand Management 5th Sep/IDM/app/src/main/res/layout/skill_grid_item.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/bg.xml" value="0.105" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/bg_loading.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/button_background.xml" value="0.105" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/custom_next_button.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/error_toast.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_loading.xml" value="0.203125" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/drop_down_item_yoe.xml" value="0.20416666666666666" />
