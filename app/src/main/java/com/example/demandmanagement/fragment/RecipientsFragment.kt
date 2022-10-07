@@ -35,6 +35,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RecipientsFragment : Fragment() {
 
@@ -56,34 +57,9 @@ class RecipientsFragment : Fragment() {
 
     private var allRecipients: String = ""
     private var demandID: String? = null
+    private lateinit var emailList: ArrayList<String>
 
     private val newDemandObject = JSONObject()
-
-    // Create a Arraylist of value
-
-    val names: List<String> = listOf(
-        "Amelia",
-        "Ava",
-        "Alexander",
-        "Avery",
-        "Asher",
-        "Aiden",
-        "Abigail",
-        "Anthony",
-        "Aria",
-        "Andrew",
-        "Aurora",
-        "Angel",
-        "Adrian",
-        "Aaron",
-        "Addison",
-        "Axel",
-        "Austin",
-        "Audrey",
-        "Aubrey",
-        "Adam"
-    )
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -123,6 +99,7 @@ class RecipientsFragment : Fragment() {
             nreq = bundle.getString("NumReq").toString()
             allRecipients = bundle.getString("recipients").toString()
             demandID = bundle.getString("demandID").toString()
+            emailList = bundle.getStringArrayList("emailList") as ArrayList<String>
 
             if (allRecipients.isNotEmpty()) {
                 val allRecipientsArray = allRecipients.split(",").toTypedArray()
@@ -227,7 +204,7 @@ class RecipientsFragment : Fragment() {
 
         // Implement Auto Suggestion with chipGroup
 
-        var adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, names)
+        var adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, emailList)
         autoCompleteRecipients.setAdapter(adapter)
 
         autoCompleteRecipients.setOnKeyListener { _, keyCode, event ->

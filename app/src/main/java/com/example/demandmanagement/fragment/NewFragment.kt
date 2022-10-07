@@ -4,25 +4,26 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.location.Location
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.allViews
-import androidx.core.view.isEmpty
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.fragment_new.*
+import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class NewFragment : Fragment() {
 
@@ -53,9 +54,9 @@ class NewFragment : Fragment() {
     private var loc: String = ""
     private var prior: String = ""
     private var shift: String = ""
-    private var allrecipients :String = ""
+    private var allrecipients: String = ""
 
-    private var demandID:String? = null
+    private var demandID: String? = null
 
     var skills: List<String> = listOf(
         "HTML",
@@ -93,8 +94,10 @@ class NewFragment : Fragment() {
 
         val locArrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, locList)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, yoeList)
-        val shiftArrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, shiftList)
-        val priorityArrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, priorityList)
+        val shiftArrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, shiftList)
+        val priorityArrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.drop_down_item_yoe, priorityList)
 
         inputYOE.setAdapter(arrayAdapter)
         inputLOC.setAdapter(locArrayAdapter)
@@ -181,7 +184,7 @@ class NewFragment : Fragment() {
 
                 var allSkillsArray = allSkills.split(",").toTypedArray()
                 for (i in allSkillsArray.indices) {
-                    if(allSkillsArray[i]!="null" && allSkillsArray[i].isNotEmpty())
+                    if (allSkillsArray[i] != "null" && allSkillsArray[i].isNotEmpty())
                         addChip(allSkillsArray[i])
                 }
             }
@@ -201,25 +204,27 @@ class NewFragment : Fragment() {
                 btnCalendar.text.isNotEmpty() &&
                 etNumReq.text.isNotEmpty()
             ) {
-                val transition = this.fragmentManager?.beginTransaction()
+
                 val bundle = Bundle()
 
                 val n = skillsChipGroup.childCount - 1
                 allSkills = ""
                 for (i in 0..n) {
                     val chip = skillsChipGroup.getChildAt(i) as Chip
-                    if (allSkills.isEmpty() || allSkills==null) {
+                    if (allSkills.isEmpty() || allSkills == null) {
                         allSkills += chip.text.toString()
                     } else {
-                        var skillFound : Boolean = false
+                        var skillFound: Boolean = false
                         val allSkillsArray = allSkills.split(",").toTypedArray()
                         for (element in allSkillsArray) {
-                            if(element.lowercase(Locale.ROOT) == chip.text.toString().toLowerCase()) {
+                            if (element.lowercase(Locale.ROOT) == chip.text.toString()
+                                    .toLowerCase()
+                            ) {
                                 skillFound = true
                                 break
                             }
                         }
-                        if(!skillFound) {
+                        if (!skillFound) {
                             allSkills += ", ${chip.text.toString()}"
                         }
                     }
@@ -237,9 +242,11 @@ class NewFragment : Fragment() {
                 bundle.putString("recipients", allrecipients)
                 bundle.putString("demandID", demandID)
 
-                val fragment = RecipientsFragment()
-                fragment.arguments = bundle
-                transition?.replace(R.id.frameLayout, fragment)?.commit()
+                getEmailApi(bundle)
+
+//                val fragment = RecipientsFragment()
+//                fragment.arguments = bundle
+//                transition?.replace(R.id.frameLayout, fragment)?.commit()
             } else {
 
                 if (inputDesignation.text.isEmpty()) {
@@ -339,6 +346,38 @@ class NewFragment : Fragment() {
             }
             skillsChipGroup.addView(chip)
         }
+    }
+
+    private fun getEmailApi(bundle: Bundle) {
+
+        val queue = Volley.newRequestQueue(requireContext())
+        val url = "http://20.219.231.57:8080/getEmail"
+        val jsonArrayRequest = object : JsonArrayRequest(
+            Method.GET, url, null,
+            { response ->
+                //Log.i("successRequest", response.toString())
+                val transition = this.fragmentManager?.beginTransaction()
+                bundle.putStringArrayList("emailList", convertToStringArray(response))
+                val fragment = RecipientsFragment()
+                fragment.arguments = bundle
+                transition?.replace(R.id.frameLayout, fragment)?.commit()
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest)
+    }
+
+    private fun convertToStringArray(jsonArray: JSONArray): ArrayList<String> {
+        val stringArray = ArrayList<String>()
+        for (i in 0 until jsonArray.length()) {
+            stringArray.add(jsonArray.get(i).toString())
+        }
+        return stringArray
     }
 
 
