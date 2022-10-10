@@ -13,13 +13,18 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.DemandRaisedAdapter
 import com.example.demandmanagement.model.DemandEntity
 import com.example.demandmanagement.model.TaskEntity
 import com.example.demandmanagement.util.SwipeToDeleteCallback
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_demand_raised.*
+import java.util.Collections.swap
 
 /**
  * A simple [Fragment] subclass.
@@ -70,6 +75,7 @@ class DemandRaisedFragment : Fragment() {
         val swipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
+                deleteApiCall(demandList[position].demandId)
                 demandList.removeAt(position)
                 recyclerTasks.adapter?.notifyItemRemoved(position)
             }
@@ -78,6 +84,26 @@ class DemandRaisedFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerTasks)
 
+    }
+
+    private fun deleteApiCall(demandId: String) {
+        val queue = Volley.newRequestQueue(requireContext())
+        val userEmail = (activity as MainActivity).getUserData().getString("loggedInEmail")
+        val url = "http://20.219.231.57:8080/deleteMeFromRecipients/${userEmail}/${demandId}"
+        val stringRequest = StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                Toast.makeText(
+                    requireContext(),
+                    "$demandId removed",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            {
+                Log.d("error", it.localizedMessage)
+            })
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest)
     }
 
 
@@ -158,6 +184,5 @@ class DemandRaisedFragment : Fragment() {
         }
 
     }
-
 
 }

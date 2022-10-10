@@ -21,6 +21,8 @@ import com.example.demandmanagement.model.TaskEntity
 import com.example.demandmanagement.util.SwipeToDeleteCallback
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_demand_raised.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -68,16 +70,16 @@ class MyApprovalFragment : Fragment() {
         mAdapter = MyApprovalAdapter(requireActivity(), demandList, this)
         recyclerTasks.adapter = mAdapter
 
-        val swipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                demandList.removeAt(position)
-                recyclerTasks.adapter?.notifyItemRemoved(position)
-            }
-        }
-
-        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
-        itemTouchHelper.attachToRecyclerView(recyclerTasks)
+//        val swipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//                val position = viewHolder.adapterPosition
+//                demandList.removeAt(position)
+//                recyclerTasks.adapter?.notifyItemRemoved(position)
+//            }
+//        }
+//
+//        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+//        itemTouchHelper.attachToRecyclerView(recyclerTasks)
 
     }
 

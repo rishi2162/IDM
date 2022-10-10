@@ -9,12 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.adapter.MyRequestAdapter
 import com.example.demandmanagement.model.DemandEntity
@@ -76,6 +80,7 @@ class MyRequestFragment : Fragment() {
         val swipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
+                deleteApiCall(demandList[position].demandId)
                 demandList.removeAt(position)
                 recyclerTasks.adapter?.notifyItemRemoved(position)
             }
@@ -84,6 +89,25 @@ class MyRequestFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerTasks)
 
+    }
+
+    private fun deleteApiCall(demandId: String) {
+        val queue = Volley.newRequestQueue(requireContext())
+        val url = "http://20.219.231.57:8080/changeDemandActive/${demandId}/false"
+        val stringRequest = StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                Toast.makeText(
+                    requireContext(),
+                    "$demandId removed",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            {
+                Log.d("error", it.localizedMessage)
+            })
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest)
     }
 
     private fun filterData() {
