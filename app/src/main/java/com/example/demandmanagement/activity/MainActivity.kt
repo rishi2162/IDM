@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.databinding.ActivityMainBinding
@@ -38,10 +39,17 @@ class MainActivity : AppCompatActivity() {
 
         if (intent.extras != null) {
             stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
-            //deviceId = intent.getStringExtra("deviceId").toString()
+            deviceId = intent.getStringExtra("deviceId").toString()
+
+            if (deviceId != "null") {
+                val devIdJson = JSONObject()
+                devIdJson.put("userid", getUserData().getString("loggedInUserId"))
+                devIdJson.put("devtype", "Android")
+                devIdJson.put("devid", deviceId)
+                postDeviceIdApiCall(devIdJson)
+            }
 
         }
-        //Log.i("deviceId", deviceId)
         replaceFragments(HomeFragment(), stringArray)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -90,10 +98,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragments(fragment: Fragment, stringArray: ArrayList<String>) {
         val bundle = Bundle()
-        //bundle.putString("responseData", responseData.toString())
         bundle.putStringArrayList("stringArray", stringArray)
-
-        //Log.i("successRequest", stringArray.toString())
         fragment.arguments = bundle
 
         val fragmentManager = supportFragmentManager
@@ -216,6 +221,25 @@ class MainActivity : AppCompatActivity() {
         dataJson.put("loggedInUserId", user.userid)
 
         return dataJson
+    }
+
+    private fun postDeviceIdApiCall(devIdJson: JSONObject) {
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://20.219.231.57:8080/updateDevice"
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Method.POST, url, devIdJson,
+            { response ->
+                //Log.i("successRequest", response.toString())
+
+            },
+            {
+                Log.d("error", it.localizedMessage as String)
+            }) {
+
+        }
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest)
     }
 
 }
