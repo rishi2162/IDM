@@ -57,7 +57,16 @@ class MyRequestAdapter(
         } else {
             val currentItem = filterList[position]
             holder.designationView.text = currentItem.dmDesgn
-            holder.descView.text = currentItem.desc
+            var descStr :String = currentItem.desc
+            if(descStr.length <= 100){
+                holder.descView.text = descStr
+            }
+            else{
+                descStr = descStr.substring(0, 100)
+                descStr += ".."
+                holder.descView.text = descStr
+            }
+            //holder.descView.text = currentItem.desc
             holder.authorView.text = currentItem.name
             holder.dateView.text = convertDate(currentItem.date)
 
