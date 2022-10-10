@@ -121,7 +121,7 @@ class ProfileFragment : Fragment() {
                     status = "disabled"
                 }
                 Toast.makeText(
-                    requireActivity(),
+                    requireContext(),
                     "Email service ${status}",
                     Toast.LENGTH_SHORT
                 ).show()

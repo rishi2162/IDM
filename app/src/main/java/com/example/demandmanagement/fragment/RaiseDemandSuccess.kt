@@ -1,6 +1,7 @@
 package com.example.demandmanagement.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,7 @@ class RaiseDemandSuccess : Fragment() {
         val tvDemandUpdate = view.findViewById<TextView>(R.id.tvDemandUpdate)
 
         val bundle = this.arguments
-        val demandId = bundle?.getString("demandId").toString()
+        val demandId = bundle?.getString("demandID").toString()
         if(demandId!="null"){
             tvDemandSuccess.visibility = View.GONE
             tvDemandUpdate.visibility = View.VISIBLE
