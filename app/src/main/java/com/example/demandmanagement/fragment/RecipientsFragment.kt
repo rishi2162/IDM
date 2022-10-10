@@ -347,13 +347,13 @@ class RecipientsFragment : Fragment() {
         val queue = Volley.newRequestQueue(requireActivity())
         var url = ""
 
-        if(demandID == null){
+        if(demandID == "null"){
             url = "http://20.219.231.57:8080/demand"
         }
         else{
             url = "http://20.219.231.57:8080/editDemand/${demandID}"
         }
-
+        Log.d("url", url)
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.POST, url, newDemandObject,
             { response ->

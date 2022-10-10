@@ -29,7 +29,7 @@ class RaiseDemandSuccess : Fragment() {
 
         val bundle = this.arguments
         val demandId = bundle?.getString("demandId").toString()
-        if(demandId!=null){
+        if(demandId!="null"){
             tvDemandSuccess.visibility = View.GONE
             tvDemandUpdate.visibility = View.VISIBLE
         }

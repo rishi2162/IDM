@@ -32,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun apiCall() {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://20.219.231.57:8080/getDetails/ayush@gmail.com"
+        val url = "http://20.219.231.57:8080/getDetails/va@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
@@ -50,7 +50,7 @@ class SplashActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putStringArrayListExtra("response", convertToStringArray(response))
                     intent.putExtra("deviceId", deviceId)
-                    //Log.i("response", convertToStringArray(response).toString())
+                    Log.i("deviceId", deviceId)
 
                     startActivity(intent)
                     overridePendingTransition(R.raw.fadein, R.raw.fadeout);
