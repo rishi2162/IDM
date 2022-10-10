@@ -282,7 +282,7 @@ class RecipientsFragment : Fragment() {
                 newDemandObject.put("date", currentDate)
                 newDemandObject.put("dueDate", dueDateTime)
                 //newDemandObject.put("status", "PENDING")
-                newDemandObject.put("fulfilledQty", 1)
+                newDemandObject.put("fulfilledQty", 0)
                 newDemandObject.put("shift", shift)
                 newDemandObject.put("priority", prior)
                 newDemandObject.put("active", true)
