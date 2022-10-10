@@ -3,6 +3,7 @@ package com.example.demandmanagement.adapter
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +44,19 @@ class ViewPagerAdapter(
         val currentItem = notifications[position]
 
         holder.tvDesignation.text = currentItem.dmDesgn
-        holder.tvAuthor.text = currentItem.userId
-        holder.tvDesc.text = currentItem.desc
+        holder.tvAuthor.text = currentItem.name
+
+        var descStr :String = currentItem.desc
+        //Log.i("len", descStr.length.toString())
+        if(descStr.length <= 120){
+            holder.tvDesc.text = descStr
+        }
+        else{
+            descStr = descStr.substring(0, 120)
+            descStr += ".."
+            holder.tvDesc.text = descStr
+        }
+
         holder.tvDate.text = convertDate(currentItem.date)
 
         holder.itemView.setOnClickListener {
@@ -62,7 +74,7 @@ class ViewPagerAdapter(
                 bundle.putString("demandId", currentItem.demandId)
                 bundle.putString("date", currentItem.date)
                 bundle.putString("dueDate", currentItem.dueDate)
-                bundle.putString("name", currentItem.userId)
+                bundle.putString("name", currentItem.name)
                 bundle.putString("priority", currentItem.priority)
                 bundle.putString("location", currentItem.location)
                 bundle.putString("recipients", currentItem.recipients)

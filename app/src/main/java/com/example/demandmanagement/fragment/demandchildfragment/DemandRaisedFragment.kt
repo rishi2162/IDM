@@ -143,7 +143,6 @@ class DemandRaisedFragment : Fragment() {
                             val myDemand = Gson().fromJson(demand, DemandEntity::class.java)
                             demandList.add(myDemand)
                         }
-
                     }
                 }
             }

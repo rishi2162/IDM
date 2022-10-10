@@ -31,8 +31,7 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/btnMessages"
             android:layout_below="@+id/txtBack"
-            android:overScrollMode="never"
-            >
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,9 +95,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="2"
                         android:layout_marginLeft="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/card1"
@@ -107,25 +106,23 @@
                             android:layout_marginEnd="12dp"
                             android:layout_weight="1"
                             app:cardBackgroundColor="@color/card1_color"
-                            app:cardCornerRadius="10dp"
-                            >
+                            app:cardCornerRadius="10dp">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal"
                                 android:layout_gravity="center_horizontal"
-                                android:weightSum="2"
-                                >
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:weightSum="2">
 
                                 <TextView
                                     android:id="@+id/tvRequiredQty"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_weight="1"
                                     android:paddingTop="20dp"
                                     android:text="4"
-                                    android:layout_weight="1"
                                     android:textAlignment="center"
                                     android:textSize="34sp"
                                     android:textStyle="bold" />
@@ -135,8 +132,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:layout_weight="1"
                                     android:layout_marginBottom="5dp"
+                                    android:layout_weight="1"
                                     android:text="Requested"
                                     android:textAlignment="center"
                                     android:textStyle="bold" />
@@ -154,22 +151,20 @@
                             android:layout_marginEnd="20dp"
                             android:layout_weight="1"
                             app:cardBackgroundColor="@color/card2_color"
-                            app:cardCornerRadius="10dp"
-                            >
+                            app:cardCornerRadius="10dp">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal"
                                 android:layout_gravity="center_horizontal"
-                                >
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
                                     android:layout_gravity="center_horizontal"
+                                    android:gravity="center_horizontal"
                                     android:orientation="horizontal"
                                     android:paddingTop="20dp">
 
@@ -207,8 +202,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:layout_weight="1"
                                     android:layout_marginBottom="5dp"
+                                    android:layout_weight="1"
                                     android:text="Fulfilled"
                                     android:textAlignment="center"
                                     android:textStyle="bold" />
@@ -249,7 +244,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Requester:"
+                    android:text="Raised By:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
