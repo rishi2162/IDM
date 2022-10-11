@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +50,11 @@ class MessagesFragment : Fragment() {
         (activity as MainActivity).disableSwipe()
         userData = (activity as MainActivity).getUserData()
 
+        val lottieCheckNoComment: LottieAnimationView =
+            view.findViewById(R.id.lottieCheckNoComment)
+        val tvNoComment: TextView = view.findViewById(R.id.tvNoComment)
+        val MessRecyclerView: RecyclerView = view.findViewById(R.id.MessRecyclerView)
+
         var commentArray = ArrayList<String>()
         var demandId = ""
         val bundle = this.arguments
@@ -80,13 +86,8 @@ class MessagesFragment : Fragment() {
 
 
         if (commentList.isEmpty()) {
-            val MessRecyclerView: RecyclerView = view.findViewById(R.id.MessRecyclerView)
             MessRecyclerView.visibility = View.GONE
         } else {
-            val lottieCheckNoComment: LottieAnimationView =
-                view.findViewById(R.id.lottieCheckNoComment)
-            val tvNoComment: TextView = view.findViewById(R.id.tvNoComment)
-
             lottieCheckNoComment.visibility = View.GONE
             tvNoComment.visibility = View.GONE
 
@@ -118,6 +119,11 @@ class MessagesFragment : Fragment() {
 //           }
 
             if (mess.isNotEmpty()) {
+
+                lottieCheckNoComment.visibility = View.GONE
+                tvNoComment.visibility = View.GONE
+                MessRecyclerView.visibility = View.VISIBLE
+
                 val messPayload = JSONObject()
                 messPayload.put("demandId", demandId)
                 messPayload.put("requserId", userData.getString("loggedInUserId"))
@@ -125,6 +131,7 @@ class MessagesFragment : Fragment() {
                 messPayload.put("date", LocalDateTime.now())
 
                 apiCall(messPayload)
+                //Log.i("mess", messPayload.toString())
                 messageBox.setText("")
 
                 commentList.add(
@@ -134,9 +141,12 @@ class MessagesFragment : Fragment() {
                         "INC0000",
                         userData.getString("loggedInUser"),
                         LocalDateTime.now().toString() + "+00:00"
-
                     )
                 )
+                setView(commentList, view)
+            }
+            else{
+                Toast.makeText(requireContext(), "Please enter message", Toast.LENGTH_SHORT).show()
             }
             messageBox.onEditorAction(EditorInfo.IME_ACTION_DONE)
         }
