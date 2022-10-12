@@ -109,9 +109,9 @@ class DemandApprovalFragment : Fragment() {
             builder.setTitle("Alert")
                 .setMessage("Are you sure want to approve?")
                 .setPositiveButton("Yes") { _, it ->
-                    btnApprove.visibility = View.GONE
-                    btnReject.visibility = View.GONE
-                    tvApprove.visibility = View.VISIBLE
+//                    btnApprove.visibility = View.GONE
+//                    btnReject.visibility = View.GONE
+//                    tvApprove.visibility = View.VISIBLE
 
                     lottieApproved = view.findViewById(R.id.lottieApproved)
                     Handler(Looper.getMainLooper()).postDelayed(Runnable {
@@ -150,9 +150,9 @@ class DemandApprovalFragment : Fragment() {
             builder.setTitle("Alert")
                 .setMessage("Are you sure want to Reject?")
                 .setPositiveButton("Yes") { _, it ->
-                    btnApprove.visibility = View.GONE
-                    btnReject.visibility = View.GONE
-                    tvReject.visibility = View.VISIBLE
+//                    btnApprove.visibility = View.GONE
+//                    btnReject.visibility = View.GONE
+//                    tvReject.visibility = View.VISIBLE
 
                     lottieRejected = view.findViewById(R.id.lottieRejected)
                     Handler(Looper.getMainLooper()).postDelayed(Runnable {
@@ -284,7 +284,16 @@ class DemandApprovalFragment : Fragment() {
             Request.Method.POST, url,
             { response ->
                 // Display the first 500 characters of the response string.
-
+                (activity as MainActivity).disableTouch()
+                btnApprove.visibility = View.GONE
+                btnReject.visibility = View.GONE
+                if (response.contains("APPROVED")) {
+                    tvApprove.visibility = View.VISIBLE
+                } else if (response.contains("REJECTED")) {
+                    tvReject.visibility = View.VISIBLE
+                }
+//
+                (activity as MainActivity).apiCall()
             },
             {
                 Log.d("error", it.localizedMessage)
