@@ -57,6 +57,7 @@
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/error_toast.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/drawable/ic_edit.xml" value="0.153" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_loading.xml" value="0.203125" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/activity_main.xml" value="0.15" />
@@ -75,6 +76,7 @@
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_new2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_no_demand_found.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_raise_demand_success.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_recipients.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_single_account_mode.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ayush.das/AndroidStudioProjects/IDM/app/src/main/res/layout/fragment_task_detail.xml" value="0.2" />

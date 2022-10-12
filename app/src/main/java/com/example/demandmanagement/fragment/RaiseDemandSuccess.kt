@@ -1,6 +1,8 @@
 package com.example.demandmanagement.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +11,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.demandmanagement.R
+import com.example.demandmanagement.activity.MainActivity
 import org.w3c.dom.Text
 
 
 class RaiseDemandSuccess : Fragment() {
 
-    private lateinit var lottieCheck : LottieAnimationView
-    private lateinit var tvNewDemand : TextView
+    private lateinit var lottieCheck: LottieAnimationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +32,7 @@ class RaiseDemandSuccess : Fragment() {
 
         val bundle = this.arguments
         val demandId = bundle?.getString("demandID").toString()
-        if(demandId!="null"){
+        if (demandId != "null") {
             tvDemandSuccess.visibility = View.GONE
             tvDemandUpdate.visibility = View.VISIBLE
         }
@@ -39,12 +41,9 @@ class RaiseDemandSuccess : Fragment() {
 
         lottieCheck.animate()
 
-        tvNewDemand = view.findViewById(R.id.tvNewDemand)
+        (activity as MainActivity).disableTouch()
+        (activity as MainActivity).apiCall()
 
-        tvNewDemand.setOnClickListener {
-            val transition = this.fragmentManager?.beginTransaction()
-            transition?.replace(R.id.frameLayout, NewFragment())?.commit()
-        }
         return view
     }
 

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -121,12 +122,15 @@ class MainActivity : AppCompatActivity() {
                 },
                 3000,
             )
+            val loadingLayout = findViewById<RelativeLayout>(R.id.loadingLayout)
+            loadingLayout.visibility = View.VISIBLE
+            loadingLayout.animate().translationY(-2000F).setDuration(5000).setStartDelay(1000)
             apiCall()
 
         }
     }
 
-    private fun apiCall() {
+    fun apiCall() {
         val queue = Volley.newRequestQueue(this)
         val url = "http://20.219.231.57:8080/getDetails/cr@gmail.com"
         val jsonArrayRequest = object : JsonArrayRequest(
@@ -135,9 +139,9 @@ class MainActivity : AppCompatActivity() {
                 //Log.i("successRequest", response.toString())
                 stringArray = convertToStringArray(response)
 
-                val loadingLayout = findViewById<RelativeLayout>(R.id.loadingLayout)
-                loadingLayout.visibility = View.VISIBLE
-                loadingLayout.animate().translationY(-2000F).setDuration(5000).setStartDelay(1000)
+//                val loadingLayout = findViewById<RelativeLayout>(R.id.loadingLayout)
+//                loadingLayout.visibility = View.VISIBLE
+//                loadingLayout.animate().translationY(-2000F).setDuration(5000).setStartDelay(1000)
                 Handler().postDelayed({
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putStringArrayListExtra("response", stringArray)
@@ -182,6 +186,17 @@ class MainActivity : AppCompatActivity() {
     fun enableSwipe() {
         val swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
         swipeRefreshLayout.isEnabled = true
+    }
+
+    fun disableTouch() {
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        );
+    }
+
+    fun enableTouch() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     fun switchBackToDemand() {

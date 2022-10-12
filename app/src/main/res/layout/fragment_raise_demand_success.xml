@@ -46,19 +46,6 @@
         android:visibility="gone"
         />
 
-    <TextView
-        android:id="@+id/tvNewDemand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDemandSuccess"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="100dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:text="@string/click_here_to_raise_a_new_demand"
-        android:textColor="@color/incture_theme"
-
-        android:textSize="18sp" />
 
 
 </RelativeLayout>

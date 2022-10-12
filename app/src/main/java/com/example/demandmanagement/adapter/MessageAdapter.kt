@@ -56,7 +56,7 @@ class MessageAdapter(
             // Do the stuff for SentViewHolder
             val viewHolder = holder as SentViewHolder
             holder.sentMessage.text = currMessage.comment
-            holder.name.text = currMessage.name
+            holder.name.text = "Me"
             holder.date.text = convertDateTime(currMessage.date)
 
         } else {
