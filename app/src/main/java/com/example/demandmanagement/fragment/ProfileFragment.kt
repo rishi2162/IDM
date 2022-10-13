@@ -1,12 +1,8 @@
 package com.example.demandmanagement.fragment
 
 import android.annotation.SuppressLint
-import android.app.ActivityManager
 import android.content.Context
-import android.content.Context.ACTIVITY_SERVICE
 import android.content.Intent
-import android.os.Build.VERSION
-import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,9 +14,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
@@ -30,7 +25,6 @@ import com.example.demandmanagement.model.UserEntity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.json.JSONObject
 
 
 class ProfileFragment : Fragment() {
@@ -64,12 +58,17 @@ class ProfileFragment : Fragment() {
         val btnSignOut = view.findViewById<Button>(R.id.btnSignOut)
 
         btnSignOut.setOnClickListener(View.OnClickListener {
-            if (VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
-                (requireContext().getSystemService(ACTIVITY_SERVICE) as ActivityManager)
-                    .clearApplicationUserData() // note: it has a return value!
-            }
+//            if (VERSION_CODES.KITKAT <= VERSION.SDK_INT) {
+//                (requireContext().getSystemService(ACTIVITY_SERVICE) as ActivityManager)
+//                    .clearApplicationUserData() // note: it has a return value!
+//            }
+//
+//            val intent = Intent(requireActivity() as Context, LoginActivity::class.java)
+//            requireActivity().startActivity(intent)
+//            requireActivity().finish()
 
             val intent = Intent(requireActivity() as Context, LoginActivity::class.java)
+            intent.putExtra("btnSignOutFlag", "true")
             requireActivity().startActivity(intent)
             requireActivity().finish()
         })
@@ -115,9 +114,8 @@ class ProfileFragment : Fragment() {
             Request.Method.POST, url,
             { response ->
                 // Display the first 500 characters of the response string.
-                Log.d("successRequest", response)
                 var status = "enabled"
-                if(response.contains("inactive")){
+                if (response.contains("inactive")) {
                     status = "disabled"
                 }
                 Toast.makeText(

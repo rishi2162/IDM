@@ -33,10 +33,18 @@ class LoginActivity : AppCompatActivity() {
 //        } catch (e: NoSuchAlgorithmException) {
 //
 //        }
+        var bool = "false"
+        if (intent.extras != null) {
+            bool = intent.getStringExtra("btnSignOutFlag").toString()
+        }
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayout, SingleAccountModeFragment()).commit()
+        val fragment = SingleAccountModeFragment()
+        val bundle = Bundle()
+        bundle.putString("btnSignOutFlag", bool)
+        fragment.arguments = bundle
+        fragmentTransaction.replace(R.id.frameLayout, fragment).commit()
 
     }
 }

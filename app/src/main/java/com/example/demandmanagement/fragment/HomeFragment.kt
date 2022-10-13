@@ -112,7 +112,7 @@ class HomeFragment : Fragment() {
         addToViewPager(home.demand)
 
         tvWelcome = view.findViewById(R.id.tvWelcome)
-        tvWelcome.text = "Welcome ${user.fname},"
+        tvWelcome.text = "Welcome ${user.fname.subSequence(0, user.fname.length-1)},"
 
         drToday = view.findViewById(R.id.drToday)
         drToday.text = home.drToday.toString()

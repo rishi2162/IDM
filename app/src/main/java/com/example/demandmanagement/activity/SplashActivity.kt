@@ -20,13 +20,13 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        apiCall()
-//        Handler().postDelayed({
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-//            overridePendingTransition(R.raw.fadein, R.raw.fadeout);
-//            finish()
-//        }, 2000)
+//        apiCall()
+        Handler().postDelayed({
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.raw.fadein, R.raw.fadeout);
+            finish()
+        }, 2000)
 
     }
 

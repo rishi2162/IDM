@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         if (intent.extras != null) {
             stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
             deviceId = intent.getStringExtra("deviceId").toString()
+            Log.d("Dev", deviceId)
 
             if (deviceId != "null") {
                 val devIdJson = JSONObject()
@@ -132,7 +133,8 @@ class MainActivity : AppCompatActivity() {
 
     fun apiCall() {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://20.219.231.57:8080/getDetails/cr@gmail.com"
+        val email = getUserData().getString("loggedInEmail")
+        val url = "http://20.219.231.57:8080/getDetails/${email}"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

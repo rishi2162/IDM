@@ -9,11 +9,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
@@ -38,6 +37,7 @@ class SingleAccountModeFragment : Fragment() {
     /* Azure AD Variables */
     private var mSingleAccountApp: ISingleAccountPublicClientApplication? = null
 
+    var btnSignOutFlag = ""
     private var deviceId = ""
 
     override fun onCreateView(
@@ -47,6 +47,11 @@ class SingleAccountModeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_single_account_mode, container, false)
+
+        val bundle = this.arguments
+        if (bundle != null) {
+            btnSignOutFlag = bundle.getString("btnSignOutFlag").toString()
+        }
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
         PublicClientApplication.createSingleAccountPublicClientApplication(
@@ -82,84 +87,92 @@ class SingleAccountModeFragment : Fragment() {
             if (mSingleAccountApp == null) {
                 return@OnClickListener
             }
-
+            btnSignOutFlag = "false"
+            btn_signIn.visibility = View.GONE
             mSingleAccountApp!!.signIn(
                 activity as Activity,
                 "",
                 getScopes(),
                 getAuthInteractiveCallback()
             )
-
         })
 
-//        btn_removeAccount.setOnClickListener(View.OnClickListener {
-//            if (mSingleAccountApp == null) {
-//                return@OnClickListener
-//            }
-//
-//            /**
-//             * Removes the signed-in account and cached tokens from this app.
-//             */
-//            mSingleAccountApp!!.signOut(object :
-//                ISingleAccountPublicClientApplication.SignOutCallback {
-//                override fun onSignOut() {
-//                    updateUI(null)
-//                    performOperationOnSignOut()
-//                }
-//
-//                override fun onError(exception: MsalException) {
-//                    displayError(exception)
-//                }
-//            })
-//        })
+        btn_signOut.setOnClickListener(View.OnClickListener {
+            if (mSingleAccountApp == null) {
+                return@OnClickListener
+            }
+            signOutCall()
+        })
 
-//        btn_callGraphInteractively.setOnClickListener(View.OnClickListener {
-//            if (mSingleAccountApp == null) {
-//                return@OnClickListener
-//            }
-//
-//            /**
-//             * If acquireTokenSilent() returns an error that requires an interaction,
-//             * invoke acquireToken() to have the user resolve the interrupt interactively.
-//             *
-//             * Some example scenarios are
-//             * - password change
-//             * - the resource you're acquiring a token for has a stricter set of requirement than your SSO refresh token.
-//             * - you're introducing a new scope which the user has never consented for.
-//             */
-//
-//            /**
-//             * If acquireTokenSilent() returns an error that requires an interaction,
-//             * invoke acquireToken() to have the user resolve the interrupt interactively.
-//             *
-//             * Some example scenarios are
-//             * - password change
-//             * - the resource you're acquiring a token for has a stricter set of requirement than your SSO refresh token.
-//             * - you're introducing a new scope which the user has never consented for.
-//             */
-//            mSingleAccountApp!!.acquireToken(
-//                requireActivity(),
-//                getScopes(),
-//                getAuthInteractiveCallback()
-//            )
-//        })
-//
-//        btn_callGraphSilently.setOnClickListener(View.OnClickListener {
-//            if (mSingleAccountApp == null) {
-//                return@OnClickListener
-//            }
-//
-//            /**
-//             * Once you've signed the user in,
-//             * you can perform acquireTokenSilent to obtain resources without interrupting the user.
-//             */
-//            mSingleAccountApp!!.acquireTokenSilentAsync(
-//                getScopes(),
-//                AUTHORITY,
-//                getAuthSilentCallback()
-//            )
-//        })
+        btn_callGraphInteractively.setOnClickListener(View.OnClickListener {
+            if (mSingleAccountApp == null) {
+                return@OnClickListener
+            }
 
+            /**
+             * If acquireTokenSilent() returns an error that requires an interaction,
+             * invoke acquireToken() to have the user resolve the interrupt interactively.
+             *
+             * Some example scenarios are
+             * - password change
+             * - the resource you're acquiring a token for has a stricter set of requirement than your SSO refresh token.
+             * - you're introducing a new scope which the user has never consented for.
+             */
+
+            /**
+             * If acquireTokenSilent() returns an error that requires an interaction,
+             * invoke acquireToken() to have the user resolve the interrupt interactively.
+             *
+             * Some example scenarios are
+             * - password change
+             * - the resource you're acquiring a token for has a stricter set of requirement than your SSO refresh token.
+             * - you're introducing a new scope which the user has never consented for.
+             */
+            mSingleAccountApp!!.acquireToken(
+                requireActivity(),
+                getScopes(),
+                getAuthInteractiveCallback()
+            )
+        })
+
+        btn_callGraphSilently.setOnClickListener(View.OnClickListener {
+            if (mSingleAccountApp == null) {
+                return@OnClickListener
+            }
+
+            /**
+             * Once you've signed the user in,
+             * you can perform acquireTokenSilent to obtain resources without interrupting the user.
+             */
+
+            /**
+             * Once you've signed the user in,
+             * you can perform acquireTokenSilent to obtain resources without interrupting the user.
+             */
+            mSingleAccountApp!!.acquireTokenSilentAsync(
+                getScopes(),
+                AUTHORITY,
+                getAuthSilentCallback()
+            )
+        })
+
+    }
+
+    fun signOutCall() {
+        /**
+         * Removes the signed-in account and cached tokens from this app.
+         */
+        mSingleAccountApp!!.signOut(object :
+            ISingleAccountPublicClientApplication.SignOutCallback {
+            override fun onSignOut() {
+                updateUI(null)
+                performOperationOnSignOut()
+            }
+
+            override fun onError(exception: MsalException) {
+                displayError(exception)
+            }
+        })
     }
 
     override fun onResume() {
@@ -178,12 +191,9 @@ class SingleAccountModeFragment : Fragment() {
      * i.e. from "User.Read User.ReadWrite" to ["user.read", "user.readwrite"]
      */
     private fun getScopes(): Array<String> {
-
-        val userRead = "user.read"
-        return userRead.lowercase(Locale.ROOT).split(" ".toRegex())
-            .dropLastWhile { it.isEmpty() }
+        val scope = "user.read"
+        return scope.toLowerCase().split(" ".toRegex()).dropLastWhile { it.isEmpty() }
             .toTypedArray()
-
     }
 
     /**
@@ -212,9 +222,6 @@ class SingleAccountModeFragment : Fragment() {
                 txt_log.text = exception.toString()
             }
         })
-
-        refreshApp()
-
     }
 
     /**
@@ -237,16 +244,12 @@ class SingleAccountModeFragment : Fragment() {
                 Log.d(TAG, "Authentication failed: $exception")
                 displayError(exception)
 
-                when (exception) {
-                    is MsalClientException -> {
-                        /* Exception inside MSAL, more info inside MsalError.java */
-                    }
-                    is MsalServiceException -> {
-                        /* Exception when communicating with the STS, likely config issue */
-                    }
-                    is MsalUiRequiredException -> {
-                        /* Tokens expired or no session, retry with interactive */
-                    }
+                if (exception is MsalClientException) {
+                    /* Exception inside MSAL, more info inside MsalError.java */
+                } else if (exception is MsalServiceException) {
+                    /* Exception when communicating with the STS, likely config issue */
+                } else if (exception is MsalUiRequiredException) {
+                    /* Tokens expired or no session, retry with interactive */
                 }
             }
 
@@ -300,14 +303,15 @@ class SingleAccountModeFragment : Fragment() {
      * Make an HTTP request to obtain MSGraph data
      */
     private fun callGraphAPI(authenticationResult: IAuthenticationResult) {
-        val graphUrl = "https://graph.microsoft.com/v1.0/me"
+        val msgraph_url = "https://graph.microsoft.com/v1.0/me"
         MSGraphRequestWrapper.callGraphAPIWithVolley(
-            context as Context, graphUrl,
+            context as Context,
+            msgraph_url.toString(),
             authenticationResult.accessToken,
             { response ->
                 /* Successfully called graph, process data and send to UI */
+                Log.d(TAG, "Response: $response")
                 displayGraphResult(response)
-                passToNextActivity(response)
             },
             { error ->
                 Log.d(TAG, "Error: $error")
@@ -339,39 +343,35 @@ class SingleAccountModeFragment : Fragment() {
     }
 
     /**
-     * Pass the account details to MainActivity
-     */
-    private fun passToNextActivity(graphResponse: JSONObject) {
-
-        val email = graphResponse.get("mail").toString()
-        apiCall(email)
-
-    }
-
-    /**
      * Updates UI based on the current account.
      */
     private fun updateUI(account: IAccount?) {
 
         if (account != null) {
             btn_signIn.isEnabled = false
-            btn_signIn.visibility = View.INVISIBLE
-            txt_loading.visibility = View.VISIBLE
-            progressBar1.visibility = View.VISIBLE
-            txt_log.visibility = View.GONE
-//            btn_removeAccount.isEnabled = true
-//            btn_callGraphInteractively.isEnabled = true
-//            btn_callGraphSilently.isEnabled = true
+            btn_signIn.visibility = View.GONE
+            btn_signOut.isEnabled = true
+            btn_callGraphInteractively.isEnabled = true
+            btn_callGraphSilently.isEnabled = true
             current_user.text = account.username
+            progressBar1.visibility = View.VISIBLE
+            progressBar1.animate()
+            if (btnSignOutFlag == "false") {
+                apiCall(account.username, mSingleAccountApp)
+            } else if (btnSignOutFlag == "true") {
+                signOutCall()
+                btn_signIn.visibility = View.VISIBLE
+                current_user.text = "User"
+            }
+
+//            Log.d("account", mSingleAccountApp?.currentAccount.toString())
         } else {
             btn_signIn.isEnabled = true
-            txt_loading.visibility = View.INVISIBLE
-            progressBar1.visibility = View.INVISIBLE
-            txt_log.visibility = View.GONE
-//            btn_removeAccount.isEnabled = false
-//            btn_callGraphInteractively.isEnabled = false
-//            btn_callGraphSilently.isEnabled = false
+            btn_signOut.isEnabled = false
+            btn_callGraphInteractively.isEnabled = false
+            btn_callGraphSilently.isEnabled = false
             current_user.text = "User"
+            progressBar1.visibility = View.GONE
         }
     }
 
@@ -379,48 +379,20 @@ class SingleAccountModeFragment : Fragment() {
      * Updates UI when app sign out succeeds
      */
     private fun performOperationOnSignOut() {
-        val signOutText = "Signed Out."
-        current_user.text = ""
+        val signOutText = "You signed out successfully!"
+        current_user.text = "User"
         Toast.makeText(context, signOutText, Toast.LENGTH_SHORT)
             .show()
     }
+//    private fun passToNextActivity(graphResponse: JSONObject) {
+//        val email = graphResponse.get("mail").toString()
+//        apiCall(email)
+//    }
 
-
-    private fun refreshApp() {
-        if (btn_signIn.isEnabled) {
-
-            mSingleAccountApp!!.acquireToken(
-                requireActivity(),
-                getScopes(),
-                getAuthInteractiveCallback()
-            )
-        } else {
-
-        }
-    }
-
-    private fun signOut() {
-//        if (mSingleAccountApp == null) {
-//                return@OnClickListener
-//            }
-
-        /**
-         * Removes the signed-in account and cached tokens from this app.
-         */
-        mSingleAccountApp!!.signOut(object :
-            ISingleAccountPublicClientApplication.SignOutCallback {
-            override fun onSignOut() {
-                updateUI(null)
-                performOperationOnSignOut()
-            }
-
-            override fun onError(exception: MsalException) {
-                displayError(exception)
-            }
-        })
-    }
-
-    private fun apiCall(email: String) {
+    private fun apiCall(
+        email: String,
+        mSingleAccountApp: ISingleAccountPublicClientApplication?
+    ) {
         val queue = Volley.newRequestQueue(requireActivity())
         val url = "http://20.219.231.57:8080/getDetails/${email}"
         val jsonArrayRequest = object : JsonArrayRequest(
@@ -442,8 +414,8 @@ class SingleAccountModeFragment : Fragment() {
                     intent.putExtra("deviceId", deviceId)
                     requireActivity().startActivity(intent)
                     requireActivity().overridePendingTransition(R.raw.fadein, R.raw.fadeout);
-                    requireActivity().finish()
-                }, 2000)
+//                    requireActivity().finish()
+                }, 1000)
 
             },
             {
