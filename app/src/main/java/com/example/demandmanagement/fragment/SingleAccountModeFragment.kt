@@ -89,6 +89,7 @@ class SingleAccountModeFragment : Fragment() {
             }
             btnSignOutFlag = "false"
             btn_signIn.visibility = View.GONE
+            progressBar1.visibility = View.VISIBLE
             mSingleAccountApp!!.signIn(
                 activity as Activity,
                 "",
@@ -371,7 +372,7 @@ class SingleAccountModeFragment : Fragment() {
             btn_callGraphInteractively.isEnabled = false
             btn_callGraphSilently.isEnabled = false
             current_user.text = "User"
-            progressBar1.visibility = View.GONE
+            progressBar1.visibility = View.INVISIBLE
         }
     }
 

@@ -1,9 +1,13 @@
 package com.example.demandmanagement.fragment
 
+import android.animation.Animator
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +33,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var builder: AlertDialog.Builder
     lateinit var shortUserName: TextView
     lateinit var userName: TextView
     lateinit var userEmail: TextView
@@ -67,10 +72,22 @@ class ProfileFragment : Fragment() {
 //            requireActivity().startActivity(intent)
 //            requireActivity().finish()
 
-            val intent = Intent(requireActivity() as Context, LoginActivity::class.java)
-            intent.putExtra("btnSignOutFlag", "true")
-            requireActivity().startActivity(intent)
-            requireActivity().finish()
+            builder = AlertDialog.Builder(requireActivity())
+
+            builder.setTitle("Alert")
+                .setMessage("Are you sure want to Sign Out?")
+                .setPositiveButton("Yes") { _, it ->
+                    val intent = Intent(requireActivity() as Context, LoginActivity::class.java)
+                    intent.putExtra("btnSignOutFlag", "true")
+                    requireActivity().startActivity(intent)
+                    requireActivity().finish()
+
+                }
+                .setNegativeButton("No") { _, it ->
+
+                }.show()
+
+
         })
 
         pushBtn = view.findViewById(R.id.pushBtn)

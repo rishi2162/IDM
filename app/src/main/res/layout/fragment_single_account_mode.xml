@@ -122,6 +122,22 @@
             app:lottie_repeatCount="10"
             app:lottie_rawRes="@raw/loading_dots" />
 
+        <TextView
+            android:id="@+id/cherryWorkTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+
+            android:text="Version 1.0.1"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="©Designed by Incture "
+            android:textAlignment="center" />
+
     </LinearLayout>
 
 </FrameLayout>
