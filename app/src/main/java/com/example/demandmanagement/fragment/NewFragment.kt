@@ -21,6 +21,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.fragment_new.*
 import org.json.JSONArray
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -170,7 +171,7 @@ class NewFragment : Fragment() {
             allrecipients = bundle.getString("recipients").toString()
             demandID = bundle.getString("demandID").toString()
 
-            Log.i("demandId", demandID!!)
+            //Log.i("demandId", demandID!!)
 
             if (design != "null") {
                 inputDesignation.setText(design)
@@ -188,6 +189,12 @@ class NewFragment : Fragment() {
                         addChip(allSkillsArray[i])
                 }
             }
+        }
+
+        val tvNewDemand = view.findViewById<TextView>(R.id.tvNewDemand)
+
+        if(demandID!="null"){
+            tvNewDemand.text = "Edit Your Demand"
         }
 
         // Move to the next Fragment

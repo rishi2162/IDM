@@ -196,16 +196,14 @@ class DemandApprovalFragment : Fragment() {
             { response ->
                 //Log.i("successRequest", response.toString())
                 val commentArray = convertToStringArray(response)
-                val transition = this.fragmentManager?.beginTransaction()
                 val fragment = MessagesFragment()
+                val fragmentManager = (activity as MainActivity).supportFragmentManager
                 val commentBundle = Bundle()
                 commentBundle.putStringArrayList("commentStringArray", commentArray)
                 commentBundle.putString("demandId", demandId)
                 fragment.arguments = commentBundle
 
-                transition?.replace(R.id.frameLayout, fragment)
-                    ?.addToBackStack(fragment.javaClass.name)?.commit()
-
+                fragmentManager?.let { fragment.show(it, "MessagesFragment") }
             },
             {
                 Log.d("error", it.localizedMessage as String)

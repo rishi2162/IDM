@@ -24,13 +24,14 @@ import com.example.demandmanagement.activity.MainActivity
 import com.example.demandmanagement.adapter.MessageAdapter
 import com.example.demandmanagement.model.CommentEntity
 import com.example.demandmanagement.model.Message
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class MessagesFragment : Fragment() {
+class MessagesFragment : BottomSheetDialogFragment() {
 
     private var userData = JSONObject()
     private lateinit var messageAdapter: MessageAdapter
@@ -95,10 +96,10 @@ class MessagesFragment : Fragment() {
         }
 
         val txtDemandBack = view.findViewById<TextView>(R.id.txtDemandBack)
-        txtDemandBack.text = "< Demand ID - ${demandId}"
-        txtDemandBack.setOnClickListener {
-            (activity as MainActivity).onBackKeyPressed()
-        }
+        txtDemandBack.text = "Demand ID - ${demandId}"
+//        txtDemandBack.setOnClickListener {
+//            (activity as MainActivity).onBackKeyPressed()
+//        }
 
 
         // implement the message box

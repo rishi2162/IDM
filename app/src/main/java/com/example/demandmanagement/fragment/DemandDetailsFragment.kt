@@ -1,7 +1,9 @@
 package com.example.demandmanagement.fragment
 
+import android.content.ContentValues.TAG
 import android.os.Build
 import android.os.Bundle
+import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.activity.MainActivity
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDateTime
@@ -42,6 +45,7 @@ class DemandDetailsFragment : Fragment() {
     lateinit var tvFulfilledQty: TextView
 
     var state = ""
+    var changeFlag = "false"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -83,7 +87,13 @@ class DemandDetailsFragment : Fragment() {
 
         val txtBack = view.findViewById<TextView>(R.id.txtBack)
         txtBack.setOnClickListener {
-            (activity as MainActivity).switchBackToDemand()
+            if (changeFlag == "true") {
+                (activity as MainActivity).disableTouch()
+                (activity as MainActivity).loadRefreshView()
+
+            } else {
+                (activity as MainActivity).switchBackToDemand()
+            }
         }
 
 
@@ -148,9 +158,9 @@ class DemandDetailsFragment : Fragment() {
 
         val btnMessages = view.findViewById<Button>(R.id.btnMessages)
         btnMessages.setOnClickListener {
-            if(bundle != null) {
+            if (bundle != null) {
                 commentApiCall(bundle.getString("demandId").toString())
-            }else{
+            } else {
                 commentApiCall("D")
             }
         }
@@ -167,15 +177,14 @@ class DemandDetailsFragment : Fragment() {
             { response ->
                 //Log.i("successRequest", response.toString())
                 val commentArray = convertToStringArray(response)
-                val transition = this.fragmentManager?.beginTransaction()
                 val fragment = MessagesFragment()
+                val fragmentManager = (activity as MainActivity).supportFragmentManager
                 val commentBundle = Bundle()
                 commentBundle.putStringArrayList("commentStringArray", commentArray)
                 commentBundle.putString("demandId", demandId)
                 fragment.arguments = commentBundle
 
-                transition?.replace(R.id.frameLayout, fragment)
-                    ?.addToBackStack(fragment.javaClass.name)?.commit()
+                fragmentManager?.let { fragment.show(it, "MessagesFragment") }
 
             },
             {
@@ -250,13 +259,13 @@ class DemandDetailsFragment : Fragment() {
         return stringArray
     }
 
-    private fun fulfillQtyChAPI(demandId: String, operator:String) {
+    private fun fulfillQtyChAPI(demandId: String, operator: String) {
         val queue = Volley.newRequestQueue(requireContext())
         val url = "http://20.219.231.57:8080/updateFulfilledQty/${demandId}/${operator}"
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.POST, url, null,
             { response ->
-
+                changeFlag = "true"
 
             },
             {

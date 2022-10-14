@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun onPullToRefresh() {
+    fun onPullToRefresh() {
         var swipeRefreshLayout: SwipeRefreshLayout = findViewById(R.id.swipe_layout)
         swipeRefreshLayout.setOnRefreshListener {
 
@@ -123,12 +123,17 @@ class MainActivity : AppCompatActivity() {
                 },
                 3000,
             )
-            val loadingLayout = findViewById<RelativeLayout>(R.id.loadingLayout)
-            loadingLayout.visibility = View.VISIBLE
-            loadingLayout.animate().translationY(-2000F).setDuration(5000).setStartDelay(1000)
-            apiCall()
+
+            loadRefreshView()
 
         }
+    }
+
+    fun loadRefreshView() {
+        val loadingLayout = findViewById<RelativeLayout>(R.id.loadingLayout)
+        loadingLayout.visibility = View.VISIBLE
+        loadingLayout.animate().translationY(-2000F).setDuration(5000).setStartDelay(1000)
+        apiCall()
     }
 
     fun apiCall() {
