@@ -100,7 +100,7 @@ class DemandDetailsFragment : Fragment() {
         val btnLeft = view.findViewById<TextView>(R.id.btnLeft)
         val btnRight = view.findViewById<TextView>(R.id.btnRight)
 
-        if (state == "received") {
+        if (state == "received" || state == "PENDING" || state == "REJECTED") {
             btnLeft.visibility = View.GONE
             btnRight.visibility = View.GONE
         }

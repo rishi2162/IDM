@@ -135,7 +135,7 @@ class MyRequestAdapter(
                     bundle.putInt("requiredQty", currentItem.requiredQty)
                     bundle.putInt("fulfilledQty", currentItem.fulfilledQty)
 
-                    bundle.putString("state", "send")
+                    bundle.putString("state", currentItem.status)
 
                     fragment.arguments = bundle
 

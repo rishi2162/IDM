@@ -85,6 +85,8 @@ class RecipientsFragment : Fragment() {
         autoCompleteRecipients = view.findViewById(R.id.autoCompleteRecipients)
         chipGroupRecipients = view.findViewById(R.id.chipGroupRecipients)
 
+        val tvNewDemand = view.findViewById<TextView>(R.id.tvNewDemand)
+
         // Implement the save data
         val bundle = this.arguments
         if (bundle != null) {
@@ -120,6 +122,10 @@ class RecipientsFragment : Fragment() {
                     }
                 }
             }
+        }
+
+        if(demandID!="null"){
+            tvNewDemand.text = "Edit Your Demand"
         }
 
         Log.d("demandID", demandID!!)

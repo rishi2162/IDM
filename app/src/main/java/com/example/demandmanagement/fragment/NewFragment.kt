@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_new.*
 import org.json.JSONArray
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -123,6 +124,7 @@ class NewFragment : Fragment() {
                 getDate.get(Calendar.DAY_OF_MONTH)
             )
             datePicker.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            datePicker.datePicker.minDate = Calendar.getInstance().timeInMillis - 1000
             datePicker.show()
         }
 
