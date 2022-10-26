@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.demandmanagement.R
@@ -59,6 +60,10 @@ class MessageAdapter(
             holder.name.text = "Me"
             holder.date.text = convertDateTime(currMessage.date)
 
+            holder.sentRecyclerView.layoutManager = LinearLayoutManager(context)
+            holder.sentRecyclerView.adapter =
+                currMessage.fulfilList?.let { FulFilAdapter(context, it) }
+
         } else {
 
             val viewHolder = holder as ReceiveViewHolder
@@ -67,6 +72,9 @@ class MessageAdapter(
             holder.name.text = currMessage.name
             holder.date.text = convertDateTime(currMessage.date)
 
+            holder.receiveRecyclerView.layoutManager = LinearLayoutManager(context)
+            holder.receiveRecyclerView.adapter =
+                currMessage.fulfilList?.let { FulFilAdapter(context, it) }
         }
 
     }
@@ -79,6 +87,7 @@ class MessageAdapter(
         val sentMessage = itemView.findViewById<TextView>(R.id.tvSentMessage)
         val name = itemView.findViewById<TextView>(R.id.tvName)
         val date = itemView.findViewById<TextView>(R.id.tvDate)
+        val sentRecyclerView = itemView.findViewById<RecyclerView>(R.id.sentRecyclerView)
 
     }
 
@@ -86,6 +95,7 @@ class MessageAdapter(
         val ReceiveMessage = itemView.findViewById<TextView>(R.id.tvReceiveMessage)
         val name = itemView.findViewById<TextView>(R.id.tvName)
         val date = itemView.findViewById<TextView>(R.id.tvDate)
+        val receiveRecyclerView = itemView.findViewById<RecyclerView>(R.id.receiveRecyclerView)
 
     }
 

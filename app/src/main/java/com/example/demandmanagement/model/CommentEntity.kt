@@ -8,6 +8,7 @@ class CommentEntity(
     val comment: String,
     val userId: String,
     val name: String,
-    val date: String
+    val fulfilList: ArrayList<FulfilEntity>?,
+    val date: String,
 ) {
 }

@@ -56,6 +56,12 @@
                 android:text= "Could you give me some additional details? Have you been working too much for the last few days?"
                 android:textColor="@color/white" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/receiveRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
 
         </LinearLayout>
 

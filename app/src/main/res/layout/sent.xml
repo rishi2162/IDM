@@ -57,6 +57,12 @@
                 android:text= "The candidate must be good at understanding the flow/lifecycle of the project."
                 android:textColor="@color/white" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sentRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
 
         </LinearLayout>
 

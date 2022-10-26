@@ -166,7 +166,7 @@ class MyRequestAdapter(
                                 .contains(charSearch.lowercase(Locale.ROOT)) or row.desc.lowercase(
                                 Locale.ROOT
                             )
-                                .contains(charSearch.lowercase(Locale.ROOT)) or row.userId.lowercase(
+                                .contains(charSearch.lowercase(Locale.ROOT)) or row.name.lowercase(
                                 Locale.ROOT
                             )
                                 .contains(charSearch.lowercase(Locale.ROOT)) or row.date.lowercase(
