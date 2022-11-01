@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -282,22 +283,23 @@ class MessagesFragment : BottomSheetDialogFragment() {
     private var userData = JSONObject()
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
-    lateinit var btnAddEmp : ImageView
+    lateinit var btnAddEmp: ImageView
     var commentList = arrayListOf<CommentEntity>()
     var dummyFulfilList = arrayListOf<FulfilEntity>()
-    private lateinit var messageBox : EditText
-    lateinit var autoCompleteEmployees:AutoCompleteTextView
-    lateinit var btnFulfillDemand:Button
+    private lateinit var messageBox: EditText
+    lateinit var autoCompleteEmployees: AutoCompleteTextView
+    lateinit var btnFulfillDemand: Button
     private lateinit var chipGroupEmployees: ChipGroup
     lateinit var empChipGroup: ChipGroup
-    var employeesString:String = ""
+    var employeesString: String = ""
     var fulfillEmployees: String = ""
     var employeeList: List<String> = listOf(
-        "Ayush Das(INC02165)",
+        "Ayush Das(INC02234)",
         "Ayushi Das(INC02161)",
         "Ayushmaan Das(INC02162)",
         "Ayushs Das(INC02163)",
     )
+
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -315,9 +317,11 @@ class MessagesFragment : BottomSheetDialogFragment() {
         val MessRecyclerView: RecyclerView = view.findViewById(R.id.MessRecyclerView)
         var commentArray = ArrayList<String>()
         var demandId = ""
+        var state = ""
         val bundle = this.arguments
         if (bundle != null) {
             demandId = bundle.getString("demandId").toString()
+            state = bundle.getString("state").toString()
             commentArray = bundle.getStringArrayList("commentStringArray") as ArrayList<String>
             for (i in commentArray.indices) {
                 val myComment = Gson().fromJson(commentArray[i], CommentEntity::class.java)
@@ -343,10 +347,10 @@ class MessagesFragment : BottomSheetDialogFragment() {
         } else {
             lottieCheckNoComment.visibility = View.GONE
             tvNoComment.visibility = View.GONE
-            setView(commentList, view)
+            setView(commentList, view, state)
         }
         val txtDemandBack = view.findViewById<TextView>(R.id.txtDemandBack)
-        txtDemandBack.text = "Demand ID - ${demandId}"
+        txtDemandBack.text = "Demand ID - $demandId"
 //        txtDemandBack.setOnClickListener {
 //            (activity as MainActivity).onBackKeyPressed()
 //        }
@@ -356,16 +360,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
         btnMessage.setOnClickListener {
             empChipGroup.removeAllViews()
             val mess = messageBox.text.toString()
-//            if (mess.isNotEmpty()) {
-//                messageList.add(
-//                    CommentEntity(
-//                        "Rishi Mishra",
-//                        "09/11/2022",
-//                        mess
-//                    )
-//                )
-//                messageBox.setText("")
-//           }
+
             if (mess.isNotEmpty()) {
                 lottieCheckNoComment.visibility = View.GONE
                 tvNoComment.visibility = View.GONE
@@ -374,6 +369,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
                 messPayload.put("demandId", demandId)
                 messPayload.put("requserId", userData.getString("loggedInUserId"))
                 messPayload.put("comment", mess)
+                //messPayload.put("fulfilledQtyList", dummyFulfilList)
                 messPayload.put("date", LocalDateTime.now())
                 apiCall(messPayload)
                 //Log.i("mess", messPayload.toString())
@@ -388,15 +384,17 @@ class MessagesFragment : BottomSheetDialogFragment() {
                         LocalDateTime.now().toString() + "+00:00"
                     )
                 )
-                setView(commentList, view)
-            }
-            else{
+                setView(commentList, view, state)
+            } else {
                 Toast.makeText(requireContext(), "Please enter message", Toast.LENGTH_SHORT).show()
             }
             messageBox.onEditorAction(EditorInfo.IME_ACTION_DONE)
         }
         // Add Employee
         btnAddEmp = view.findViewById(R.id.btnAddEmp)
+        if (state == "received") {
+            btnAddEmp.visibility = View.VISIBLE
+        }
         btnAddEmp.setOnClickListener {
             //empChipGroup.visibility = View.VISIBLE
             val dialogBinding = layoutInflater.inflate(R.layout.add_employees, null)
@@ -407,13 +405,27 @@ class MessagesFragment : BottomSheetDialogFragment() {
             mDialog.show()
             autoCompleteEmployees = dialogBinding.findViewById(R.id.autoCompleteEmployees)
             chipGroupEmployees = dialogBinding.findViewById(R.id.chipGroupEmployees)
-            var adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, employeeList)
+            var adapter =
+                ArrayAdapter(
+                    requireActivity(),
+                    android.R.layout.simple_list_item_1,
+                    employeeList
+                )
             autoCompleteEmployees.setAdapter(adapter)
             autoCompleteEmployees.setOnKeyListener { _, keyCode, event ->
                 if (autoCompleteEmployees.text.toString().isNotEmpty()
                 ) {
                     val name = autoCompleteEmployees.text.toString()
-                    addChip(name)
+                    if (name.contains('(')) {
+                        addChip(name)
+                    } else {
+                        Toast.makeText(
+                            requireActivity(),
+                            "Employee not found!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                     autoCompleteEmployees.text.clear()
                     return@setOnKeyListener true
                 }
@@ -432,34 +444,65 @@ class MessagesFragment : BottomSheetDialogFragment() {
                             fulfillEmployees += ",${chip.text.toString()}"
                         }
                     }
-                    Toast.makeText(requireActivity(), "Congrats, You fulfilled ${chipGroupEmployees.childCount} demands", Toast.LENGTH_SHORT).show()
-                    if(fulfillEmployees.isNotEmpty()){
+                    Toast.makeText(
+                        requireActivity(),
+                        "Congrats, You fulfilled ${chipGroupEmployees.childCount} demands",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    if (fulfillEmployees.isNotEmpty()) {
                         var fulfillEmployeesArray = fulfillEmployees.split(",").toTypedArray()
                         for (i in fulfillEmployeesArray.indices) {
                             if (fulfillEmployeesArray[i] != "null" && fulfillEmployeesArray[i].isNotEmpty())
-                                Log.d("emp", fulfillEmployeesArray[i])
+                            //Log.d("emp", fulfillEmployeesArray[i])
+                                dummyFulfilList.add(
+                                    FulfilEntity(
+                                        fulfillEmployeesArray[i].substring(
+                                            0,
+                                            fulfillEmployeesArray[i].indexOf('(')
+                                        ),
+                                        fulfillEmployeesArray[i].substring(
+                                            fulfillEmployeesArray[i].indexOf(
+                                                '('
+                                            ) + 1, fulfillEmployeesArray[i].length - 1
+                                        ),
+                                        "PENDING"
+                                    )
+                                )
                             addEmpChip(fulfillEmployeesArray[i])
                         }
+                        //Log.d("dummy", dummyFulfilList.toString())
                     }
                     mDialog.dismiss()
-                }
-                else {
-                    Toast.makeText(requireActivity(), "You fulfilled 0 demands", Toast.LENGTH_SHORT)
+                } else {
+                    Toast.makeText(
+                        requireActivity(),
+                        "You fulfilled 0 demands",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     mDialog.dismiss()
                 }
             }
+
+
         }
         return view
     }
-    private fun setView(commentList: ArrayList<CommentEntity>, view: View) {
+
+    private fun setView(commentList: ArrayList<CommentEntity>, view: View, state: String) {
         val messRecyclerView = view.findViewById<RecyclerView>(R.id.MessRecyclerView)
         val myLinearLayoutManager = LinearLayoutManager(activity)
         messRecyclerView.layoutManager = myLinearLayoutManager
         messageAdapter =
-            MessageAdapter(requireActivity(), commentList, userData.getString("loggedInUser"))
+            MessageAdapter(
+                requireActivity(),
+                commentList,
+                userData.getString("loggedInUser"),
+                state
+            )
         messRecyclerView.adapter = messageAdapter
     }
+
     private fun apiCall(jsonObject: JSONObject) {
         val queue = Volley.newRequestQueue(requireContext())
         val url = "http://20.219.231.57:8080/createComment"
@@ -475,6 +518,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
         // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest)
     }
+
     private fun addChip(text: String) {
         var flag: Boolean = false
         val n = chipGroupEmployees.childCount - 1
@@ -495,6 +539,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
             chipGroupEmployees.addView(chip)
         }
     }
+
     private fun addEmpChip(text: String) {
         var flag: Boolean = false
         val n = empChipGroup.childCount - 1

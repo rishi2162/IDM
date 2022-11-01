@@ -31,6 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_approve_24" />
 
                 <ImageView
@@ -38,6 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_pending_24" />
 
                 <ImageView
@@ -47,6 +49,7 @@
                     android:layout_below="@+id/iconAccept"
                     android:layout_centerInParent="true"
                     android:rotation="45"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_reject_24" />
 
             </RelativeLayout>
@@ -86,6 +89,7 @@
             android:layout_below="@+id/llEmp"
             android:orientation="horizontal"
             android:padding="5dp"
+            android:visibility="gone"
             android:weightSum="2">
 
             <TextView

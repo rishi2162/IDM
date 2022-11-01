@@ -6,40 +6,46 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     tools:context=".fragment.MessagesFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
         <View
             android:layout_width="30dp"
             android:layout_height="2dp"
             android:layout_margin="1dp"
             android:background="@color/incture_theme" />
+
         <View
             android:layout_width="30dp"
             android:layout_height="2dp"
             android:layout_margin="1dp"
             android:background="@color/incture_theme" />
+
         <View
             android:layout_width="30dp"
             android:layout_height="2dp"
             android:layout_margin="1dp"
             android:background="@color/incture_theme" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/txtDemandBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-medium"
         android:padding="5dp"
-        android:layout_marginTop="5dp"
         android:text="@string/demand_id"
         android:textColor="@color/incture_theme"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MessRecyclerView"
         android:layout_width="match_parent"
@@ -47,14 +53,15 @@
         android:layout_above="@+id/empChipGroup"
         android:layout_below="@+id/txtDemandBack"
         android:layout_marginTop="10dp" />
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/empChipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/flEnterMsg"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        />
+        android:paddingRight="5dp" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieCheckNoComment"
         android:layout_width="250dp"
@@ -64,6 +71,7 @@
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/no_comments_lottie"
         app:lottie_speed="0.35" />
+
     <TextView
         android:id="@+id/tvNoComment"
         android:layout_width="match_parent"
@@ -76,8 +84,8 @@
         android:text="No Comments Found!"
         android:textColor="@color/incture_theme"
         android:textSize="24sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
+
     <FrameLayout
         android:id="@+id/flEnterMsg"
         android:layout_width="match_parent"
@@ -85,20 +93,20 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        >
+        android:layout_marginBottom="10dp">
+
         <EditText
             android:id="@+id/messageBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:padding="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="90dp"
-            android:inputType="text|textMultiLine"
             android:background="@drawable/message_box_background"
             android:hint="Enter message.."
-            />
+            android:inputType="text|textMultiLine"
+            android:minHeight="50dp"
+            android:padding="10dp" />
+
         <ImageView
             android:id="@+id/btnAddEmp"
             android:layout_width="35dp"
@@ -106,14 +114,15 @@
             android:layout_gravity="end"
             android:layout_marginRight="45dp"
             android:src="@drawable/ic_baseline_add_circle_24"
+            android:visibility="invisible"
             app:tint="@color/incture_theme" />
+
         <ImageView
             android:id="@+id/btnMessage"
             android:layout_width="35dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:src="@drawable/ic_baseline_send_24"
             android:layout_marginRight="5dp"
-            />
+            android:src="@drawable/ic_baseline_send_24" />
     </FrameLayout>
 </RelativeLayout>

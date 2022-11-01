@@ -19,7 +19,8 @@ import java.time.format.DateTimeFormatter
 class MessageAdapter(
     val context: Context,
     val messageList: ArrayList<CommentEntity>,
-    val loggedInUser: String
+    val loggedInUser: String,
+    val state: String
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -62,7 +63,7 @@ class MessageAdapter(
 
             holder.sentRecyclerView.layoutManager = LinearLayoutManager(context)
             holder.sentRecyclerView.adapter =
-                currMessage.fulfilList?.let { FulFilAdapter(context, it) }
+                currMessage.fulfilList?.let { FulFilAdapter(context, it, state) }
 
         } else {
 
@@ -74,7 +75,7 @@ class MessageAdapter(
 
             holder.receiveRecyclerView.layoutManager = LinearLayoutManager(context)
             holder.receiveRecyclerView.adapter =
-                currMessage.fulfilList?.let { FulFilAdapter(context, it) }
+                currMessage.fulfilList?.let { FulFilAdapter(context, it, state) }
         }
 
     }

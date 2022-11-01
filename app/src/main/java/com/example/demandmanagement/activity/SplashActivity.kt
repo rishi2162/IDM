@@ -20,19 +20,19 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-//        apiCall()
-        Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.raw.fadein, R.raw.fadeout);
-            finish()
-        }, 2000)
+        apiCall()
+//        Handler().postDelayed({
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//            overridePendingTransition(R.raw.fadein, R.raw.fadeout);
+//            finish()
+//        }, 2000)
 
     }
 
     private fun apiCall() {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://20.219.231.57:8080/getDetails/cr@gmail.com"
+        val url = "http://20.219.231.57:8080/getDetails/ayush.das@incture.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

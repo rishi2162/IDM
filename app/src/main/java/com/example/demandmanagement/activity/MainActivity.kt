@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         if (intent.extras != null) {
             stringArray = intent.getStringArrayListExtra("response") as ArrayList<String>
             deviceId = intent.getStringExtra("deviceId").toString()
-            Log.d("Dev", deviceId)
+            //Log.d("Dev", deviceId)
 
             if (deviceId != "null") {
                 val devIdJson = JSONObject()
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> replaceFragments(HomeFragment(), stringArray)
                 R.id.newDemand -> replaceFragments(NewFragment(), stringArray)
-                R.id.tasks -> replaceFragments((DemandFragment()), stringArray)
+                R.id.tasks -> replaceFragments(DemandFragment(), stringArray)
                 R.id.profile -> replaceFragments(ProfileFragment(), stringArray)
 
                 else -> {
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> replaceFragments(HomeFragment(), stringArray)
                 R.id.newDemand -> replaceFragments(NewFragment(), stringArray)
-                R.id.tasks -> replaceFragments((DemandFragment()), stringArray)
+                R.id.tasks -> replaceFragments(DemandFragment(), stringArray)
                 R.id.profile -> replaceFragments(ProfileFragment(), stringArray)
 
                 else -> {

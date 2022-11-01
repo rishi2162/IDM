@@ -159,9 +159,9 @@ class DemandDetailsFragment : Fragment() {
         val btnMessages = view.findViewById<Button>(R.id.btnMessages)
         btnMessages.setOnClickListener {
             if (bundle != null) {
-                commentApiCall(bundle.getString("demandId").toString())
+                commentApiCall(bundle.getString("demandId").toString(), state)
             } else {
-                commentApiCall("D")
+                commentApiCall("D", state)
             }
         }
 
@@ -169,7 +169,7 @@ class DemandDetailsFragment : Fragment() {
         return view
     }
 
-    private fun commentApiCall(demandId: String) {
+    private fun commentApiCall(demandId: String, state: String) {
         val queue = Volley.newRequestQueue(requireContext())
         //val url = "http://20.219.231.57:8080/fetchCommentsByDemandId/${demandId}"
         val url = "https://mocki.io/v1/d23fb26a-e9ae-4790-84b5-eac4048393d9"
@@ -183,6 +183,7 @@ class DemandDetailsFragment : Fragment() {
                 val commentBundle = Bundle()
                 commentBundle.putStringArrayList("commentStringArray", commentArray)
                 commentBundle.putString("demandId", demandId)
+                commentBundle.putString("state", state)
                 fragment.arguments = commentBundle
 
                 fragmentManager?.let { fragment.show(it, "MessagesFragment") }

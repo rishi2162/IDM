@@ -1,10 +1,12 @@
 package com.example.demandmanagement.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demandmanagement.R
@@ -12,7 +14,8 @@ import com.example.demandmanagement.model.FulfilEntity
 
 class FulFilAdapter(
     val context: Context,
-    val fulfilList: ArrayList<FulfilEntity>
+    val fulfilList: ArrayList<FulfilEntity>,
+    val state: String
 ) :
     RecyclerView.Adapter<FulFilAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,25 +29,22 @@ class FulFilAdapter(
         holder.empName.text = currentItem.empName
         holder.empId.text = currentItem.empId
 
-        if (currentItem.status == "ACCEPT") {
+        when (currentItem.status) {
+            "ACCEPT" -> {
+                holder.icAccept.visibility = View.VISIBLE
+            }
 
-            holder.icAccept.visibility = View.VISIBLE
-            holder.icPending.visibility = View.GONE
-            holder.icDecline.visibility = View.GONE
+            "DECLINE" -> {
+                holder.icDecline.visibility = View.VISIBLE
+            }
 
-        } else if (currentItem.status == "DECLINE") {
+            "PENDING" -> {
+                holder.icPending.visibility = View.VISIBLE
+            }
+        }
 
-            holder.icAccept.visibility = View.GONE
-            holder.icPending.visibility = View.GONE
-            holder.icDecline.visibility = View.VISIBLE
-
-
-        } else if (currentItem.status == "PENDING") {
-
-            holder.icAccept.visibility = View.GONE
-            holder.icPending.visibility = View.VISIBLE
-            holder.icDecline.visibility = View.GONE
-
+        if (currentItem.status == "PENDING" && state == "APPROVED") {
+            holder.llAction.visibility = View.VISIBLE
         }
     }
 
@@ -60,6 +60,7 @@ class FulFilAdapter(
         val icPending = itemView.findViewById<ImageView>(R.id.iconPending)
         val icDecline = itemView.findViewById<ImageView>(R.id.iconDecline)
 
+        val llAction = itemView.findViewById<LinearLayout>(R.id.llAction)
         val btnApprove = itemView.findViewById<TextView>(R.id.tvAccept)
         val btnDecline = itemView.findViewById<TextView>(R.id.tvDecline)
 
