@@ -3,6 +3,6 @@ package com.example.demandmanagement.model
 class FulfilEntity(
     var empName: String?,
     var empId: String?,
-    var status: String?,
+    var statusOfFulfilledQty: String?,
 ) {
 }

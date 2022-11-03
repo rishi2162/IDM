@@ -63,7 +63,7 @@ class MessageAdapter(
 
             holder.sentRecyclerView.layoutManager = LinearLayoutManager(context)
             holder.sentRecyclerView.adapter =
-                currMessage.fulfilList?.let { FulFilAdapter(context, it, state) }
+                currMessage.fulfilledQtyCmt?.let { FulFilAdapter(context, it, state) }
 
         } else {
 
@@ -75,7 +75,7 @@ class MessageAdapter(
 
             holder.receiveRecyclerView.layoutManager = LinearLayoutManager(context)
             holder.receiveRecyclerView.adapter =
-                currMessage.fulfilList?.let { FulFilAdapter(context, it, state) }
+                currMessage.fulfilledQtyCmt?.let { FulFilAdapter(context, it, state) }
         }
 
     }

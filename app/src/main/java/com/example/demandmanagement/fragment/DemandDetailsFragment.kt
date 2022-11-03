@@ -96,66 +96,6 @@ class DemandDetailsFragment : Fragment() {
             }
         }
 
-
-        val btnLeft = view.findViewById<TextView>(R.id.btnLeft)
-        val btnRight = view.findViewById<TextView>(R.id.btnRight)
-
-        if (state == "received" || state == "PENDING" || state == "REJECTED") {
-            btnLeft.visibility = View.GONE
-            btnRight.visibility = View.GONE
-        }
-
-
-        btnLeft.setOnClickListener {
-            if (fCount > 0) {
-                fCount--
-                Toast.makeText(
-                    requireActivity(),
-                    "$fCount out of $rCount demands are fulfilled!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            tvFulfilledQty.text = fCount.toString()
-
-            fulfillQtyChAPI(bundle?.getString("demandId").toString(), "decrease")
-        }
-
-        btnRight.setOnClickListener {
-
-            when (fCount) {
-                rCount -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        "All demands are fulfilled!",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-
-                }
-                rCount - 1 -> {
-                    fCount++
-                    tvFulfilledQty.text = fCount.toString()
-                    Toast.makeText(
-                        requireActivity(),
-                        "All demands are fulfilled!",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                }
-                else -> {
-                    fCount++
-                    tvFulfilledQty.text = fCount.toString()
-                    Toast.makeText(
-                        requireActivity(),
-                        "$fCount out of $rCount demands are fulfilled!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-            fulfillQtyChAPI(bundle?.getString("demandId").toString(), "increase")
-        }
-
         val btnMessages = view.findViewById<Button>(R.id.btnMessages)
         btnMessages.setOnClickListener {
             if (bundle != null) {
@@ -171,8 +111,8 @@ class DemandDetailsFragment : Fragment() {
 
     private fun commentApiCall(demandId: String, state: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        //val url = "http://20.219.231.57:8080/fetchCommentsByDemandId/${demandId}"
-        val url = "https://mocki.io/v1/d23fb26a-e9ae-4790-84b5-eac4048393d9"
+        val url = "http://20.219.231.57:8080/fetchCommentsByDemandId/${demandId}"
+        //val url = "https://mocki.io/v1/d23fb26a-e9ae-4790-84b5-eac4048393d9"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

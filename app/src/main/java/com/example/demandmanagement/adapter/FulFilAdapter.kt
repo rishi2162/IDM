@@ -29,7 +29,7 @@ class FulFilAdapter(
         holder.empName.text = currentItem.empName
         holder.empId.text = currentItem.empId
 
-        when (currentItem.status) {
+        when (currentItem.statusOfFulfilledQty) {
             "ACCEPT" -> {
                 holder.icAccept.visibility = View.VISIBLE
             }
@@ -43,10 +43,19 @@ class FulFilAdapter(
             }
         }
 
-        if (currentItem.status == "PENDING" && state == "APPROVED") {
+        if (currentItem.statusOfFulfilledQty == "PENDING" && state == "APPROVED") {
             holder.llAction.visibility = View.VISIBLE
         }
+
+        holder.btnApprove.setOnClickListener {
+            changeStatusApiCall("ACCEPTED")
+        }
+
+        holder.btnDecline.setOnClickListener {
+            changeStatusApiCall("DECLINED")
+        }
     }
+
 
     override fun getItemCount(): Int {
         return fulfilList.size
@@ -66,5 +75,9 @@ class FulFilAdapter(
 
     }
 
+
+    private fun changeStatusApiCall(status: String) {
+
+    }
 
 }
