@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.demandmanagement.R
 import com.example.demandmanagement.model.FulfilEntity
 
@@ -30,11 +34,11 @@ class FulFilAdapter(
         holder.empId.text = currentItem.empId
 
         when (currentItem.statusOfFulfilledQty) {
-            "ACCEPT" -> {
+            "APPROVED" -> {
                 holder.icAccept.visibility = View.VISIBLE
             }
 
-            "DECLINE" -> {
+            "REJECTED" -> {
                 holder.icDecline.visibility = View.VISIBLE
             }
 
@@ -48,11 +52,13 @@ class FulFilAdapter(
         }
 
         holder.btnApprove.setOnClickListener {
-            changeStatusApiCall("ACCEPTED")
+            val sId = currentItem.serialId
+            changeStatusApiCall(sId, "APPROVED")
         }
 
         holder.btnDecline.setOnClickListener {
-            changeStatusApiCall("DECLINED")
+            val sId = currentItem.serialId
+            changeStatusApiCall(sId, "REJECTED")
         }
     }
 
@@ -75,9 +81,23 @@ class FulFilAdapter(
 
     }
 
-
-    private fun changeStatusApiCall(status: String) {
-
+    private fun changeStatusApiCall(sId: String, status: String) {
+        val queue = Volley.newRequestQueue(context)
+        val url = "http://20.219.231.57:8080/changeFulfilledQtyCmtStatus/${sId}/${status}"
+        val stringRequest = StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                Toast.makeText(
+                    context,
+                    "$status",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            {
+                Log.d("error", it.localizedMessage)
+            })
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest)
     }
 
 }

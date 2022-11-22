@@ -123,6 +123,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
                     //Log.d("emp", fulfillEmployeesArray[i])
                         dummyFulfilList.add(
                             FulfilEntity(
+                                "S000",
                                 fulfillEmployeesArray[i].substring(
                                     0,
                                     fulfillEmployeesArray[i].indexOf('(')
@@ -161,7 +162,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
                 messPayload.put("comment", mess)
                 messPayload.put("fulfilledQtyCmt", fulfillArr)
                 messPayload.put("date", LocalDateTime.now())
-                 apiCall(messPayload)
+                apiCall(messPayload)
                 //Log.i("mess", messPayload.toString())
                 messageBox.setText("")
                 commentList.add(
@@ -258,7 +259,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
 //                                        "PENDING"
 //                                    )
 //                                )
-                            addEmpChip(fulfillEmployeesArray[i])
+                                addEmpChip(fulfillEmployeesArray[i])
                         }
                         //Log.d("dummy", dummyFulfilList.toString())
                     }
