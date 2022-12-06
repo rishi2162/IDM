@@ -126,7 +126,7 @@ class ProfileFragment : Fragment() {
     private fun apiCall() {
 
         val queue = Volley.newRequestQueue(requireActivity())
-        val url = "http://20.219.231.57:8080/changeEmailNotification/${user.email}"
+        val url = "http://20.204.235.62:8080/changeEmailNotification/${user.email}"
         val stringRequest = StringRequest(
             Request.Method.POST, url,
             { response ->

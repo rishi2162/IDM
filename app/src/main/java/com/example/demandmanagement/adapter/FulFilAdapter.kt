@@ -83,7 +83,7 @@ class FulFilAdapter(
 
     private fun changeStatusApiCall(sId: String, status: String) {
         val queue = Volley.newRequestQueue(context)
-        val url = "http://20.219.231.57:8080/changeFulfilledQtyCmtStatus/${sId}/${status}"
+        val url = "http://20.204.235.62:8080/changeFulfilledQtyCmtStatus/${sId}/${status}"
         val stringRequest = StringRequest(
             Request.Method.POST, url,
             { response ->

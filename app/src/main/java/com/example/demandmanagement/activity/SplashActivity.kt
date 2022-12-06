@@ -32,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun apiCall() {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://20.219.231.57:8080/getDetails/rishi.mishra@incture.com"
+        val url = "http://20.204.235.62:8080/getDetails/rishi.mishra@incture.com"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

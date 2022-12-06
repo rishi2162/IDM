@@ -190,7 +190,7 @@ class DemandApprovalFragment : Fragment() {
 
     private fun commentApiCall(demandId: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/fetchCommentsByDemandId/${demandId}"
+        val url = "http://20.204.235.62:8080/fetchCommentsByDemandId/${demandId}"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
@@ -277,7 +277,7 @@ class DemandApprovalFragment : Fragment() {
 
     private fun statusApiCall(demandId: String, status: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/changeDemandStatus/${demandId}/${status}"
+        val url = "http://20.204.235.62:8080/changeDemandStatus/${demandId}/${status}"
         val stringRequest = StringRequest(
             Request.Method.POST, url,
             { response ->

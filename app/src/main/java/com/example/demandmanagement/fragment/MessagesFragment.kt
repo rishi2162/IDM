@@ -297,7 +297,7 @@ class MessagesFragment : BottomSheetDialogFragment() {
 
     private fun apiCall(jsonObject: JSONObject) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/createComment"
+        val url = "http://20.204.235.62:8080/createComment"
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.POST, url, jsonObject,
             { response ->

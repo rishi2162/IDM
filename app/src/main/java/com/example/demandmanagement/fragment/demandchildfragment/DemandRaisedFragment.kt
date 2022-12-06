@@ -89,7 +89,7 @@ class DemandRaisedFragment : Fragment() {
     private fun deleteApiCall(demandId: String) {
         val queue = Volley.newRequestQueue(requireContext())
         val userEmail = (activity as MainActivity).getUserData().getString("loggedInEmail")
-        val url = "http://20.219.231.57:8080/deleteMeFromRecipients/${userEmail}/${demandId}"
+        val url = "http://20.204.235.62:8080/deleteMeFromRecipients/${userEmail}/${demandId}"
         val stringRequest = StringRequest(
             Request.Method.POST, url,
             { response ->

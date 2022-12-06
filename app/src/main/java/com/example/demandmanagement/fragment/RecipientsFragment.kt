@@ -354,10 +354,10 @@ class RecipientsFragment : Fragment() {
         var url = ""
 
         if(demandID == "null"){
-            url = "http://20.219.231.57:8080/demand"
+            url = "http://20.204.235.62:8080/demand"
         }
         else{
-            url = "http://20.219.231.57:8080/editDemand/${demandID}"
+            url = "http://20.204.235.62:8080/editDemand/${demandID}"
         }
         Log.d("url", url)
         val jsonObjectRequest = object : JsonObjectRequest(

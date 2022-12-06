@@ -395,7 +395,7 @@ class SingleAccountModeFragment : Fragment() {
         mSingleAccountApp: ISingleAccountPublicClientApplication?
     ) {
         val queue = Volley.newRequestQueue(requireActivity())
-        val url = "http://20.219.231.57:8080/getDetails/${email}"
+        val url = "http://20.204.235.62:8080/getDetails/${email}"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

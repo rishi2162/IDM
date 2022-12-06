@@ -360,7 +360,7 @@ class NewFragment : Fragment() {
     private fun getEmailApi(bundle: Bundle) {
 
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/getEmail"
+        val url = "http://20.204.235.62:8080/getEmail"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->

@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
     fun apiCall() {
         val queue = Volley.newRequestQueue(this)
         val email = getUserData().getString("loggedInEmail")
-        val url = "http://20.219.231.57:8080/getDetails/${email}"
+        val url = "http://20.204.235.62:8080/getDetails/${email}"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
             { response ->
@@ -247,7 +247,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun postDeviceIdApiCall(devIdJson: JSONObject) {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://20.219.231.57:8080/updateDevice"
+        val url = "http://20.204.235.62:8080/updateDevice"
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.POST, url, devIdJson,
             { response ->

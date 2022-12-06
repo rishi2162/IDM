@@ -111,7 +111,7 @@ class DemandDetailsFragment : Fragment() {
 
     private fun commentApiCall(demandId: String, state: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/fetchCommentsByDemandId/${demandId}"
+        val url = "http://20.204.235.62:8080/fetchCommentsByDemandId/${demandId}"
         //val url = "https://mocki.io/v1/d23fb26a-e9ae-4790-84b5-eac4048393d9"
         val jsonArrayRequest = object : JsonArrayRequest(
             Method.GET, url, null,
@@ -203,7 +203,7 @@ class DemandDetailsFragment : Fragment() {
 
     private fun fulfillQtyChAPI(demandId: String, operator: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/updateFulfilledQty/${demandId}/${operator}"
+        val url = "http://20.204.235.62:8080/updateFulfilledQty/${demandId}/${operator}"
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.POST, url, null,
             { response ->

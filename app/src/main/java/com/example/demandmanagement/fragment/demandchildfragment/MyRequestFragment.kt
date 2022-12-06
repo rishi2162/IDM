@@ -93,7 +93,7 @@ class MyRequestFragment : Fragment() {
 
     private fun deleteApiCall(demandId: String) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "http://20.219.231.57:8080/changeDemandActive/${demandId}/false"
+        val url = "http://20.204.235.62:8080/changeDemandActive/${demandId}/false"
         val stringRequest = StringRequest(
             Request.Method.POST, url,
             { response ->
